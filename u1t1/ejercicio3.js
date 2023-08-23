@@ -31,8 +31,15 @@ async function obtenerDatosPares() {
             personaje.type = "Programación Móvil"
         }
         console.log(`Tipo: ${personaje.type}`);
+        console.log(`Episodios: ${personaje.episode.length}`);
+        if (personaje.episode.length > 5) {
+            console.log(`Más de 5 episodios: Si`);
+        } else {
+            console.log(`Más de 5 episodios: No`);
+        }
         console.log('---------------------------');
     });
+
 }
 
 
