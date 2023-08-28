@@ -1,18 +1,33 @@
-import {Text, StyleSheet} from 'react-native'
+import React from 'react';
+import { Text, StyleSheet } from 'react-native';
 
-export const StyleText = ({text, bold, fontSize}) => {
-    const customStyles = {
-        bold: bold && styles.bold
-    }
-    
-    
-    return (
-        <Text style = {styles.bold}>{text}</Text>   
-    )
-}
+const CustomText = ({
+  children,
+  style,
+  fontSize,
+  color,
+  fontWeight,
+  ...restProps
+}) => {
+  const combinedStyles = StyleSheet.flatten([
+    styles.defaultText,
+    { fontSize, color, fontWeight },
+    style,
+  ]);
+
+  return (
+    <Text style={combinedStyles} {...restProps}>
+      {children}
+    </Text>
+  );
+};
 
 const styles = StyleSheet.create({
-    bold:{
-        fontWeight: 'bold'
-    }
-})
+  defaultText: {
+    fontSize: 16,
+    color: 'black',
+    fontWeight: 'normal',
+  },
+});
+
+export default CustomText;
