@@ -3,6 +3,7 @@ import { Dimensions, StyleSheet, Text, TouchableOpacity, View, Image, TextInput 
 
 import CustomText  from './src/components/StyleText';
 import CustomTouchable from './src/components/StyleButton';
+import Login from './src/screens';
 
 export default function App() {
   
@@ -10,8 +11,10 @@ export default function App() {
   // const {width, heigh} = Dimensions.get("screen")
 
   return (
-    <View style={styles.container}>
-      
+    <View style = {styles.container}>
+       <View style={styles.item}>
+        <Login></Login>
+       </View>  
     </View>
   );
 }
@@ -19,23 +22,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  text:{
-    color: 'black',
-    fontWeight: "bold",
+  item: {
+    width: '100%',
+    height: '30%',
+    alignItems: 'center',
   },
-  buttom:{
-    borderWidth: 5,
-    padding: 5,
-  },
-  
-  input:{
-    borderWidth: 1,
-    width: 200,
-    borderRadius: 10,
-    height: 50
-  }
 });
+
+
+
