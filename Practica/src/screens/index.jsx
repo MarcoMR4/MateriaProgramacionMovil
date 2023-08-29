@@ -10,8 +10,10 @@ export default function Login(){
             <View style={styles.item}>
                 <LoginHeader />
             </View>
-        </View>   
-            
+            <View style={styles.item2}>
+                <LoginContent />
+            </View>
+        </View>           
     );
 }
 
@@ -25,6 +27,11 @@ const styles = StyleSheet.create({
     item: {
         width: '100%',
         height: '35%',
+        alignItems: 'center',
+      },
+      item2: {
+        width: '100%',
+        height: '65%',
         alignItems: 'center',
       },
 });
