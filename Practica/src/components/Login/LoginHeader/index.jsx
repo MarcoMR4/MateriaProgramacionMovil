@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { THEME } from '../../../theme/colors';
 
 export default function LoginHeader(){
     return (
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      backgroundColor: '#202b44',
+      backgroundColor: THEME.COLORS.DARK_BLUE,
       width: '100%',
     },
     text:{

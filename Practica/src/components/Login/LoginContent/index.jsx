@@ -1,23 +1,44 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { THEME } from '../../../theme/colors';
 
 export default function LoginContent(){
+
+  const googleImage = 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png'
+
     return (
         <View style={styles.container}>
-        
-            <TextInput style={styles.input} placeholder='Email'></TextInput>
-            <TextInput style={styles.input} placeholder='Password'></TextInput>
+          <View style={styles.form}>
+          <TextInput value='marcomr@mail.com' style={styles.input} placeholder='Email'></TextInput>
+            <TextInput secureTextEntry={true} style={styles.input} placeholder='Password'></TextInput>
+            <Text style={styles.text1} >Forgot Password??</Text>
 
-            
-            <Text style={styles.text1} >Forgot Password?</Text>
 
             <TouchableOpacity style={styles.buttonLogin}>
                 <Text style={styles.text2} >Login</Text>
             </TouchableOpacity>
 
+          </View>
+
+          <View style = {{flexDirection:'row'}} >
+            <View style={styles.line}></View>
+            <View>
+              <Text>Or login with</Text>
+            </View>
+            <View style={styles.line}></View>
+          </View>
+
+          <TouchableOpacity>
+            <Image style = {styles.image} ></Image>
+          </TouchableOpacity>
+        
+            
+
         </View>
     );
 }
+
+const {DARK_BLUE, GREEN } = THEME.COLORS
 
 const styles = StyleSheet.create({
     container: {
@@ -26,36 +47,58 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'flex-start',
     },
+    form: {
+      gap: 20,
+      marginBottom: 40,
+    },
     input: {
         width: 300,
         height: 40,
-        alignItems: 'center',
+        textAlign: 'left',
         borderRadius: 10,
         borderWidth: 1,
         borderColor: 'silver',
         marginTop: 40,
+        paddingVertical: 5,
       },
-      text1: {
-        color: '#abd638',
+    text1: {
+        color: THEME.COLORS.GREEN,
         textAlign: 'right',
         marginLeft: 150,
         marginTop: 20,
-      },
-      text2: {
-        color: 'black',
+        fontWeight: 'bold',
+    },
+    text2: {
+        color: THEME.COLORS.DARK_BLUE,
         textAlign: 'center',
         fontWeight: 'bold',
         textAlignVertical: 'center',
         fontSize: 15,
-      },
-      buttonLogin: {
-        backgroundColor: '#abd638',
+    },
+    buttonLogin: {
+        backgroundColor: THEME.COLORS.GREEN,
         borderRadius: 10,
         marginTop: 20,
         width: 300,
         height: 40,
         padding: 5,
-      },
+    },
+    line: {
+      borderBottomWidth: 1,
+      flex: 1,
+      borderColor: THEME.COLORS.GRAY,
+      marginTop: 20,
+
+    },
+    image: {
+      height: 20,
+      width: 20,
+    },
+    iconButton: {
+      borderWidth: 1,
+      borderBlockColor: THEME.COLORS.GRAY
+    }
+      
       
 });
     
