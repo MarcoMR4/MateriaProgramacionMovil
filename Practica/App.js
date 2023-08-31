@@ -5,12 +5,10 @@ import CustomText  from './src/components/StyleText';
 import CustomTouchable from './src/components/StyleButton';
 import Login from './src/screens';
 import { THEME } from './src/theme/colors';
+import Person from './src/components/Person';
 
-export default function App() {
-  
   // console.log(heigh)
   // const {width, heigh} = Dimensions.get("screen")
-  const verde = THEME.COLORS.GREEN
 
   const DATA = [
     {id: 0, name: 'Marco1' ,apellido: 'Ramirez1'},
@@ -20,18 +18,14 @@ export default function App() {
     {id: 4, name: 'Marco5' ,apellido: 'Ramirez5'},
   ]
 
+export default function App() {
+
   return (
       <View style={styles.item}>
         <FlatList
           data ={ DATA}
           renderItem = {( {item : {name, apellido, id}}) =>
-            <View style = {{
-              borderWidth: 1,
-              borderColor: id % 2 === 0 ? verde : 'red'
-            }}>
-              <Text> {name} </Text>
-              <Text style = {{color: verde}}> {apellido} </Text>
-            </View>
+            <Person nombre = {name} apellido={apellido} index = {id} />
           }
           ItemSeparatorComponent={
             <Text>Separador</Text>
