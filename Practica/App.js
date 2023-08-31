@@ -13,19 +13,22 @@ export default function App() {
   const verde = THEME.COLORS.GREEN
 
   const DATA = [
-    {id: 0, name: 'Marco1' ,apellido: 'Ramirez'},
-    {id: 1, name: 'Marco2' ,apellido: 'Ramirez'},
-    {id: 2, name: 'Marco3' ,apellido: 'Ramirez'},
-    {id: 3, name: 'Marco4' ,apellido: 'Ramirez'},
-    {id: 4, name: 'Marco5s' ,apellido: 'Ramirez'},
+    {id: 0, name: 'Marco1' ,apellido: 'Ramirez1'},
+    {id: 1, name: 'Marco2' ,apellido: 'Ramirez2'},
+    {id: 2, name: 'Marco3' ,apellido: 'Ramirez3'},
+    {id: 3, name: 'Marco4' ,apellido: 'Ramirez4'},
+    {id: 4, name: 'Marco5' ,apellido: 'Ramirez5'},
   ]
 
   return (
       <View style={styles.item}>
         <FlatList
           data ={ DATA}
-          renderItem = {( {item : {name, apellido}}) =>
-            <View style = {styles.elemento}>
+          renderItem = {( {item : {name, apellido, id}}) =>
+            <View style = {{
+              borderWidth: 1,
+              borderColor: id % 2 === 0 ? verde : 'red'
+            }}>
               <Text> {name} </Text>
               <Text style = {{color: verde}}> {apellido} </Text>
             </View>
@@ -54,6 +57,7 @@ const styles = StyleSheet.create({
   elemento: {
     borderWidth: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   }
 });
 
