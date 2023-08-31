@@ -1,25 +1,18 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const CustomIconButton = ({
-  children,
-  onPress,
-  style,
-  activeOpacity,
-  text,
-  textStyle,
+const IconButtonP = ({
+  buttonStyle,
+  title,
   ...restProps
 }) => {
-  const combinedStyles = StyleSheet.flatten([styles.defaultTouchable, style]);
 
   return (
     <TouchableOpacity
-      style={combinedStyles}
-      onPress={onPress}
-      activeOpacity={activeOpacity}
+      style = {[styles.defaultTouchable, buttonStyle]}
       {...restProps}
     >
-      <Text style={[styles.defaultText, textStyle]}>{text || children}</Text>
+   
     </TouchableOpacity>
   );
 };
@@ -41,4 +34,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomIconButton;
+export default IconButtonP;

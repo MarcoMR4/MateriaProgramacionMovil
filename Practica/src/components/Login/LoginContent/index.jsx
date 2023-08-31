@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { THEME } from '../../../theme/colors';
 import { googleImage, facebookImage } from '../../../../assets';
-import {CustomIconButton} from '../../IconButton';
 
 
 export default function LoginContent(){
@@ -10,10 +9,13 @@ export default function LoginContent(){
     return (
         <View style={styles.container}>
           <View style={styles.form}>
-          <TextInput value='marcomr@mail.com' style={styles.input} placeholder='Email'></TextInput>
+            <TextInput value='marcomr@mail.com' style={styles.input} placeholder='Email'></TextInput>
             <TextInput secureTextEntry={true} style={styles.input} placeholder='Password'></TextInput>
-            <Text style={styles.text1} >Forgot Password??</Text>
-
+            
+            <TouchableOpacity>
+              <Text style={styles.text1} >Forgot Password??</Text>
+            </TouchableOpacity>
+            
 
             <TouchableOpacity style={styles.buttonLogin}>
                 <Text style={styles.text2} >Login</Text>
@@ -24,12 +26,12 @@ export default function LoginContent(){
           <View style = {{flexDirection:'row'}} >
             <View style={styles.line}></View>
             <View>
-              <Text>Or login with</Text>
+              <Text>Or login wit</Text>
             </View>
             <View style={styles.line}></View>
           </View>
 
-          <View style = {{flexDirection:'row', marginTop: 20, justifyContent:'space-between'}} >
+          <View style = {{flexDirection:'row', marginTop: 20, justifyContent:'space-around'}} >
           
             <TouchableOpacity style = {styles.iconButton}>
               <Image style = {styles.image} source={googleImage} ></Image>
@@ -41,8 +43,7 @@ export default function LoginContent(){
               <Text >Facebook</Text>
             </TouchableOpacity>
 
-       
-            
+         
           </View>
           
           <View style = {{flexDirection:'row', marginTop: 20, justifyContent:'center'}} >
@@ -117,17 +118,17 @@ const styles = StyleSheet.create({
     iconButton: {
       borderWidth: 1,
       borderBlockColor: THEME.COLORS.GRAY,
-      width: 10,
-      flex: 1,
+      width: 120,
+      height: 40,
       flexDirection: 'row',
       padding: 7,
       justifyContent: 'space-evenly',
-      borderRadius: 10
+      borderRadius: 10,
+      margin: 10,
     }, 
     text3: {
       color: THEME.COLORS.GREEN,
-  },
-      
-      
+    },
+          
 });
     
