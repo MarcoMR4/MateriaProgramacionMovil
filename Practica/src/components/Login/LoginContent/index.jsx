@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { THEME } from '../../../theme/colors';
 import { googleImage, facebookImage } from '../../../../assets';
+import CustomImage from '../../CustomImage';
+
 
 
 export default function LoginContent(){
@@ -34,16 +36,21 @@ export default function LoginContent(){
           <View style = {{flexDirection:'row', marginTop: 20, justifyContent:'space-around'}} >
           
             <TouchableOpacity style = {styles.iconButton}>
-              <Image style = {styles.image} source={googleImage} ></Image>
+              <CustomImage
+                source={googleImage} 
+                imageStyle={styles.customImage}  
+              />
               <Text >Google</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style = {styles.iconButton}>
-              <Image style = {styles.image} source={facebookImage} ></Image>
+              <CustomImage
+                source={facebookImage} 
+                imageStyle={styles.customImage}  
+              />
               <Text >Facebook</Text>
             </TouchableOpacity>
 
-         
           </View>
           
           <View style = {{flexDirection:'row', marginTop: 20, justifyContent:'center'}} >

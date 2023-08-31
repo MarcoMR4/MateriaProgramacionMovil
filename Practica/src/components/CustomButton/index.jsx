@@ -1,37 +1,29 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const IconButtonP = ({
-  buttonStyle,
-  title,
-  ...restProps
-}) => {
-
+const CustomButton = ({ title, buttonStyle, textStyle }) => {
   return (
-    <TouchableOpacity
-      style = {[styles.defaultTouchable, buttonStyle]}
-      {...restProps}
-    >
-   
+    <TouchableOpacity style={[styles.button, buttonStyle]}>
+      <Text style={[styles.buttonText, textStyle]}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  defaultTouchable: {
+  button: {
     borderWidth: 1,
     borderBlockColor: THEME.COLORS.GRAY,
-    width: 10,
-    flex: 1,
+    width: 120,
+    height: 40,
     flexDirection: 'row',
     padding: 7,
     justifyContent: 'space-evenly',
-    borderRadius: 10
+    borderRadius: 10,
+    margin: 10,
   },
-  defaultText: {
+  buttonText: {
     color: 'black',
-    textAlign: 'center',
   },
 });
 
-export default IconButtonP;
+export default CustomButton;
