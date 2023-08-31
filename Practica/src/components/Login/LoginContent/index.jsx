@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { THEME } from '../../../theme/colors';
 import { googleImage, facebookImage } from '../../../../assets';
+import {CustomIconButton} from '../../IconButton';
+
 
 export default function LoginContent(){
-
-  const googleImage = 'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png'
 
     return (
         <View style={styles.container}>
@@ -32,7 +32,7 @@ export default function LoginContent(){
           <View style = {{flexDirection:'row', marginTop: 20, justifyContent:'space-between'}} >
           
             <TouchableOpacity style = {styles.iconButton}>
-              <Image style = {styles.image} source={facebookImage} ></Image>
+              <Image style = {styles.image} source={googleImage} ></Image>
               <Text >Google</Text>
             </TouchableOpacity>
 
@@ -40,6 +40,8 @@ export default function LoginContent(){
               <Image style = {styles.image} source={facebookImage} ></Image>
               <Text >Facebook</Text>
             </TouchableOpacity>
+
+       
             
           </View>
           
