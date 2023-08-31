@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
 import { THEME } from '../../../theme/colors';
+import { googleImage, facebookImage } from '../../../../assets';
 
 export default function LoginContent(){
 
@@ -28,12 +29,28 @@ export default function LoginContent(){
             <View style={styles.line}></View>
           </View>
 
-          <TouchableOpacity>
-            <Image style = {styles.image} ></Image>
-          </TouchableOpacity>
-        
-            
+          <View style = {{flexDirection:'row', marginTop: 20, justifyContent:'space-between'}} >
+          
+            <TouchableOpacity style = {styles.iconButton}>
+              <Image style = {styles.image} source={facebookImage} ></Image>
+              <Text >Google</Text>
+            </TouchableOpacity>
 
+            <TouchableOpacity style = {styles.iconButton}>
+              <Image style = {styles.image} source={facebookImage} ></Image>
+              <Text >Facebook</Text>
+            </TouchableOpacity>
+            
+          </View>
+          
+          <View style = {{flexDirection:'row', marginTop: 20, justifyContent:'center'}} >
+            <Text >Don't have an account?</Text>
+            <TouchableOpacity>
+              <Text syle = {styles.text3}> Register </Text>
+            </TouchableOpacity>
+            
+          </View>
+        
         </View>
     );
 }
@@ -58,7 +75,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderWidth: 1,
         borderColor: 'silver',
-        marginTop: 40,
+        marginTop: 30,
         paddingVertical: 5,
       },
     text1: {
@@ -87,7 +104,8 @@ const styles = StyleSheet.create({
       borderBottomWidth: 1,
       flex: 1,
       borderColor: THEME.COLORS.GRAY,
-      marginTop: 20,
+      marginTop: 15,
+      marginBottom: 20,
 
     },
     image: {
@@ -96,8 +114,17 @@ const styles = StyleSheet.create({
     },
     iconButton: {
       borderWidth: 1,
-      borderBlockColor: THEME.COLORS.GRAY
-    }
+      borderBlockColor: THEME.COLORS.GRAY,
+      width: 10,
+      flex: 1,
+      flexDirection: 'row',
+      padding: 7,
+      justifyContent: 'space-evenly',
+      borderRadius: 10
+    }, 
+    text3: {
+      color: THEME.COLORS.GREEN,
+  },
       
       
 });
