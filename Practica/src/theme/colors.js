@@ -4,6 +4,8 @@ export const THEME = {
         WHITE: '#FFFFF',
         GREEN: '#abd638',
         GRAY: 'silver',
+        CREMITA: '#DECBA5',
+        INDIGUILLO: '#2B2732'
     
     }
 

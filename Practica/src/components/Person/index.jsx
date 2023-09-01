@@ -3,7 +3,8 @@ import React from "react";
 import { THEME } from "../../theme/colors";
 
 
-const verde = THEME.COLORS.GREEN
+const {GREEN, GRAY, CREMITA, INDIGUILLO} = THEME.COLORS
+
 
 const Person = ({ nombre, apellido, index, image }) => {
   return (
@@ -11,14 +12,23 @@ const Person = ({ nombre, apellido, index, image }) => {
       style={{
         borderWidth: 1,
         borderColor: index % 2 === 0 ? "blue" : "red",
+        flex: 1,
+        flexDirection: 'row',
+        borderRadius: 20,
+        backgroundColor: CREMITA, 
+        width: '45%',
+        height: 80,
       }}
     >
-      <Text style={{ fontSize: 30, color: verde}}>{nombre}</Text>
-      <Text style={{ fontSize: 20 }}>{apellido}</Text>
       <Image 
         source = {image} 
         style = {{width: 60, height: 60, borderRadius: 50}}
-        />
+      />
+      <View style = {{flex: 1, flexDirection: 'column'}}>
+        <Text style={{ fontSize: 13, color: INDIGUILLO}}>{nombre} </Text>
+        <Text style={{ fontSize: 13 }}>{apellido}</Text>
+      </View>
+      
     </View>
   );
 };

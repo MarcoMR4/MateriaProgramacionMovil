@@ -17,12 +17,18 @@ import { personImage } from './assets';
     {id: 2, name: 'Marco3' ,apellido: 'Ramirez3', img: personImage},
     {id: 3, name: 'Marco4' ,apellido: 'Ramirez4', img: personImage},
     {id: 4, name: 'Marco5' ,apellido: 'Ramirez5', img: personImage},
+    {id: 5, name: 'Marco6' ,apellido: 'Ramirez6', img: personImage},
+    {id: 7, name: 'Marco7' ,apellido: 'Ramirez7', img: personImage},
+    {id: 8, name: 'Marco8' ,apellido: 'Ramirez8', img: personImage},
+    {id: 9, name: 'Marco9' ,apellido: 'Ramirez9', img: personImage},
+    {id: 10, name: 'Marco10' ,apellido: 'Ramirez10', img: personImage},
+    {id: 11, name: 'Marco11' ,apellido: 'Ramirez11', img: personImage},
   ]
 
 export default function App() {
 
   return (
-      <View style={styles.item}>
+      <View style={styles.liston}>
         <FlatList
           data ={ DATA}
           renderItem = {( {item : {name, apellido, id, img}}) =>
@@ -47,9 +53,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  item: {
-    flex: 1,
-    width: 400,
+  liston: {
+    
+    flexDirection: 'row',
+
+    width: '100%',
     height: '100%',
     marginTop: 40,
    
