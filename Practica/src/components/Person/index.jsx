@@ -18,6 +18,7 @@ const Person = ({ nombre, apellido, index, image }) => {
         backgroundColor: CREMITA, 
         width: '45%',
         height: 80,
+        margin: 5,
       }}
     >
       <Image 

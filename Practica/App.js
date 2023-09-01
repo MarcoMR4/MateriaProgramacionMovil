@@ -29,8 +29,12 @@ export default function App() {
 
   return (
       <View style={styles.liston}>
+
         <FlatList
           data ={ DATA}
+          horizontal={false}
+          numColumns = {2} 
+          pagingEnabled={true}
           renderItem = {( {item : {name, apellido, id, img}}) =>
             <Person 
               nombre = {name} 
@@ -54,13 +58,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   liston: {
-    
-    flexDirection: 'row',
-
     width: '100%',
     height: '100%',
-    marginTop: 40,
-   
+    marginTop: 50,
   },
   elemento: {
     borderWidth: 1,
