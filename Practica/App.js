@@ -6,7 +6,7 @@ import CustomTouchable from './src/components/StyleButton';
 import Login from './src/screens';
 import { THEME } from './src/theme/colors';
 import Person from './src/components/Person';
-import { personImage } from './assets';
+import { personImage, downImage, upDImage, plusImage } from './assets';
 
   // console.log(heigh)
   // const {width, heigh} = Dimensions.get("screen")
@@ -16,18 +16,38 @@ import { personImage } from './assets';
     {id: 1, name: 'Marco2' ,apellido: 'Ramirez2', img: personImage},
     {id: 2, name: 'Marco3' ,apellido: 'Ramirez3', img: personImage},
     {id: 3, name: 'Marco4' ,apellido: 'Ramirez4', img: personImage},
-    {id: 4, name: 'Marco5' ,apellido: 'Ramirez5', img: personImage},
-    {id: 5, name: 'Marco6' ,apellido: 'Ramirez6', img: personImage},
-    {id: 7, name: 'Marco7' ,apellido: 'Ramirez7', img: personImage},
-    {id: 8, name: 'Marco8' ,apellido: 'Ramirez8', img: personImage},
-    {id: 9, name: 'Marco9' ,apellido: 'Ramirez9', img: personImage},
-    {id: 10, name: 'Marco10' ,apellido: 'Ramirez10', img: personImage},
-    {id: 11, name: 'Marco11' ,apellido: 'Ramirez11', img: personImage},
+   
   ]
 
 export default function App() {
 
   return (
+    <View style = {styles.container}>
+      
+      <View style = {styles.cont1}>
+        <Image source={personImage} style = {styles.imgI} />
+        <Text style = {styles.t1}>Morning. </Text>
+        <Text style = {style.t2}>Imran </Text>
+      </View>
+
+      <Text style = {styles.t1}>Your balance</Text>
+      <Text style = {styles.t3}>$1,600.00</Text>
+
+      <View style = {styles.cont2}>
+        <View style = {{flex: 1, flexDirection: 'column'}}>
+          <Image source={upDImage} style = {styles.imgI2}  />
+          <Text style = {styles.t1}>Send </Text>
+        </View>
+        <View style = {{flex: 1, flexDirection: 'column'}}>
+          <Image source={downImage} style = {styles.imgI2}  />
+          <Text style = {styles.t1}>Receive </Text>
+        </View>
+        <View style = {{flex: 1, flexDirection: 'column'}}>
+          <Image source={plusImage} style = {styles.imgI2} />
+          <Text style = {styles.t1}>Add</Text>
+        </View>
+      </View>
+
       <View style={styles.liston}>
 
         <FlatList
@@ -47,7 +67,11 @@ export default function App() {
             <Text>Separador</Text>
           }
         />
-      </View>  
+</View>
+
+    </View>
+
+        
   );
 }
 
@@ -56,6 +80,18 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
+    backgroundColor: 'black'
+  },
+  cont1: {
+    flex: 1,
+    flexDirection: 'Row',
+    alignItems: 'center',
+  },
+  cont2: {
+    flex: 1,
+    flexDirection: 'Row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
   liston: {
     width: '100%',
@@ -66,6 +102,31 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  t1: {
+    color: 'silver',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  t2: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  t3: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 80,
+  },
+  imgI: {
+    width: 20,
+    height: 20,
+    borderRadius: 50
+  },
+  imgI2: {
+    width: 40,
+    height: 40,
+    borderRadius: 50
   }
 });
 
