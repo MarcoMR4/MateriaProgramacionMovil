@@ -4,26 +4,23 @@ import { Dimensions, StyleSheet,
 } from 'react-native';
 import  Constants  from 'expo-constants';
 import { AntDesign } from '@expo/vector-icons';
+import AndroidText from './src/components/AndroidText';
+import IosText from './src/components/IosText';
 
-const numeros = [
-  {id: 0, num: 0},
-  {id: 1, num: 1},
-  {id: 2, num: 2},
-  {id: 3, num: 3},
-  {id: 4, num: 4},
-  {id: 5, num: 5},
-  {id: 6, num: 6},
-  {id: 7, num: 7},
-  {id: 8, num: 8},
-  {id: 9, num: 9},
-]
+const CustomText = Platform.select({
+  ios: () => IosText,
+  android: () => AndroidText,
+})
 
 export default function App() {
+
+  console.log(Platform)
 
   return (
     <View style={styles.container}>
           <Text>Deploy your app! </Text>
           <AntDesign name="arrowsalt" size={24} color="black" />
+          <CustomText />
     </View>  
      
   );
@@ -32,15 +29,23 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'cyan',
+    alignItems: 'center',
+    textAlignVertical: 'center',
+    backgroundColor: Platform.select({
+      android: 'white',
+      ios: 'cyan',
+      web: 'black'
+    }),
     paddingTop: Constants.statusBarHeight,
-
-  },
-  liston: {
-    width: '100%',
-    height: '100%',
-    marginTop: 50,
-  },
+    },
+    text: {
+      color: Platform.OS == 'web' ? 'black' : 'blue', 
+    },
+    ...Platform.select({
+        android: {
+          padding: 200,
+        }
+   }),
 });
 
 
