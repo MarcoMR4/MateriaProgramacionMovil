@@ -4,12 +4,12 @@ import { Dimensions, StyleSheet,
 } from 'react-native';
 import  Constants  from 'expo-constants';
 import { AntDesign } from '@expo/vector-icons';
-import AndroidText from './src/components/AndroidText';
 import IosText from './src/components/IosText';
+import AndroidText from './src/components/AndroidText';
 
 const CustomText = Platform.select({
   ios: () => IosText,
-  android: () => AndroidText,
+  android: () => AndroidText
 })
 
 export default function App() {
