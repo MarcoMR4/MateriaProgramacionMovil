@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import LoginContent from '../components/Login/LoginContent';
-import LoginHeader from '../components/Login/LoginHeader';
+import LoginContent from '../../components/Login/LoginContent';
+import LoginHeader from '../../components/Login/LoginHeader';
 
 export default function Login(){
     return (
