@@ -6,13 +6,11 @@ export default function Withdraw() {
   return (
     <View style={styles.container}>
         <View style={styles.elemento1}>
-            <WithdrawHeader  />
+            <WithdrawHeader/>
         </View>
         <View style={styles.elemento2}>
-             <WithdrawContent />
+            <WithdrawContent />
         </View>
-        
-        
       
     </View>
   );
@@ -20,18 +18,26 @@ export default function Withdraw() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    padding: 1,
   },
   elemento1: {
     flex: 1,
-    width: 400,
+    width: '95%',
     height: '20%',
+    marginBottom: 1,
   },
   elemento2: {
-    flex: 1,
-    width: 400,
-    height: '70%',
+    padding: 5,
+    width: '95%',
+    height: '78%',
+    marginLeft: 5,
+    marginRight: 5,
+    borderRadius: 50,
+    borderBottomRightRadius: 50,
+    marginTop: 170,
+    position: 'absolute',
   }
 });

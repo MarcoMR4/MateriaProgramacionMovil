@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { THEME } from '../../theme/color';
 
-const NARANJA1 = THEME.COLORS.NARANJA1
+const {NARANJA1, NARANJALUZ} = THEME.COLORS
 
 export default function WithdrawContent() {
   return (
@@ -22,9 +22,9 @@ export default function WithdrawContent() {
             <View style = {styles.plus}>
                 <TouchableOpacity>
                     <MaterialCommunityIcons 
-                        name="plus-thick" 
-                        size={30} 
-                        color={NARANJA1}
+                      name="plus-thick" 
+                      size={30} 
+                      style = {styles.plusIcon}
                     />
                 </TouchableOpacity>
             </View>
@@ -40,15 +40,58 @@ export default function WithdrawContent() {
         </View>
 
         <View style = {styles.container3}>
-            <Text style = {styles.numero}>
-                    1 2 3 4
-            </Text>
-            <Text style = {styles.numero}>
-                    5 6 7 8
-            </Text>
-            <Text style = {styles.numero}>
-                    O 9 0 X
-            </Text>
+          <View style = {styles.filaNumeros}>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>1</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>2</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>3</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>4</Text>
+            </TouchableOpacity>
+          </View>
+          <View style = {styles.filaNumeros}>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>5</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>6</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>7</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>8</Text>
+            </TouchableOpacity>
+          </View>
+          <View style = {styles.filaNumeros}>
+            <TouchableOpacity>
+            <MaterialCommunityIcons 
+              name="restart" 
+              color="black" 
+              style = {styles.numero}
+            />
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>9</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+             <Text style = {styles.numero}>0</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+            <Ionicons 
+              name="ios-close"  
+              color="black" 
+              style = {styles.numero}
+            />
+            </TouchableOpacity>
+          </View>
+            
+           
         </View>
 
         <View style = {{alignItems: 'center', padding: 10}}>
@@ -74,16 +117,18 @@ export default function WithdrawContent() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 10,
+    paddingTop: 20,
     flexDirection: 'column',
     backgroundColor: 'white',
-
+    height: '100%',
+    borderRadius: 30,
   },
   container1: {
     flex: 1, 
     flexDirection: 'row',
     justifyContent: 'space-around',
-    borderBottomWidth: 1,
+    height: 10,
   },
   container12: {
     flexDirection: 'column',
@@ -91,6 +136,7 @@ const styles = StyleSheet.create({
   texto1: {
     opacity: 0.5,
     color: 'black',
+    marginBottom: 10,
   },
   textoBalance: {
     color: 'black',
@@ -98,20 +144,22 @@ const styles = StyleSheet.create({
     fontSize: 25
   }, 
   plus: {
-    backgroundColor: THEME.COLORS.NARANJA1,
-    opacity: 0.15,
+    backgroundColor: NARANJALUZ,
     borderRadius: 30,
     width: 50,
     height: 50,
     alignItems: 'center',
     padding: 8,
   },
+  plusIcon: {
+    color: NARANJA1,
+  },
   container2: {
     flex: 1, 
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
+    height: 50,
   },
   textoMonto: {
     color: NARANJA1,
@@ -120,6 +168,7 @@ const styles = StyleSheet.create({
   },
   container3: {
     alignItems: 'center',
+    margin: 20,
   },
   container4: {
     flexDirection: 'row',
@@ -130,6 +179,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingTop: 1,
     justifyContent: 'center',
+    marginBottom: 20,
   }, 
   texto4: {
     color: 'white',
@@ -142,9 +192,22 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     padding: 9,
-    marginRight: 60,
+    marginRight: 30,
   },
   numero: {
-    fontSize: 20
+    fontSize: 25,
+    margin: 10,
+    borderWidth: 1,
+    borderColor: 'silver',
+    padding: 5,
+    borderRadius: 30,
+    width: 50,
+    height: 50,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+  },
+  filaNumeros: {
+    flexDirection: 'row',
+
   }
 });

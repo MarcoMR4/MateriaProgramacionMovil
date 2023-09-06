@@ -10,15 +10,12 @@ export default function WithdrawHeader() {
             <TouchableOpacity>
                 <MaterialIcons name="keyboard-arrow-left" size={30} color="white" />
             </TouchableOpacity>
-            
             <Text style = {styles.textoTitulo1}>
                  Withdraw Money
             </Text>
-
             <TouchableOpacity>
                 <Feather name="star" size={24} color="white" />
-            </TouchableOpacity>
-            
+            </TouchableOpacity>  
         </View>
 
         <View style = {styles.container2}>
@@ -39,10 +36,11 @@ const styles = StyleSheet.create({
         
     },
     container1: {
-    flex: 1,
     flexDirection: 'row',
     padding: 30, 
-    justifyContent: 'space-between'
+    paddingTop: 40,
+    justifyContent: 'space-between',
+    marginBottom: 20,
     },
     textoTitulo1: {
     color: 'white',
@@ -55,11 +53,11 @@ const styles = StyleSheet.create({
     container2: {
     backgroundColor: 'white',
     opacity: 0.5,
-    width:  '80%',
+    width:  '75%',
     alignItems: 'left',
     padding: 15,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10, 
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30, 
 
     }
 });
