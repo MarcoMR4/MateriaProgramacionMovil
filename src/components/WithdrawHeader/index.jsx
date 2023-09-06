@@ -34,7 +34,7 @@ export default function WithdrawHeader() {
 const styles = StyleSheet.create({
     container:{
         backgroundColor: THEME.COLORS.NARANJA1,
-        height: '80%',
+        height: '70%',
         alignItems: 'center',
         
     },
