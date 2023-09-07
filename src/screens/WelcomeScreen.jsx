@@ -35,14 +35,36 @@ const WelcomeScreen = () => {
             
 
             
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <ScrollView 
+                horizontal 
+                showsHorizontalScrollIndicator={false}
+                style={{marginBottom: 20}}
+            >
+
                 <Card/>
                 <Card/>
                 
             </ScrollView>
+
                 
-        </View>
-        
+
+            <Text syle={styles.textHeader}></Text>
+
+
+            <ScrollView >
+
+                <View style={styles.symptomsContainer}>
+
+                    <Text styles={{fontSize: 18, fontWeight: 'bold'}}>
+                        I'm fine
+                    </Text>
+
+                </View>
+                
+            </ScrollView>
+                
+
+        </View>        
     )
 }
 
@@ -90,8 +112,20 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         color: '#48525e',
-    }
-
+    },
+    
+    textHeader: {
+        fontSize: 25,
+        color: '#',
+    },
+    symptomsContainer: {
+        backgroundColor: '#e6ecff',
+        width: 150,
+        paddingHorizontal: 10,
+        paddingVertical: 15,
+        borderRadius: 10,
+        alignItems: 'center'
+    },
 
 })
 

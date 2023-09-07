@@ -1,10 +1,22 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-const Card = () => {
+
+const Card = ({isDarkBlue, text, iconName, iconType}) => {
+
+    const CustomIconColor = isDarkBlue ? 'white' : '#537acd'
+
+
+    const CustomIcon =
+        iconType === 'Iconicons'
+        ? (<Ionicons color= {icon} name={iconName} size={30} />)
+        : (<AntDesign name={iconName} size={30} />)
+        
+        
     return (
         <View style={styles.cardContainer}>
                 <View style = {styles.cardIconContainer}>
+                
                  <FontAwesome5 name="hdd" size={30} color="white" />
                 </View>
 
@@ -22,6 +34,21 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         justifyContent: "center",
         gap: 50,
+    },
+    cardContainer2: {
+        height: 100,
+        width: 100,
+        backgroundColor: '#red', 
+        borderRadius: 40,
+        paddingHorizontal: 30,
+        justifyContent: "center",
+        gap: 50,
+    },
+    cardContainerLight: {
+        backgroundColor: '#2362df', 
+    },
+    cardContainerDark: {
+        backgroundColor: '#e6ecff', 
     },
     cardIconContainer: {
         backgroundColor: '#2362df',
