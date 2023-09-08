@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         gap: 50,
         borderWidth: 1,
+        margin: 5,
     },
     cardContainer2: {
         height: 200,
@@ -50,7 +51,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         justifyContent: "center",
         gap: 50,
-        color: 'white'
+        color: 'white',
+        margin: 5,
     },
     cardContainerLight: {
         backgroundColor: '#2362df', 

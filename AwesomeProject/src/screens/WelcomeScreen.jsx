@@ -9,10 +9,10 @@ import { CARDS } from "../constants/cards";
 const IMAGE = "https://shmector.com/_ph/6/907397949.png"
 
 const Therapists = [
-  {id: 1, name: "Marco", job:"neuroTherapist", rate: 5},
-  {id: 2, name: "Dr. Carol Smith", job:"Phsicologist", rate: 4},
-  {id: 3, name: "Rodrigo Perez", job:"neuroTherapist", rate: 4.5},
-  {id: 4, name: "Dr. Alexander", job:"Therapist", rate: 1},
+  {id: 1, name: "Marco", job:"neuroTherapist", rate: 5, imageName: IMAGE},
+  {id: 2, name: "Dr. Carol Smith", job:"Phsicologist", rate: 4, imageName: IMAGE},
+  {id: 3, name: "Rodrigo Perez", job:"neuroTherapist", rate: 4.5, imageName: IMAGE},
+  {id: 4, name: "Dr. Alexander", job:"Therapist", rate: 1, imageName: IMAGE},
 
 ]
 
@@ -84,8 +84,7 @@ const WelcomeScreen = () => {
         Popular Therapist
       </Text>
 
-
-      
+      <ScrollView>
       <Therapist 
         name = "Carlos"
         job = "Gonzalez"
@@ -93,18 +92,26 @@ const WelcomeScreen = () => {
         rate = {5} 
       />
 
-
       <FlatList 
         data={Therapists}
         
         
-        renderItem={({ item:  {name} }) => (
+        renderItem={({ item:  {name, job, imageName, rate } }) => (
           
-          <Therapist />
+          <Therapist 
+            name={name} 
+            job={job} 
+            imageName={imageName}
+            rate={rate} 
+          />
           
-         
+          
           )}
-        />
+        />  
+
+      </ScrollView>
+
+      
         
 
   
