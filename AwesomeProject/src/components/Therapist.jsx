@@ -24,11 +24,11 @@ const Therapist = ({name, job, imageName, rate }) =>{
             </View>
             
 
-            <View>
+            <View style={{flexDirection:"row"}}>
                 <AntDesign name="star" size={24} color="black" />
-                <Text>{rate}</Text>
+                <Text style={{color: 'silver'}}>{rate}</Text>
             </View>
-                
+
 
         </View>
     )

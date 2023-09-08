@@ -9,10 +9,10 @@ import { CARDS } from "../constants/cards";
 const IMAGE = "https://shmector.com/_ph/6/907397949.png"
 
 const Therapists = [
-  {id: 1, name: "Marco", job:"neuroTherapist", rate: 5, imageName: IMAGE},
-  {id: 2, name: "Dr. Carol Smith", job:"Phsicologist", rate: 4, imageName: IMAGE},
+  {id: 1, name: "Marco", job:"neuroTherapist", rate: 5.0, imageName: IMAGE},
+  {id: 2, name: "Dr. Carol Smith", job:"Phsicologist", rate: 4.3, imageName: IMAGE},
   {id: 3, name: "Rodrigo Perez", job:"neuroTherapist", rate: 4.5, imageName: IMAGE},
-  {id: 4, name: "Dr. Alexander", job:"Therapist", rate: 1, imageName: IMAGE},
+  {id: 4, name: "Dr. Alexander", job:"Therapist", rate: 1.2, imageName: IMAGE},
 
 ]
 
@@ -35,7 +35,7 @@ const WelcomeScreen = () => {
         <Text style={{ color: "#2b3941" }}>Chris 👋</Text>
       </Text>
       <ScrollView
-        style={{ marginBottom: 40 }}
+        style={{ marginBottom: 20 }}
         horizontal
         showsHorizontalScrollIndicator={false}
       >
@@ -71,11 +71,11 @@ const WelcomeScreen = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
       >
-          <SymptomCard text="I'm fine" />
-          <SymptomCard text="I'm fine" />
-          <SymptomCard text="I'm fine" />
-          <SymptomCard text="I'm fine" />
-          <SymptomCard text="I'm fine" />
+          <SymptomCard text="I'm fine" emoji='😅'/>
+          <SymptomCard text="I'm fine" emoji='😅'/>
+          <SymptomCard text="I'm fine" emoji='😅'/>
+          <SymptomCard text="I'm fine" emoji='😅'/>
+          <SymptomCard text="I'm fine" emoji='😅'/>
       </ScrollView>
 
 
@@ -148,15 +148,14 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     color: "#495258",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   symptomsContainer: {
-    flex: 1,
-    height: 50,
-    paddingHorizontal: 10,
-    paddingVertical: 15,
+    height: 60,
+    paddingHorizontal: 1,
+    paddingVertical: 5,
     borderRadius: 10,
-    marginTop: 20,
+    marginTop: 10,
     marginRight: 25,
   },
 });

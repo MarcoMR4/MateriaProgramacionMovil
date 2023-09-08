@@ -3,19 +3,22 @@ import { View, Text, StyleSheet } from "react-native";
 
 
 
-const SymptomCard = (text, emoji) => {
+const SymptomCard = ({text, emoji}) => {
     return(
-        
+
         <View style={styles.symptomsContainer}>
             <Text
                 style={{
-                    fontSize: 18,
+                    fontSize: 15,
                     fontWeight: "600",
                     color: "#2263df",
                     textAlign: "center",
+                    margin: 10,
                 }}
             >
-                text
+
+            {emoji} {text}
+
             </Text>
                 
     
@@ -30,9 +33,11 @@ const styles = StyleSheet.create({
     
     symptomsContainer: {
         backgroundColor: '#c6ceff',
-
-    }
-
+        margin: 5,
+        borderRadius: 10,
+        fontSize: 5,
+    },
+    
 
 
 
