@@ -1,20 +1,17 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
 import Card from "../components/Card";
 import SymptomCard from "../components/SymptomCard";
 import Therapist from "../components/Therapist";
 import { CARDS } from "../constants/cards";
+import { Entypo, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
+import { blue1, blue2 } from "../constants/colors";
+import { Therapists } from "../constants/terapists";
 
-const IMAGE = "https://shmector.com/_ph/6/907397949.png"
 
-const Therapists = [
-  {id: 1, name: "Marco", job:"neuroTherapist", rate: 5.0, imageName: IMAGE},
-  {id: 2, name: "Dr. Carol Smith", job:"Phsicologist", rate: 4.3, imageName: IMAGE},
-  {id: 3, name: "Rodrigo Perez", job:"neuroTherapist", rate: 4.5, imageName: IMAGE},
-  {id: 4, name: "Dr. Alexander", job:"Therapist", rate: 1.2, imageName: IMAGE},
 
-]
+
+
 
 
 
@@ -39,30 +36,20 @@ const WelcomeScreen = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
       >
-        <Card
-          isDarkBlue
-          text="Start "
-          iconName={"hdd"}
-          iconType={"FontAwesome5"}
+
+        <FlatList 
+          data={CARDS}
+          horizontal={true}
+          renderItem={({ item:  {isDarkBlue, text, iconName, iconType } }) => (
+            <Card 
+              isDarkBlue={isDarkBlue} 
+              text={text} 
+              iconName={iconName}
+              iconType={iconType} 
+            />
+          )}
         />
-        <Card
-          isDarkBlue={false}
-          text="Start training2"
-          iconName={"hdd"}
-          iconType={"AntDesign"}
-        />
-        <Card
-          isDarkBlue
-          text="Start training3"
-          iconName={"hdd"}
-          iconType={"AntDesign"}
-        />
-        <Card
-          isDarkBlue={true}
-          text="Start training4"
-          iconName={"hdd"}
-          iconType={"AntDesign"}
-        />
+
       </ScrollView>
       <Text style={styles.textHeader}>What are your symptoms?</Text>
 
@@ -72,8 +59,8 @@ const WelcomeScreen = () => {
         showsHorizontalScrollIndicator={false}
       >
           <SymptomCard text="I'm fine" emoji='😅'/>
-          <SymptomCard text="I'm fine" emoji='😅'/>
-          <SymptomCard text="I'm fine" emoji='😅'/>
+          <SymptomCard text="Depressed" emoji='😥'/>
+          <SymptomCard text="Angry" emoji='😡'/>
           <SymptomCard text="I'm fine" emoji='😅'/>
           <SymptomCard text="I'm fine" emoji='😅'/>
       </ScrollView>
@@ -84,37 +71,48 @@ const WelcomeScreen = () => {
         Popular Therapist
       </Text>
 
-      <ScrollView>
-      <Therapist 
-        name = "Carlos"
-        job = "Gonzalez"
-        imageName="https://shmector.com/_ph/6/907397949.png"
-        rate = {5} 
-      />
+      <ScrollView 
+        style={styles.scrollContainerTherapists} 
+        showsVerticalScrollIndicator={false}
+      >
 
-      <FlatList 
-        data={Therapists}
-        
-        
-        renderItem={({ item:  {name, job, imageName, rate } }) => (
-          
-          <Therapist 
-            name={name} 
-            job={job} 
-            imageName={imageName}
-            rate={rate} 
-          />
-          
-          
-          )}
-        />  
+        <Therapist 
+          name = "Dr. Carlos Gonzalez"
+          job = "Psychologist"
+          imageName="https://shmector.com/_ph/6/907397949.png"
+          rate = {5} 
+        />
+        <FlatList 
+          data={Therapists}
+          renderItem={({ item:  {name, job, imageName, rate } }) => (
+            
+            <Therapist 
+              name={name} 
+              job={job} 
+              imageName={imageName}
+              rate={rate} 
+            />
+            
+            
+            )}
+          />  
+      </ScrollView>  
 
-      </ScrollView>
+      <View style={styles.lastBottomContainer}>
+        <TouchableOpacity>
+         <Entypo name="home" size={30} color={blue2} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <MaterialCommunityIcons name="message-reply-outline" size={30} color="silver" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+         <AntDesign name="calendar" size={30} color="silver" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons name="person-outline" size={30} color="silver" />
+        </TouchableOpacity>
+      </View>
 
-      
-        
-
-  
     </View>
   );
 };
@@ -158,4 +156,16 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 25,
   },
+  lastBottomContainer:{
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 10,
+    marginTop: 1,
+
+  }, 
+  scrollContainerTherapists: {
+    height: 185,
+  }
+
+
 });

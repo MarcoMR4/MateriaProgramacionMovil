@@ -1,7 +1,10 @@
 import React from "react";
 import { View, StyleSheet, Text, ScrollView } from "react-native";
 import { AntDesign, FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { THEME } from "../THEME/colors";
+import { blue1 } from "../constants/colors";
 
+const lightBlue = THEME.colors.LIGHTBLUE1
 
 const Card = ({isDarkBlue, text, iconName, iconType}) => {
 
@@ -35,12 +38,11 @@ const styles = StyleSheet.create({
     cardContainer: {
         height: 200,
         width: 200,
-        backgroundColor: 'white', 
+        backgroundColor: blue1, 
         borderRadius: 40,
         paddingHorizontal: 30,
         justifyContent: "center",
         gap: 50,
-        borderWidth: 1,
         margin: 5,
     },
     cardContainer2: {

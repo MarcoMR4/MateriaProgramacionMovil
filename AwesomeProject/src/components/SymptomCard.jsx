@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-
+import { blue1 } from "../constants/colors";
 
 
 const SymptomCard = ({text, emoji}) => {
@@ -9,7 +9,7 @@ const SymptomCard = ({text, emoji}) => {
         <View style={styles.symptomsContainer}>
             <Text
                 style={{
-                    fontSize: 15,
+                    fontSize: 13,
                     fontWeight: "600",
                     color: "#2263df",
                     textAlign: "center",
@@ -32,7 +32,8 @@ const SymptomCard = ({text, emoji}) => {
 const styles = StyleSheet.create({
     
     symptomsContainer: {
-        backgroundColor: '#c6ceff',
+        
+        backgroundColor: blue1,
         margin: 5,
         borderRadius: 10,
         fontSize: 5,

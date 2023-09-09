@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
+import { blue2 } from "../constants/colors";
 
 const Therapist = ({name, job, imageName, rate }) =>{
-    
-   
+
     return (
         <View style={styles.Container}>
 
@@ -15,8 +15,6 @@ const Therapist = ({name, job, imageName, rate }) =>{
                 }}
             />
             
-
-
             <View style={styles.TherapistInfo}>
                 <Text style={styles.TherapistName}>{name}</Text>
                 <Text style={styles.TherapistJob}>{job}</Text>
@@ -25,7 +23,12 @@ const Therapist = ({name, job, imageName, rate }) =>{
             
 
             <View style={{flexDirection:"row"}}>
-                <AntDesign name="star" size={24} color="black" />
+
+                {rate > 3 ? (
+                    <AntDesign name='star' size={24} color={blue2} />
+                ) : (
+                    <AntDesign name='staro' size={24} color={blue2} />
+                )}
                 <Text style={{color: 'silver'}}>{rate}</Text>
             </View>
 
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
        borderWidth: 1,
        borderColor: 'red',
         borderRadius: 10,
-        paddingVertical: 20,
+        paddingVertical: 10,
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 20,
