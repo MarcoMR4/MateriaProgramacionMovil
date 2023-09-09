@@ -8,13 +8,16 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
+import Welcome from "./src/screens/Task9/Welcome";
+import WelcomeBack from "./src/screens/Task9/WelcomeBack";
+import NewAccount from "./src/screens/Task9/NewAccount";
 
 export default function App() {
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <WelcomeScreen />
+      <NewAccount />
     </View>
   );
 }
