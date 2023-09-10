@@ -20,14 +20,8 @@ const Card = ({isDarkBlue, text, iconName, iconType}) => {
     return (
         <View style={isDarkBlue ? styles.cardContainer2 : styles.cardContainer}>
                 <View style = {isDarkBlue ? styles.cardIconContainer : styles.cardIconContainer2}>
-                
-
                     {CustomIcon}
-                  
                 </View>
-
-
-
                 <Text style = {isDarkBlue ? styles.cardText2 : styles.cardText}>{text}</Text>
 
         </View>

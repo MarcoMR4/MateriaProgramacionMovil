@@ -7,25 +7,25 @@ import { CARDS } from "../constants/cards";
 import { Entypo, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
 import { blue1, blue2 } from "../constants/colors";
 import { Therapists } from "../constants/terapists";
-
-
-
-
-
-
+import { SYMPTOMS } from "../constants/symptoms";
 
 
 const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Ionicons name="notifications-outline" size={40} color="#3764c2" />
-        <Image
-          style={styles.headerImage}
-          source={{
-            uri: "https://shmector.com/_ph/6/907397949.png",
-          }}
-        />
+
+        <TouchableOpacity>
+          <Ionicons name="notifications-outline" size={40} color="#3764c2" />
+        </TouchableOpacity>
+
+          <Image
+            style={styles.headerImage}
+            source={{
+              uri: "https://shmector.com/_ph/6/907397949.png",
+            }}
+          />
+
       </View>
       <Text style={styles.titleText}>
         <Text style={{ color: "#c1c0c4" }}>Hello,</Text>
@@ -41,12 +41,17 @@ const WelcomeScreen = () => {
           data={CARDS}
           horizontal={true}
           renderItem={({ item:  {isDarkBlue, text, iconName, iconType } }) => (
-            <Card 
-              isDarkBlue={isDarkBlue} 
-              text={text} 
-              iconName={iconName}
-              iconType={iconType} 
-            />
+
+            
+            <TouchableOpacity>
+               <Card 
+                isDarkBlue={isDarkBlue} 
+                text={text} 
+                iconName={iconName}
+                iconType={iconType} 
+              />
+            </TouchableOpacity>
+
           )}
         />
 
@@ -58,11 +63,22 @@ const WelcomeScreen = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
       >
-          <SymptomCard text="I'm fine" emoji='😅'/>
-          <SymptomCard text="Depressed" emoji='😥'/>
-          <SymptomCard text="Angry" emoji='😡'/>
-          <SymptomCard text="I'm fine" emoji='😅'/>
-          <SymptomCard text="I'm fine" emoji='😅'/>
+
+          <FlatList 
+            horizontal={true}
+            data={SYMPTOMS}
+            renderItem={({ item:  {text, emoji } }) => (
+              
+              <TouchableOpacity>
+                <SymptomCard
+                  text={text}
+                  emoji={emoji}
+                />
+              </TouchableOpacity>
+              
+            )}
+          />  
+      
       </ScrollView>
 
 
@@ -76,26 +92,21 @@ const WelcomeScreen = () => {
         showsVerticalScrollIndicator={false}
       >
 
-        <Therapist 
-          name = "Dr. Carlos Gonzalez"
-          job = "Psychologist"
-          imageName="https://shmector.com/_ph/6/907397949.png"
-          rate = {5} 
-        />
         <FlatList 
           data={Therapists}
           renderItem={({ item:  {name, job, imageName, rate } }) => (
-            
-            <Therapist 
-              name={name} 
-              job={job} 
-              imageName={imageName}
-              rate={rate} 
-            />
-            
-            
-            )}
-          />  
+
+            <TouchableOpacity>
+               <Therapist 
+                name={name} 
+                job={job} 
+                imageName={imageName}
+                rate={rate} 
+              />
+            </TouchableOpacity>
+
+          )}
+        />  
       </ScrollView>  
 
       <View style={styles.lastBottomContainer}>
