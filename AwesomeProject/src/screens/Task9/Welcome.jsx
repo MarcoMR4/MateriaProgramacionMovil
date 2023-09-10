@@ -7,6 +7,10 @@ function Welcome() {
     <View style={styles.container}>  
 
         <Text style={styles.textHeader}> Welcome</Text>
+
+        <Text style={styles.textHeader2}>Sign in or create a new account</Text>
+        
+
         <Image
             style={styles.image1}
             source={{
@@ -14,21 +18,21 @@ function Welcome() {
               }}
         />
 
-        <View style={styles.botonSignIn}>
-            <TouchableOpacity>
-                <Text style={{
-                    color:'white', 
-                    fontWeight: 'bold',
-                    fontSize: 16,
-                }}>
-                    Go to the Sign In 
-                </Text>
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.botonSignIn}>
+            <View >
+                    <Text style={{
+                        color:'white', 
+                        fontWeight: 'bold',
+                        fontSize: 16,
+                    }}>
+                        Go to the Sign In 
+                    </Text>
+                
+            </View>
+        </TouchableOpacity>
 
-
-        <TouchableOpacity>
-            <View style={styles.botonSignUp}>
+        <TouchableOpacity style={styles.botonSignUp}>
+            <View style={styles.botonSignUpIntern}>
                     <Text style={{
                         color:'black', 
                         fontWeight: 'bold',
@@ -48,8 +52,6 @@ function Welcome() {
         </TouchableOpacity>
        
               
-
-
     </View>
   );
 }
@@ -67,7 +69,13 @@ const styles = StyleSheet.create({
     textHeader:{
         fontSize: 40, 
         fontWeight: 'bold',
+        marginBottom: 10,
+    }, 
+    textHeader2:{
+        fontSize: 10, 
+        fontWeight: 'bold',
         marginBottom: 60,
+        color: 'silver',
     },
     image1:{
         width: 220,
@@ -75,7 +83,7 @@ const styles = StyleSheet.create({
         marginBottom: 60,
     },   
     botonSignIn:{
-        height: 60,
+        height: 55,
         width: '80%',
         backgroundColor: SALMON1,
         alignItems: 'center',
@@ -84,11 +92,17 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     botonSignUp:{
-        height: 60,
+        height: 50,
         width: '80%',
         alignItems: 'center',
         borderRadius: 20,
         padding: 10,
+        borderWidth: 1,
+        borderColor: 'silver',
+        marginBottom: 80,
+    }, 
+    botonSignUpIntern:{
+        flex: 1,
         flexDirection: 'row',
     }
     

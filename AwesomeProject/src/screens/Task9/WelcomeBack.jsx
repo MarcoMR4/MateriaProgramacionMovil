@@ -27,6 +27,7 @@ function WelcomeBack() {
             </Text>
             <TextInput 
                 style={styles.input}
+                placeholder='name@example.com'
             />
         </View>
 
@@ -37,6 +38,7 @@ function WelcomeBack() {
             <TextInput 
                 secureTextEntry={true}
                 style={styles.input}
+                placeholder='Enter your password'
             />
         </View>
 
@@ -50,17 +52,18 @@ function WelcomeBack() {
             />
         </View>
 
-        <View style={styles.botonSignIn}>
-            <TouchableOpacity>
-                <Text style={{
-                    color:'white', 
-                    fontWeight: 'bold',
-                    fontSize: 16,
-                }}>
-                   Sign In !
-                </Text>
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.botonSignIn}>
+            <View>
+                
+                    <Text style={{
+                        color:'white', 
+                        fontWeight: 'bold',
+                        fontSize: 16,
+                    }}>
+                    Sign In !
+                    </Text>
+            </View>
+        </TouchableOpacity>
 
     
 
@@ -92,6 +95,8 @@ const styles = StyleSheet.create({
         height: 40,
         width: '95%',
         borderRadius: 10,
+        color: 'silver',
+        padding: 5,
     },  
     botonSignIn:{
         height: 50,
