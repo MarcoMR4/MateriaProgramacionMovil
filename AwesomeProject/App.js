@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -10,65 +9,20 @@ import {
   TextInput,
 } from "react-native";
 import Constants from "expo-constants";
-import WelcomeBack from "./src/screens/Task9/WelcomeBack";
+import WelcomeT10 from "./src/screens/tarea10/WelcomeT10";
 
 
-//Hooks
-//Custom hooks, hooks personalizables
+
 
 export default function App() {
 
-  /*
-  const [state, setState] = useState({
-    nombre: 'Marco', 
-    edad: 23,
-    ciudad: 'Morelia', 
-    chido: true,
-  })
-  */
 
-  const [state, setState] = useState(1)
-
-  const [inputValue, setInputValue] = useState('Default value')
-
-  console.log(React.useState(), 'With React')
-  console.log(React)
-
-  //  console.log(state[0],'**STATE 0**')
-  //  console.log(state[1],'**STATE 1**')
-
-  
- 
-  const sumValue = (value1) => setState(state + value1)
-  
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      {/*<WelcomeBack />*/}
-      <Text>{JSON.stringify(state)}</Text>
-
-
-      <TouchableOpacity onPress={() => sumValue(10)}>
-        <Text>Change value</Text>
-      </TouchableOpacity>
-
-
-    
-      <TextInput
-        value={inputValue}
-        style = {{borderWidth:1, borderColor: 'black'}}
-        onChangeText={(value => setInputValue(value))}
-
-
-      />
-
-
-      <Text>
-        {inputValue}
-      </Text>
-
+      <WelcomeT10 />
     </View>
   );
 }
@@ -76,7 +30,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
     paddingTop: Constants.statusBarHeight,
   },
 });
