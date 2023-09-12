@@ -9,8 +9,8 @@ const ProductCard = ({description, category, price, imgName}) => {
 
         <View style={styles.productContainer}>
             <Image 
-                source={{uri: imgName}}
-                style={{heigh: 50, width: 50}}
+                source={imgName}
+                style={{height: 150, width: 150}}
             />
 
             <Text
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: GRISTASK10,
         margin: 5,
-        width: 150,
-        heigh: 60,
+        width: 200,
+        height: 350, 
+        alignItems: "center",
 
     },
     

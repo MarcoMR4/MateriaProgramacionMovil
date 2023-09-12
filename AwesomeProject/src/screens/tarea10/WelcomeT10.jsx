@@ -1,13 +1,12 @@
 import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, FlatList, ScrollView } from "react-native";
-import { Entypo } from '@expo/vector-icons';
-import { naranjaT10 } from "../../constants/colors";
-import { Octicons } from '@expo/vector-icons';
-import SuggestCard from "../../components/T10/suggestCard";
-
-import { SUGGESTS } from "../../constants/T10/Suggests";
+import { GRISTASK10BG, naranjaT10 } from "../../constants/colors";
 import { PRODUCTS } from "../../constants/T10/PRODUCTS";
 import ProductCard from "../../components/T10/ProductCard";
-
+import { Octicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign, Feather,  SimpleLineIcons, Entypo } from '@expo/vector-icons';
+import { BLACKT10 } from "../../constants/colors";
+import { SUGGEST } from "../../constants/T10/SUGGEST";
+import SuggCard from "../../components/T10/SuggCard";
 
 const WelcomeT10 = () => {
 
@@ -20,8 +19,10 @@ const WelcomeT10 = () => {
 
 
                 <View style={styles.containerHeaderText}  >
-                    <Text style={{fontSize: 30, fontWeight:"bold"}}>Discover </Text>
-                    <Text style={{fontSize: 30}}>your products </Text>
+                    <Text style={{fontSize: 30, fontWeight:"bold", color: BLACKT10}}>
+                        Discover 
+                    </Text>
+                    <Text style={{fontSize: 30, color: BLACKT10}}>your products </Text>
                 </View>
 
                     
@@ -44,8 +45,10 @@ const WelcomeT10 = () => {
                         style = {{
                             marginLeft: 10,
                             height: '110%',
+                            padding: 10,
+                            width: '100%'
                         }}
-                        value="Divoom"
+                        placeholder="Divoom"
                     />
                 </View>
                 
@@ -57,33 +60,40 @@ const WelcomeT10 = () => {
 
             </View>
 
-            <ScrollView>
-            <FlatList 
-                horizontal = {true}
-                data={SUGGESTS}
-                renderItem={({ item:  {text } }) => (
-                    <SuggestCard 
-                        text={text}
-                    />
 
-                )}
-            
-            />
+            <ScrollView>
+                <FlatList 
+                    horizontal = {true}
+                    data={SUGGEST}
+                    renderItem={({ item:  {text } }) => (
+                        <TouchableOpacity>
+                            <SuggCard 
+                                text={text}
+                            />
+                        </TouchableOpacity>
+                    )}
+                /> 
             </ScrollView>
 
-            <ScrollView>
+            <Text style = {{fontSize: 25, marginTop: 20, marginBottom:20}}>
+                Popular product
+            </Text>
+
+            <ScrollView >
             <FlatList 
                 horizontal = {true}
                 data={PRODUCTS}
                 renderItem={({ item:  {description, category, imageName, price } }) => (
-                    <ProductCard
-                        description = {description}
-                        imgName={imageName}
-                        price={price}
-                        category={category}
+                    <TouchableOpacity >
+                        <ProductCard
+                            description = {description}
+                            imgName={imageName}
+                            price={price}
+                            category={category}
 
-                    />
-
+                        />
+                    </TouchableOpacity>
+                    
                 )}
             
             />
@@ -91,9 +101,46 @@ const WelcomeT10 = () => {
 
           
 
-            <Text style = {{fontSize: 25}}>
-            Popular product
-            </Text>
+          
+
+            <View style={styles.bottomMenu}>
+                <TouchableOpacity>
+                    <View
+                        style={{
+                            backgroundColor: BLACKT10,
+                            width: 50,
+                            height: 50,
+                            borderRadius: 10,
+                            alignItems: "center", 
+                            padding: 10
+                        }}
+                    >
+                        <Ionicons name="home-outline" size={24} color="white" />
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <View
+                        style={styles.buttomBottomMenu}
+                    >
+                        <SimpleLineIcons name="bag" size={24} color={BLACKT10} />
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <View
+                        style={styles.buttomBottomMenu}
+                    >
+                        <Feather name="bell" size={24} color={BLACKT10}  />
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <View
+                        style={styles.buttomBottomMenu}
+                    >
+                        <AntDesign name="user" size={24} color={BLACKT10} />
+                    </View>
+                </TouchableOpacity>
+
+            </View>
 
 
 
@@ -109,26 +156,27 @@ export default WelcomeT10
 const styles = StyleSheet.create({
     
     container: {
-        backgroundColor: '#f0f1f1',
+        backgroundColor: GRISTASK10BG,
         flex: 1, 
-        padding: 40
+        padding: 30
     },
     containerHeader: {
         flexDirection: "row",
         justifyContent: "space-between",
-        marginBottom: 40,
+        marginBottom: 20,
     },
     containerHeaderText: {
         flexDirection: "column"
     }, 
     searchContainer: {
         flexDirection:  "row",   
-        marginBottom: 20,
+        marginBottom: 10,
+        padding: 10,
     },
     inputSeacrh: {
         backgroundColor: 'white', 
         borderRadius: 10,
-        height: 50,
+        height: 60,
         padding: 10,
         marginRight: 20,
         width: '80%',
@@ -141,6 +189,19 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 8,
         alignItems: "center",
+    },
+    bottomMenu:{
+        flexDirection: "row", 
+        marginTop: 20,
+        padding: 5,
+        justifyContent: "space-between"
+    }, 
+    buttomBottomMenu: {
+        width: 50,
+        height: 50,
+        borderRadius: 10,
+        alignItems: "center", 
+        padding: 5
     }
 
 

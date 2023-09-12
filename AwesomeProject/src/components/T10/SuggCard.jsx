@@ -1,19 +1,19 @@
-import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const SuggestCard = ({text}) => {
+
+const SuggCard = ({text}) => {
     return(
 
         <View style={styles.suggContainer}>
             <Text
                 style={{
-                    fontSize: 20,
+                    fontSize: 12,
                 }}
             >
                 {text}
             </Text>
-            <MaterialCommunityIcons name="window-close" size={14} color="black" />
+            <MaterialCommunityIcons name="window-close" size={10} color="black" />
                 
     
                     
@@ -22,23 +22,19 @@ const SuggestCard = ({text}) => {
     );
 
 }
-export default SuggestCard
+export default SuggCard
 
 const styles = StyleSheet.create({
     suggContainer: {
-        borderRadius: 10,
-        fontSize: 5,
+        borderRadius: 15,
         backgroundColor: 'white',
-        borderWidth:1, 
-        height: 10,
+        height: 50,
         flexDirection: "row",
-        margin: 40,
+        margin: 10,
+        width: 90,
+        alignItems: "center",
+        justifyContent: "space-evenly",
+
     },
     
-
-
-
 })
-
-
-
