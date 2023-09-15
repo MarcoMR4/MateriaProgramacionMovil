@@ -1,11 +1,11 @@
 import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Entypo, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
-import { blue1, blue2 } from "../constants/colors";
 import { person1 } from "../../assets";
 import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import PersonChatComponent from "../components/Ex1/PersonChatComponent";
 import { PersonChat } from "../constants/PersonChat";
+import { blue2 } from "../constants/colors";
 
 
 
@@ -39,26 +39,23 @@ const Examen1 = () => {
                 Stories
             </Text>
 
-            <ScrollView 
-            >
-            <FlatList 
+       
+        </View>
+
+
+        <FlatList 
+                horizontal={false}
                 data={PersonChat}
-                renderItem={({ item:  {name, message, imageName, hour } }) => (
+                renderItem={({ item:  {name, message, image, hour } }) => (
             
                     <PersonChatComponent 
                       name={name} 
                       message={message} 
-                      imageName={imageName}
+                      imageName={image}
                       hour={hour} 
                     />
                     )}
-                /> 
-
-        </ScrollView>
-
-           
-                    
-        </View>
+            /> 
 
 
 
@@ -109,6 +106,7 @@ const styles = StyleSheet.create({
   },
   
   containerFlat1: {
+    padding: 10,
 
   }, 
   

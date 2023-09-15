@@ -1,7 +1,5 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { AntDesign } from '@expo/vector-icons';
-import { blue2 } from "../constants/colors";
 
 const PersonChatComponent = ({name, message, imageName, hour}) =>{
 
@@ -15,7 +13,7 @@ const PersonChatComponent = ({name, message, imageName, hour}) =>{
                 }}
             />
             
-            <View style={styles.TherapistInfo}>
+            <View>
                 <Text style={styles.chaterName}>{name}</Text>
                 <Text style={styles.chaterMessage}>{message}</Text>
 
