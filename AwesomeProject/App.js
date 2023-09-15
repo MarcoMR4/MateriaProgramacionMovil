@@ -9,7 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import Constants from "expo-constants";
-import WelcomeT10 from "./src/screens/tarea10/WelcomeT10";
+import Examen1 from "./src/screens/Examen1";
 
 
 
@@ -22,7 +22,7 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      <WelcomeT10 />
+      <Examen1 />
     </View>
   );
 }
