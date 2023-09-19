@@ -15,10 +15,10 @@ const TodoInput = ({value, onChangeText}) => {
 const styles = StyleSheet.create({
     container: {
         borderWidth:1, 
-        borderColor: 'white', 
+        borderColor: 'green', 
         flex: 1,
         borderRadius: 10,
-        color: 'white',
+        color: 'green',
         padding: 10,
     }
 })

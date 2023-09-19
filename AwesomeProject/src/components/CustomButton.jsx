@@ -5,7 +5,7 @@ const CustomButton = ({text, onPress}) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.container} >
-                <Text style={{color: 'white', fontSize: 15}}>{text}</Text>
+                <Text style={{color: 'green', fontSize: 15, fontWeight: "bold"}}>{text}</Text>
             </View>  
         </TouchableOpacity>
     )  
@@ -17,8 +17,10 @@ const styles = StyleSheet.create({
         alignContent: "center", 
         justifyContent: "center",
         padding: 8, 
-        borderColor: 'white', 
+        borderColor: 'green', 
         borderRadius: 10,
+        backgroundColor: 'silver',
+        width: '100%',
     }
 })
 
