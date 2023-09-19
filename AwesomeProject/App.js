@@ -55,10 +55,9 @@ const handleAddTodo = () => {
 
   const handleDeleteTodo = (todoId) => {
       const filteredArray = todos.filter(
-      todo => todo.id !== todoId
+      (todo) => todo.id !== todoId
     )
-
-    
+    setTodos(filteredArray)  
   }
 
   const handleCompletedTodo = (todoId) => {
@@ -69,7 +68,9 @@ const handleAddTodo = () => {
           isCompleted: true
         }
       }
+      return todo;
     })
+    setTodos(mappedArray)
   }
 
 
@@ -94,8 +95,14 @@ const handleAddTodo = () => {
         <FlatList
           data={todos} 
           keyExtractor={(item) => item.id}
-          renderItem={(({item: {name, id, handleCompletedTodo, handleDeleteTodo} }) =>
-            <Todo1 name={name} id={id} handleDelete={handleDeleteTodo} isCompleted ={handleCompletedTodo} />
+          renderItem={(({item: {name, id, isCompleted} }) =>
+            <Todo1 
+              name={name} 
+              id={id} 
+              handleDelete={handleDeleteTodo} 
+              isCompleted ={isCompleted}
+              handleCompleted ={handleCompletedTodo} 
+            />
           )}
         />
 
