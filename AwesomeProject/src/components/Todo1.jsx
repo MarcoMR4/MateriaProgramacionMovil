@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import CustomButton from "./CustomButton";
 
-const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted }) => {
+const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdit }) => {
     return (
         <View style={[
             styles.container, 
@@ -13,7 +13,7 @@ const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted }) => {
             </Text>
             <View style={{flexDirection:"row", gap: 10}}>
                 <CustomButton text='Delete' light onPress={() => handleDelete(id)}/>
-                <CustomButton text='Edit' light />
+                <CustomButton text='Edit' light onPress={() => handleEdit(id)} />
                 <CustomButton text = {isCompleted ? 'Done' : 'Complete'}
                 light
                 onPress={() => handleCompleted(id)}

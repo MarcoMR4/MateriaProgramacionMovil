@@ -73,6 +73,21 @@ const handleAddTodo = () => {
     setTodos(mappedArray)
   }
 
+  const handleEditTodo = (todoId) => {
+    const mappedArray = todos.map(todo =>{
+      if(todo.id === todoId){
+        return {
+          ...todo, 
+          name: inputValue
+        }
+      }
+      return todo;
+    })
+    setTodos(mappedArray)
+  }
+
+
+
 
 
   return (
@@ -102,6 +117,7 @@ const handleAddTodo = () => {
               handleDelete={handleDeleteTodo} 
               isCompleted ={isCompleted}
               handleCompleted ={handleCompletedTodo} 
+              handleEdit={handleEditTodo}
             />
           )}
         />
