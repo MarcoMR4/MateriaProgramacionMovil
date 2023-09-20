@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -11,94 +11,23 @@ import { FlatList } from "react-native";
 import Todo1 from "./src/components/Todo1";
 import CustomButton from "./src/components/CustomButton";
 import TodoInput from "./src/components/TodoInput";
+import { useTodos } from "./src/Hooks/useTodos";
 
-//Unidad 2 practica 2 
-//Unidad 2 tarea 2: hacer el editar 
+//Unidad 2 practica 3: estructuras carpetas para hooks y helpers o utils
+
 export default function App() {
 
-// console.log(React.useState(), 'With React')
+const {
+  inputValue,
+  todos,
+  handleAddTodo,
+  handleCompletedTodo, 
+  handleEditTodo, 
+  editMode,
+  setInputValue,
+  handleDeleteTodo,
+} = useTodos()
 
-const [inputValue, setInputValue] = useState('');
-const [todos, setTodos] = useState([]);
-const [editMode, setEditMode] = useState(false);
-const [editTodoId, setEditTodoId] = useState(null);
-
-const createTwoButtonAlert = (error) =>
-    Alert.alert(
-      'Error ',
-      error, [
-      {text: 'Aceptar',},
-    ]);
-
-const handleAddTodo = () => {
-  if (inputValue === '') return createTwoButtonAlert(
-    'Debes ingresar un nombre a la tarea'
-  )
-  
-  const existingTodo = todos.some(
-    todo => todo.name.toLowerCase() === inputValue.toLowerCase()
-  )
-  
-  if(existingTodo) return createTwoButtonAlert(
-    'Ya existe una tarea con ese nombre'
-  )
-     
-  if (editMode) {
-    const updatedTodos = todos.map((todo) => {
-      if (todo.id === editTodoId) {
-        return {
-          ...todo,
-          name: inputValue,
-          date: 'Updated on ' + new Date().toISOString(),
-        };
-      }
-      return todo;
-    });
-    setTodos(updatedTodos);
-    setEditMode(false);
-    setEditTodoId(null);
-    } else {
-      setTodos([
-       ...todos,
-        {
-          id: new Date().toISOString(),
-          name: inputValue,
-          isCompleted: false,
-          date: '',
-        },
-      ]);
-    }
-  setInputValue('');
-};
-
-  const handleDeleteTodo = (todoId) => {
-      const filteredArray = todos.filter(
-      (todo) => todo.id !== todoId
-    )
-    setTodos(filteredArray)  
-  }
-
-  const handleCompletedTodo = (todoId) => {
-    const mappedArray = todos.map(todo => {
-      if(todo.id === todoId){
-        return {
-          ...todo, 
-          isCompleted: todo.isCompleted ? false : true
-        }
-      }
-      return todo;
-    })
-    setTodos(mappedArray)
-  }
-
-  const handleEditTodo = (todoId) => {
-    setEditMode(true);
-    setEditTodoId(todoId);
-    const todoToEdit = todos.find((todo) => todo.id === todoId);
-    if (todoToEdit) {
-      setInputValue(todoToEdit.name);
-    }
-  };
 
 
   return (
