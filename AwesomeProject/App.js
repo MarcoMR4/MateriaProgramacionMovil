@@ -83,7 +83,7 @@ const handleAddTodo = () => {
       if(todo.id === todoId){
         return {
           ...todo, 
-          isCompleted: true
+          isCompleted: todo.isCompleted ? false : true
         }
       }
       return todo;
