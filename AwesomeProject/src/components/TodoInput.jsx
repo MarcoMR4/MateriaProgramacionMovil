@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput } from "react-native";
 
 const TodoInput = ({value, onChangeText}) => {
     return (
@@ -7,7 +7,7 @@ const TodoInput = ({value, onChangeText}) => {
             style={styles.container}
             value={value}
             onChangeText={onChangeText}
-            placeholder="Escrbe aquí tu tarea"
+            placeholder="Escribe aquí tu tarea"
         />
     )
 }

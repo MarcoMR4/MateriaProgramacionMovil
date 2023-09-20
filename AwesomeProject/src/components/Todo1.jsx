@@ -2,15 +2,26 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import CustomButton from "./CustomButton";
 
-const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdit }) => {
+const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdit, date }) => {
     return (
         <View style={[
             styles.container, 
             isCompleted && styles.todoCompleted,
         ]}>
-            <Text style={{fontSize:15, fontWeight: "bold", color:'white'}}>
-                {name}
-            </Text>
+            <View style={{flexDirection: "column"}}>
+                <Text style={{fontSize:15, fontWeight: "bold", color:'white'}}>
+                    {name}
+                </Text>
+                <Text 
+                style={{
+                    fontSize:10, 
+                    color: isCompleted ? 'black' : 'silver', 
+                    margin: 5,
+                }}>
+                    {date}
+                </Text>
+            </View>
+           
             <View style={{flexDirection:"row", gap: 10}}>
                 <CustomButton text='Delete' light onPress={() => handleDelete(id)}/>
                 <CustomButton text='Edit' light onPress={() => handleEdit(id)} />
@@ -26,10 +37,10 @@ const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdi
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "row", 
+        flexDirection: "column", 
         marginTop: 30,
         justifyContent: "space-evenly", 
-        padding: 5, 
+        padding: 10, 
         borderRadius: 5, 
          backgroundColor: '#2d705f',
         borderColor: 'white',

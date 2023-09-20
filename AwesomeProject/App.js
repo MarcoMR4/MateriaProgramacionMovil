@@ -20,6 +20,8 @@ export default function App() {
 
 const [inputValue, setInputValue] = useState('');
 const [todos, setTodos] = useState([]);
+const [editMode, setEditMode] = useState(false);
+const [editTodoId, setEditTodoId] = useState(null);
 
 const createTwoButtonAlert = (error) =>
     Alert.alert(
@@ -29,27 +31,43 @@ const createTwoButtonAlert = (error) =>
     ]);
 
 const handleAddTodo = () => {
-  console.log('Entro a la funcion')
   if (inputValue === '') return createTwoButtonAlert(
-    'debes ingresar un nombre a la tarea'
+    'Debes ingresar un nombre a la tarea'
   )
-
+  
   const existingTodo = todos.some(
-      todo => todo.name.toLowerCase() === inputValue.toLowerCase()
+    todo => todo.name.toLowerCase() === inputValue.toLowerCase()
   )
-
+  
   if(existingTodo) return createTwoButtonAlert(
-    'ya existe una tarea con ese nombre'
+    'Ya existe una tarea con ese nombre'
   )
-   
-  setTodos([
-    ...todos,
-    {
-      id: new Date().toISOString(),
-      name: inputValue,
-      isCompleted: false,
-    },
-  ]);
+     
+  if (editMode) {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === editTodoId) {
+        return {
+          ...todo,
+          name: inputValue,
+          date: 'Updated on ' + new Date().toISOString(),
+        };
+      }
+      return todo;
+    });
+    setTodos(updatedTodos);
+    setEditMode(false);
+    setEditTodoId(null);
+    } else {
+      setTodos([
+       ...todos,
+        {
+          id: new Date().toISOString(),
+          name: inputValue,
+          isCompleted: false,
+          date: '',
+        },
+      ]);
+    }
   setInputValue('');
 };
 
@@ -74,20 +92,13 @@ const handleAddTodo = () => {
   }
 
   const handleEditTodo = (todoId) => {
-    const mappedArray = todos.map(todo =>{
-      if(todo.id === todoId){
-        return {
-          ...todo, 
-          name: inputValue
-        }
-      }
-      return todo;
-    })
-    setTodos(mappedArray)
-  }
-
-
-
+    setEditMode(true);
+    setEditTodoId(todoId);
+    const todoToEdit = todos.find((todo) => todo.id === todoId);
+    if (todoToEdit) {
+      setInputValue(todoToEdit.name);
+    }
+  };
 
 
   return (
@@ -104,13 +115,16 @@ const handleAddTodo = () => {
             value={inputValue}
             onChangeText={(value) => setInputValue(value)}
           />
-          <CustomButton text='Add task' onPress={handleAddTodo} />
+          <CustomButton
+           text= {(editMode ? 'Edit task' : 'Add task' )}
+           onPress={handleAddTodo}
+           />
         </View>
 
         <FlatList
           data={todos} 
           keyExtractor={(item) => item.id}
-          renderItem={(({item: {name, id, isCompleted} }) =>
+          renderItem={(({item: {name, id, isCompleted, date} }) =>
             <Todo1 
               name={name} 
               id={id} 
@@ -118,6 +132,7 @@ const handleAddTodo = () => {
               isCompleted ={isCompleted}
               handleCompleted ={handleCompletedTodo} 
               handleEdit={handleEditTodo}
+              date={date}
             />
           )}
         />
