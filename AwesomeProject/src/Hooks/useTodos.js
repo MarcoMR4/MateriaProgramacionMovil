@@ -6,6 +6,8 @@ export const useTodos = () => {
     const [todos, setTodos] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [editTodoId, setEditTodoId] = useState(null);
+    const [info, setInfo] = useState([]);
+    const [seeModal, setSeeModal] = useState(false);
 
     const handleAddTodo = () => {
     if (inputValue === '') return handleShowError(
@@ -77,6 +79,11 @@ export const useTodos = () => {
         }
     };
 
+    const handleInfo = (id) => {
+        setInfo(todos.find((todo) => todo.id === id));
+        setSeeModal(!seeModal);
+      };
+
     return {
         inputValue: inputValue,
         todos: todos,
@@ -87,6 +94,10 @@ export const useTodos = () => {
         editMode: editMode,
         handleDeleteTodo,
         setInputValue,
+        info,
+        seeModal,
+        setSeeModal,
+        handleInfo,
     }
 
 }

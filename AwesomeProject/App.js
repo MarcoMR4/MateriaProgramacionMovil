@@ -12,6 +12,7 @@ import Todo1 from "./src/components/Todo1";
 import CustomButton from "./src/components/CustomButton";
 import TodoInput from "./src/components/TodoInput";
 import { useTodos } from "./src/Hooks/useTodos";
+import InfoModal from "./src/components/InfoModal";
 
 //Unidad 2 practica 3: estructuras carpetas para hooks y helpers o utils
 
@@ -26,6 +27,10 @@ const {
   editMode,
   setInputValue,
   handleDeleteTodo,
+  info,
+  seeModal,
+  setSeeModal,
+  handleInfo
 } = useTodos()
 
 
@@ -50,6 +55,10 @@ const {
            />
         </View>
 
+        <View>
+          <InfoModal info={info} seeModal={seeModal} setSeeModal={setSeeModal}/>
+        </View>
+
         <FlatList
           data={todos} 
           keyExtractor={(item) => item.id}
@@ -62,6 +71,7 @@ const {
               handleCompleted ={handleCompletedTodo} 
               handleEdit={handleEditTodo}
               date={date}
+              handleInfo={handleInfo}
             />
           )}
         />
