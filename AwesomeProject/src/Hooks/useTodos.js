@@ -13,6 +13,11 @@ export const useTodos = () => {
     if (inputValue === '') return handleShowError(
         'Debes ingresar un nombre a la tarea'
     )
+    let valor = inputValue
+     
+    if(valor.length > 10) return handleShowError(
+        'Debes ingresar menos de 10 caracteres'
+    )
     
     const existingTodo = todos.some(
         todo => todo.name.toLowerCase() === inputValue.toLowerCase()
