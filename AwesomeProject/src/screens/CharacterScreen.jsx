@@ -13,9 +13,9 @@ const CharacterSCreen = () => {
 
     const getApiData =  async () => {
         try{
-            const responde = await fetch('https://rickandmortyapi.com/api/character')
-            const data = await responde.json()
-            setCharacters = data.results
+            const response = await fetch('https://rickandmortyapi.com/api/character')
+            const data = await response.json()
+            setCharacters(data.results)
             console.log(data)
             console.log(data.results[0].name)
 
@@ -25,8 +25,13 @@ const CharacterSCreen = () => {
     }
 
     useEffect(() => {
+        const interval = setInterval(() => {
+            console.log('Holaaaaa');
+            getApiData()
+          }, 2000);
         console.log('Holaaaaa')
-        getApiData()
+        
+        
 
         /*console.log('Valor input1: '+input)
         console.log('Valor input2: '+input2) 
@@ -36,18 +41,23 @@ const CharacterSCreen = () => {
         */
 
         return () => {
-            clearInterval() 
+            clearInterval(interval) 
         }
-    }, /*[input, input2]*/)
+    }, []/*[input, input2]*/)
 
     return (
         <View style={{paddingHorizontal: 20, paddingTop: 10}}>
             <Text style={{fontSize:50}}>Characters</Text>
             <FlatList 
                 data = {characters}
-                renderItem={({ item }) => {
-                    <Text>{item.name}</Text>
-                }}
+                renderItem={({ item }) => (
+                    <View style={{borderTopWidth: 1}}>
+                        <Text>Id: {item.id}</Text>
+                        <Text>Name: {item.name}</Text>
+                        <Text>Status: {item.status}</Text>
+                        <Text>Gender: {item.gender}</Text>
+                    </View>
+                )}
             />
             {/*
             <TextInput 
