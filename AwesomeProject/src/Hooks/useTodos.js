@@ -28,7 +28,7 @@ export const useTodos = () => {
             return {
             ...todo,
             name: inputValue,
-            date: 'Updated on ' + new Date().toISOString(),
+            date: 'Updated at: ' + new Date().toISOString(),
             };
         }
         return todo;
@@ -44,6 +44,7 @@ export const useTodos = () => {
             name: inputValue,
             isCompleted: false,
             date: '',
+            createdAt: new Date().toISOString(),
             },
         ]);
         }

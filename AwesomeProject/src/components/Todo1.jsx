@@ -15,7 +15,7 @@ const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdi
                 <Text 
                 style={{
                     fontSize:10, 
-                    color: isCompleted ? 'black' : 'silver', 
+                    color: isCompleted ? 'silver' : 'silver', 
                     margin: 5,
                 }}>
                     {date}
@@ -23,14 +23,22 @@ const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdi
             </View>
            
             <View style={{flexDirection:"row", gap: 10}}>
-                <CustomButton text='Delete' light onPress={() => handleDelete(id)}/>
-                <CustomButton text='Edit' light onPress={() => handleEdit(id)} />
-                <CustomButton text = {isCompleted ? 'Done' : 'Complete'}
+                <CustomButton 
+                    light 
+                    iconName ='delete'
+                    onPress={() => handleDelete(id)}
+                />
+                <CustomButton 
+                    iconName ='edit'
+                    light onPress={() => handleEdit(id)} 
+                />
+                <CustomButton 
+                iconName = {isCompleted ? 'done' : 'complete'}
                 light
                 onPress={() => handleCompleted(id)}
                 />
                 <CustomButton
-                    text='info'
+                    iconName='info'
                     light
                     onPress={() => handleInfo(id)}
                 />
@@ -51,7 +59,7 @@ const styles = StyleSheet.create({
         borderColor: 'white',
     }, 
     todoCompleted: {
-        backgroundColor: '#3DB935',
+        backgroundColor: '#2F5178',
     }, 
     todoName: {
         fontSize: 20,

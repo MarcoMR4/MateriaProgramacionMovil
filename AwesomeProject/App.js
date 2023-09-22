@@ -13,6 +13,8 @@ import CustomButton from "./src/components/CustomButton";
 import TodoInput from "./src/components/TodoInput";
 import { useTodos } from "./src/Hooks/useTodos";
 import InfoModal from "./src/components/InfoModal";
+import CustomButtonText from "./src/components/CustomButtonText";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 //Unidad 2 practica 3: estructuras carpetas para hooks y helpers o utils
 
@@ -40,16 +42,25 @@ const {
       <StatusBar style="auto" />
 
       <View style={{justifyItems:"center", paddingHorizontal: 20, paddingTop: 10}}>
-        <Text style={{fontSize: 40, fontWeight:"bold", textAlign: "center", color: 'white' }}>
-            To do List
-        </Text>
+        <View style={{flexDirection:"row", alignItems:"center", justifyContent: "space-around"}}>
+          <Text style={{
+            fontSize: 40, 
+            fontWeight:"bold", 
+            textAlign: "center", 
+            color: 'white', 
+            marginBottom: 15,
+          }}>
+              To do List
+          </Text>
+          <FontAwesome5 name="tasks" size={35} color="silver" />
+        </View>
 
         <View style={{flexDirection:"row", marginTop: 20, gap: 20}}>
           <TodoInput
             value={inputValue}
             onChangeText={(value) => setInputValue(value)}
           />
-          <CustomButton
+          <CustomButtonText
            text= {(editMode ? 'Edit task' : 'Add task' )}
            onPress={handleAddTodo}
            />
@@ -84,7 +95,7 @@ const {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2a6355",
+    backgroundColor: "#077974",
     paddingTop: Constants.statusBarHeight + 10,
     padding: 15,
   },

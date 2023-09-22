@@ -15,13 +15,13 @@ const InfoModal = ({ info, seeModal, setSeeModal }) => {
               backgroundColor: '#2d705f',
               borderTopRightRadius: 15,
               borderTopLeftRadius: 15,
-              paddingHorizontal: 5,
+              paddingHorizontal: 10,
               justifyContent: 'center',
               alignItems: 'center'
             }}
           >
-            <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'black' }}>
-              Information
+            <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'silver', padding: 10 }}>
+              About this task...
             </Text>
           </View>
           <View style={styles.infoContainer}>
@@ -33,22 +33,20 @@ const InfoModal = ({ info, seeModal, setSeeModal }) => {
             <Text style={styles.infoText}>{info.name}</Text>
           </View>
           <View style={styles.infoContainer}>
-            <Text style={styles.infoTitle}>Created At:</Text>
-            <Text style={styles.infoText}>{info.createAt}</Text>
+            <Text style={styles.infoText}>Created at: {info.createdAt}</Text>
           </View>
           <View style={styles.infoContainer}>
-            <Text style={styles.infoTitle}>Updated at:</Text>
-            <Text style={styles.infoText}>{info.updatedAt !== '' ? info.updatedAt : 'Sin editar'}</Text>
+            <Text style={styles.infoText}>{info.date !== '' ? info.date : 'Unedited'}</Text>
           </View>
           <View style={styles.infoContainer}>
             <Text style={styles.infoTitle}>Status:</Text>
-            <Text style={styles.infoText}>{info.completed ? 'Completado' : 'Pendiente'}</Text>
+            <Text style={styles.infoText}>{info.isCompleted ? 'Done' : 'Uncompleted'}</Text>
           </View>
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => setSeeModal(!seeModal)}
           >
-            <Text style={styles.textStyle}>Cerrar</Text>
+            <Text style={styles.textStyle}>Close</Text>
           </Pressable>
         </View>
       </View>
@@ -87,25 +85,24 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 20,
     padding: 5,
     elevation: 2,
-
   },
   buttonClose: {
-    backgroundColor: '#2a6355',
+    backgroundColor: '#8FA7A5',
   },
   infoContainer: {
-    backgroundColor: '#2d705f',
+    backgroundColor: '#077974',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 5,
+    padding: 10,
     alignItems: 'center',
   },
   infoTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'silver',
   },
   infoText: {
     fontSize: 17,
-    color: 'black',
+    color: 'silver',
   },
 });

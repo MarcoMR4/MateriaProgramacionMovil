@@ -7,7 +7,8 @@ const TodoInput = ({value, onChangeText}) => {
             style={styles.container}
             value={value}
             onChangeText={onChangeText}
-            placeholder="Escribe aquí tu tarea"
+            placeholder="Write your task here..."
+            placeholderTextColor={'silver'}
         />
     )
 }
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 10,
         color: 'white',
-        padding: 10,
+        padding: 5,
     }
 })
 
