@@ -24,6 +24,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Constants.statusBarHeight + 10,
-    padding: 15,
   },
 });

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import React from "react"
-import { TextInput } from "react-native"
-import { View, Text } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 import { FlatList } from "react-native"
+import ApiCardRM from "../components/ApiCardRM"
+
+
 
 // unidad2/Practica 4
 
@@ -31,14 +33,6 @@ const CharacterSCreen = () => {
           }, 2000);
         console.log('Holaaaaa')
         
-        
-
-        /*console.log('Valor input1: '+input)
-        console.log('Valor input2: '+input2) 
-        setInterval(() => {
-            console.log()
-        }, 0)
-        */
 
         return () => {
             clearInterval(interval) 
@@ -46,17 +40,21 @@ const CharacterSCreen = () => {
     }, []/*[input, input2]*/)
 
     return (
-        <View style={{paddingHorizontal: 20, paddingTop: 10}}>
-            <Text style={{fontSize:50}}>Characters</Text>
+        <View style={styles.container}>
+            <Text style={{fontSize:50, color: 'silver'}}>Characters</Text>
             <FlatList 
                 data = {characters}
                 renderItem={({ item }) => (
-                    <View style={{borderTopWidth: 1}}>
-                        <Text>Id: {item.id}</Text>
-                        <Text>Name: {item.name}</Text>
-                        <Text>Status: {item.status}</Text>
-                        <Text>Gender: {item.gender}</Text>
-                    </View>
+                    <ApiCardRM
+                    name = {item.name}
+                    status = {item.status}
+                    location = {item.location.name}
+                    gender = {item.gender}
+                    image = {item.image}
+                    species = {item.species}
+                    first = {item.origin.name}
+                    
+                />
                 )}
             />
             {/*
@@ -78,4 +76,14 @@ const CharacterSCreen = () => {
     )
 }
 export default CharacterSCreen
+
+const styles = StyleSheet.create({
+    container: { 
+        backgroundColor: '#272b33', 
+        paddingHorizontal: 20, 
+        paddingTop: 10,
+
+    }, 
+
+})
 
