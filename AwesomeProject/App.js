@@ -4,11 +4,8 @@ import {
   View, Text
 } from "react-native";
 import Constants from "expo-constants";
-import { createStackNavigator } from '@react-navigation/stack';
-import Router from "./src/Routes/Router";
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-
+import Router from "./src/Routes/Router";
 
 //Unidad 2 practica 5: Navegacion entre pantallas  
 /*
@@ -17,18 +14,13 @@ Ejemplos de librerias de navegacion:
   2. 
 */
 
-
-const Stack = createStackNavigator();
-
 export default function App() {
-
   return (
-    <NavigationContainer>
-     <View style={styles.container}>
-              <Router />
-              <StatusBar style="auto" />  
-      </View>
-    </NavigationContainer>      
+    <View style={styles.container}>
+      <Router />
+      <StatusBar style="auto" />
+    </View>
+    
   );
 }
 
