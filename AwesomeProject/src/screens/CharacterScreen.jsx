@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, Button } from "react-native"
 import { FlatList } from "react-native"
 import ApiCardRM from "../components/ApiCardRM"
 
@@ -41,7 +41,7 @@ const CharacterSCreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={{fontSize:50, color: 'silver'}}>Characters</Text>
+            
             <FlatList 
                 data = {characters}
                 renderItem={({ item }) => (
@@ -56,6 +56,21 @@ const CharacterSCreen = () => {
                     
                 />
                 )}
+                ListHeaderComponent={
+                    <Text style={{fontSize:50, color: 'silver'}}>Characters</Text>
+                }
+                ListFooterComponent={
+                    <View style={{alignItems:"center", padding: 5}}>
+                    <Text style={{fontSize:25, color: 'silver'}}>Pagination</Text>
+                    <Button title='Page 1' />
+                    <Button title='Page 2' />
+                    </View>
+                }
+                ListEmptyComponent={
+                    <View>
+                     <Text style={{fontSize:25, color: 'silver'}}>Empty list</Text>
+                    </View>
+                }
             />
             {/*
             <TextInput 
