@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Image } from "react-native"
+import { StyleSheet, Text, View, Image, Button } from "react-native"
 import { FontAwesome } from '@expo/vector-icons';
 
 
 
-const ApiCardRM = ({name, status, location, image, gender, species, first}) => {
+const ApiCardRM = ({name, status, location, image, gender, 
+    species, first, navigation, type, episode,created}) => {
     return (
         <View style={styles.container}>
         <Image 
@@ -29,11 +30,30 @@ const ApiCardRM = ({name, status, location, image, gender, species, first}) => {
                 First seen in: 
             </Text>
             <Text style={styles.textNormal} numberOfLines={3}>{first}</Text>
-            <Text style={{color: 'white'}}>
-                <Text style={{color:(gender=='Male' ? '#48C2F3': gender=='Female'?'pink':'silver')}}>
-                {gender}
+            <View style={{flexDirection: "column"}}>
+                <Text style={{color: 'white'}}>
+                    <Text style={{color:(gender=='Male' ? '#48C2F3': gender=='Female'?'pink':'silver')}}>
+                    {gender}
+                    </Text>
                 </Text>
-            </Text>
+                <Button title='See info' 
+                    onPress={() => navigation.navigate('Character', {
+                        name: name, 
+                        status:status,
+                        specie:species,
+                        firstSeen: first, 
+                        lastLocation: location,
+                        image: image,
+                        gender: gender,
+                        type: type,
+                        episode: episode,
+                        created: created,
+                    })}
+                    color="gray"
+                />
+
+            </View>
+           
         </View>
 
     </View>
@@ -50,7 +70,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#3c3e44',
         margin: 5,
         gap: 5,
-        height: 250,
+        height: 280,
         borderRadius: 10,
     }, 
     picture: {

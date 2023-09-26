@@ -8,7 +8,7 @@ import ApiCardRM from "../components/ApiCardRM"
 
 // unidad2/Practica 4
 
-const CharacterSCreen = () => {
+const CharacterSCreen = ({navigation}) => {
     const [input, setInput] = useState('')
     const [input2, setInput2] = useState('')
     const [characters, setCharacters] = useState([])
@@ -53,7 +53,10 @@ const CharacterSCreen = () => {
                     image = {item.image}
                     species = {item.species}
                     first = {item.origin.name}
-                    
+                    navigation={navigation}
+                    type = {item.type}
+                    episode = {item.episode}
+                    created = {item.created}
                 />
                 )}
                 ListHeaderComponent={

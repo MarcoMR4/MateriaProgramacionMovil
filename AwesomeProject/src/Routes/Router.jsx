@@ -3,8 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { View, StyleSheet,  } from "react-native";
-import HomeScreen from "../screens/HomeScreen";
-import LoginScreen from "../screens/LoginScreen";
+import CharacterSCreen from "../screens/CharacterScreen";
+import CharacterInfo from "../screens/CharacterInfo";
 
 const Stack = createStackNavigator();
 const BottomTabNavigator = createStackNavigator();
@@ -12,11 +12,10 @@ const BottomTabNavigator = createStackNavigator();
 const Router = () => {
     return (
         <NavigationContainer>    
-                <Stack.Navigator initialRouteName="HomeScreen">
-                    <Stack.Screen name="Home" component={HomeScreen} />
-                    <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Navigator initialRouteName="CharacterScreen">
+                    <Stack.Screen name="Home" component={CharacterSCreen} />
+                    <Stack.Screen name="Character" component={CharacterInfo} />
                 </Stack.Navigator>
-                
     </NavigationContainer>
     )
 }
