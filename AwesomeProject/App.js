@@ -7,12 +7,8 @@ import Constants from "expo-constants";
 import React from 'react'
 import Router from "./src/Routes/Router";
 
-//Unidad 2 practica 5: Navegacion entre pantallas  
-/*
-Ejemplos de librerias de navegacion: 
-  1. React router -> native router 
-  2. 
-*/
+//Unidad 2 practica 6: Uso de header customizable 
+//unidad2/tarea6: replicar el ejemplo de 2 pantallas con 1 customHeader 
 
 export default function App() {
   return (
