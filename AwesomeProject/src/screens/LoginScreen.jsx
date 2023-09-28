@@ -8,7 +8,7 @@ const LoginScreen = ({navigation, route}) => {
     const {name} = route.params
 
     const navigation1 = useNavigation()
-    console.log(navigation)
+    //console.log(navigation)
     
     return (
         <View>

@@ -5,6 +5,8 @@ import 'react-native-gesture-handler';
 import { View, StyleSheet, Text } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import LoginScreen from "../screens/LoginScreen";
+import Home1 from "../screens/unidad2_tarea6/Home1";
+import TicketScreen from "../screens/unidad2_tarea6/TicketScreen";
 
 const Stack = createStackNavigator();
 const BottomTabNavigator = createStackNavigator();
@@ -28,7 +30,7 @@ const Router = () => {
                 >
                     <Stack.Screen
                         name="Home" 
-                        component={HomeScreen} 
+                        component={Home1} 
                         options = {{
                             headerShown: false,
                             title: 'Home2',
@@ -38,8 +40,8 @@ const Router = () => {
                         }}
                      />
                     <Stack.Screen 
-                        name="Login" 
-                        component={LoginScreen} 
+                        name="Tickets" 
+                        component={TicketScreen} 
                         options = {{
                             headerShown: false,
                         }}
