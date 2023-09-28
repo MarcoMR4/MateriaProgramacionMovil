@@ -16,12 +16,13 @@ const Router = () => {
                     initialRouteName="HomeScreen"
                     screenOptions={{
                         headerStyle: {
-                            backgroundColor: '#f4511e',
+                            backgroundColor: 'white',
                         },
                         headerTintColor:'#fff',
                         headerTitleStyle: {
-                            color: 'white',
+                            color: 'black',
                             fontWeight: 'bold',
+                            fontSize: 20,
                         }, 
                         // headerLeft: () => <Text>Foto</Text>,
                     }}
@@ -30,8 +31,8 @@ const Router = () => {
                         name="Home" 
                         component={HomeScreen} 
                         options = {{
-                            headerShown: false,
-                            title: 'Home2',
+                            headerShown: true,
+                            title: 'Home',
                             
                             headerRight: () => <Text>Right</Text>,
                             headerTitleAlign: "center",

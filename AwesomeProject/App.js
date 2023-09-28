@@ -7,8 +7,7 @@ import Constants from "expo-constants";
 import React from 'react'
 import Router from "./src/Routes/Router";
 
-//Unidad 2 practica 6: Uso de header customizable 
-//unidad2/tarea6: replicar el ejemplo de 2 pantallas con 1 customHeader 
+//Unidad 2 practica 7 
 
 export default function App() {
   return (
