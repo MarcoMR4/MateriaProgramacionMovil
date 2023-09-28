@@ -30,14 +30,20 @@ const Router = () => {
                         name="Home" 
                         component={HomeScreen} 
                         options = {{
-                            headerShown: true,
+                            headerShown: false,
                             title: 'Home2',
                             
                             headerRight: () => <Text>Right</Text>,
                             headerTitleAlign: "center",
                         }}
                      />
-                    <Stack.Screen name="Login" component={LoginScreen} />
+                    <Stack.Screen 
+                        name="Login" 
+                        component={LoginScreen} 
+                        options = {{
+                            headerShown: false,
+                        }}
+                    />
                 </Stack.Navigator>
                 
     </NavigationContainer>

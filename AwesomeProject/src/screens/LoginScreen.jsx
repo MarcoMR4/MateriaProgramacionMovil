@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Header from "../components/Header";
 
 const LoginScreen = ({navigation, route}) => {
 
@@ -11,6 +12,7 @@ const LoginScreen = ({navigation, route}) => {
     
     return (
         <View>
+            <Header />
             <Text>Login</Text>
             <Text>{name}</Text>
             <Button 
