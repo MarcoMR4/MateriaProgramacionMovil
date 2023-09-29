@@ -31,7 +31,7 @@ const ApiCardRM = ({name, ocupacion, image, status, historia}) => {
                     Historia: 
             </Text>
             <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
-                 <Text style={styles.textNormal} >{historia}</Text>
+                 <Text style={styles.textNormal} numberOfLines={10}>{historia}</Text>
             </ScrollView>
             
             
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     },
     picture: {
         marginTop: 40,
-        width: '30%', 
-        height: '80%',
+        width: 150, 
+        height: 240,
     },
     infoContainer:{
         padding: 10,
