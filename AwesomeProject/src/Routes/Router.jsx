@@ -16,11 +16,11 @@ const Router = () => {
                     initialRouteName="HomeScreen"
                     screenOptions={{
                         headerStyle: {
-                            backgroundColor: 'white',
+                            backgroundColor: '#272b33',
                         },
                         headerTintColor:'#fff',
                         headerTitleStyle: {
-                            color: 'black',
+                            color: 'silver',
                             fontWeight: 'bold',
                             fontSize: 20,
                         }, 
@@ -33,8 +33,6 @@ const Router = () => {
                         options = {{
                             headerShown: true,
                             title: 'Home',
-                            
-                            headerRight: () => <Text>Right</Text>,
                             headerTitleAlign: "center",
                         }}
                      />

@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, Image } from "react-native"
 import { FontAwesome } from '@expo/vector-icons';
+import { ScrollView } from "react-native-gesture-handler";
 
 
 
-const ApiCardRM = ({name, status, location, image, gender, species, first}) => {
+const ApiCardRM = ({name, ocupacion, image, status, historia}) => {
     return (
         <View style={styles.container}>
         <Image 
@@ -16,24 +17,24 @@ const ApiCardRM = ({name, status, location, image, gender, species, first}) => {
                 <FontAwesome 
                     name="circle" 
                     size={15} 
-                    color= {status == 'Alive' ? '#55cc44' : status == 'Dead' ? '#d63d2e': 'silver'} 
+                    color= {status == 'Vivo' ? '#55cc44' : 'silver'} 
                     style={{marginTop: 5}}
                 />
-                <Text style={styles.textStatus}>{status} - {species}</Text>
+                <Text style={styles.textStatus}>{status}</Text>
             </View>
             <Text style={{color: 'silver', fontWeight:"bold"}}>
-                Last known location: 
+                Ocupación: 
             </Text>
-            <Text style={styles.textNormal} numberOfLines={3}>{location}</Text>
-            <Text style={{color: 'silver', fontWeight:"bold", marginTop: 20,}}>
-                First seen in: 
+            <Text style={styles.textNormal} numberOfLines={3}>{ocupacion}</Text>
+
+            <Text style={{color: 'silver', fontWeight:"bold"}}>
+                    Historia: 
             </Text>
-            <Text style={styles.textNormal} numberOfLines={3}>{first}</Text>
-            <Text style={{color: 'white'}}>
-                <Text style={{color:(gender=='Male' ? '#48C2F3': gender=='Female'?'pink':'silver')}}>
-                {gender}
-                </Text>
-            </Text>
+            <ScrollView horizontal contentContainerStyle={styles.scrollContainer}>
+                 <Text style={styles.textNormal} >{historia}</Text>
+            </ScrollView>
+            
+            
         </View>
 
     </View>
@@ -48,14 +49,18 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row", 
         backgroundColor: '#3c3e44',
-        margin: 5,
-        gap: 5,
-        height: 250,
+        margin: 3,
+        width: '100%',
+        height: 300,
         borderRadius: 10,
     }, 
+    scrollContainer: {
+        paddingHorizontal: 5, // Espacio en los lados para mejorar la apariencia
+    },
     picture: {
-        width: 120, 
-        height: 120,
+        marginTop: 40,
+        width: '30%', 
+        height: '80%',
     },
     infoContainer:{
         padding: 10,
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
         marginBottom: 10, 
         marginTop: 3, 
         gap: 5,
-        fontSize: 11,
+        fontSize: 13,
     }
 
 })

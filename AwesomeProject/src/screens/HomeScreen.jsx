@@ -1,14 +1,18 @@
 import React,  {useState, useEffect} from "react";
-import { Text, View,  StyleSheet, Switch, ActivityIndicator } from "react-native";
+import { Text, View,  StyleSheet, Switch, ActivityIndicator, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import ApiCardRM from "../components/ApiCardRM";
+
 
 
 
 const HomeScreen = ({navigation}) => {
+    const api = 'https://apisimpsons.fly.dev/api/personajes?limit=30'
     //const [modalVisible, setModalVisible] = useState(false);
     const navigation1 = useNavigation()
     const [isEnabled, setIsEnabled] = useState(false)
     const [isFetching, setIsFetching] = useState(false)
+    const [characters, setCharacters] = useState([])
     
     const toggleSwitch = () => {
       setIsEnabled((previousState) => !previousState);
@@ -20,8 +24,11 @@ const HomeScreen = ({navigation}) => {
     const fetchData = async () => {
       try{
           setIsFetching(true)
-          const resp = await fetch ('https://rickandmortyapi.com/api')
+          const resp = await fetch(api)
+          //console.log('recibiendo '+resp.text())
           const data = await resp.json()
+          console.log('data json '+data.docs)
+          setCharacters(data.docs)
           await delay(5000);
       }catch (error) {
       console.log(error)
@@ -38,21 +45,56 @@ const HomeScreen = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-        <Switch
-            trackColor={{false: 'blue', true: 'red'}}
-            thumbColor={isEnabled ? 'yellow' : 'green'}
-            ios_backgroundColor="silver"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-            style={{transform: [{scaleX: 5}, {scaleY: 5}], marginBottom:50}}
-        />
-
-        <Text style={{transform: [{scaleX: 2}, {scaleY: 2}], marginBottom:50}}>This is a text</Text>
+            <View style={{flexDirection:"row"}}> 
+                <Text style={{fontSize: 20, color: 'white', marginTop: 5}}>Reload</Text>
+                <Switch
+                    trackColor={{false: 'blue', true: 'red'}}
+                    thumbColor={isEnabled ? 'yellow' : 'green'}
+                    ios_backgroundColor="silver"
+                    onValueChange={toggleSwitch}
+                    value={isEnabled}
+                    style={{transform: [{scaleX: 1}, {scaleY: 1}], marginBottom:50}}
+                />
+            </View>
+       
 
         { isFetching ? 
-          (<ActivityIndicator size="large" color="black" />)  
+          (
+            <View style={{flexDirection:"row"}}> 
+                <ActivityIndicator size="large" color="white" />
+                <Text style={{fontSize: 15, color: 'white', marginTop: 5}}>Loading...</Text>
+            </View>
+          
+          )  
         :
-          (<Text>Listo.</Text>) 
+          (
+            <FlatList 
+                data = {characters}
+                renderItem={({ item }) => (
+                    <ApiCardRM
+                    name = {item.Nombre}
+                    status = {item.Estado}
+                    image = {item.Imagen}
+                    ocupacion = {item.Ocupacion}
+                    historia = {item.Historia}
+
+                />
+                )}
+                ListHeaderComponent={
+                    <Text style={{fontSize:50, color: 'silver'}}>Characters</Text>
+                }
+                ListFooterComponent={
+                    <View style={{alignItems:"center", padding: 5}}>
+                    <Text style={{fontSize:25, color: 'silver'}}>Pagination</Text>
+                    </View>
+                }
+                ListEmptyComponent={
+                    <View>
+                    <Text style={{fontSize:25, color: 'silver'}}>Empty list</Text>
+                    </View>
+                }
+            />
+          ) 
         }
         
         </View>
@@ -66,48 +108,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        paddingHorizontal: 10, 
+        paddingTop: 5,
+        backgroundColor: '#272b33', 
       },
-    centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 22,
-    },
-    modalView: {
-      margin: 20,
-      backgroundColor: 'white',
-      borderRadius: 20,
-      padding: 35,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-    },
-    button: {
-      borderRadius: 20,
-      padding: 10,
-      elevation: 2,
-    },
-    buttonOpen: {
-      backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-      backgroundColor: '#2196F3',
-    },
-    textStyle: {
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: 'center',
-    },
   });
 
   
