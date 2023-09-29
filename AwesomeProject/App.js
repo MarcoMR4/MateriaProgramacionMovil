@@ -7,7 +7,7 @@ import Constants from "expo-constants";
 import React from 'react'
 import Router from "./src/Routes/Router";
 
-//Unidad 2 practica 7 
+//Unidad 2 practica 8
 
 export default function App() {
   return (

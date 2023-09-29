@@ -1,6 +1,7 @@
 import React,  {useState, useEffect} from "react";
-import { Text, View,  StyleSheet, Switch, ActivityIndicator } from "react-native";
+import { Text, View,  StyleSheet, Switch, ActivityIndicator, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { TextInput } from "react-native-gesture-handler";
 
 
 
@@ -9,52 +10,66 @@ const HomeScreen = ({navigation}) => {
     const navigation1 = useNavigation()
     const [isEnabled, setIsEnabled] = useState(false)
     const [isFetching, setIsFetching] = useState(false)
-    
-    const toggleSwitch = () => {
-      setIsEnabled((previousState) => !previousState);
-      fetchData(); // Llama a fetchData cuando el interruptor cambie.
-    };
-
-    const delay = ms => new Promise(res => setTimeout(res, ms));
+    const [inputValue, setInputValue] = useState('')
+    const [characters, setCharacters] = useState([])
+    const [filterCharacters, setFilterCharacters] = useState([])
 
     const fetchData = async () => {
-      try{
-          setIsFetching(true)
-          const resp = await fetch ('https://rickandmortyapi.com/api')
-          const data = await resp.json()
-          await delay(5000);
-      }catch (error) {
-      console.log(error)
-      }finally{
-          setIsFetching(false)
-      }
-  }
+        try{
+            setIsFetching(true)
+            const resp = await fetch ('https://rickandmortyapi.com/api/character')
+            const data = await resp.json()
+            setCharacters(data.results)
+            setFilterCharacters(data.results)
+        }catch (error) {
+        console.log(error)
+        }finally{
+            setIsFetching(false)
+        }
+    }
+
+    const filterData = (value) => {
+        if (value){
+            const filteredData = characters.filter(character => character.name.includes(value))
+            setFilterCharacters(filteredData)
+        } else{
+            setFilterCharacters(characters)
+        }
+    }
+    
 
     useEffect(() => {
+        navigation1.setOptions({
+            // title: 'HOME FROM COMPONENT', 
+            // headerRight: () => <Text>Right1</Text>,
+            // headerLargeTitle: true,
+            headerSearchBarOptions: {
+                placeholder: 'search items',
+            }, 
+        })
         fetchData();
     },[])
 
-    
+   
 
     return (
         <View style={styles.container}>
-        <Switch
-            trackColor={{false: 'blue', true: 'red'}}
-            thumbColor={isEnabled ? 'yellow' : 'green'}
-            ios_backgroundColor="silver"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-            style={{transform: [{scaleX: 5}, {scaleY: 5}], marginBottom:50}}
-        />
+            <TextInput 
+                value={inputValue}
+                onChangeText={(e) => setInputValue(e)}
+                style={{borderWidth: 1, paddingVertical: 10, paddingHorizontal: 20}}
+            />
+            <Text>{inputValue}</Text>
+            {
+                filterCharacters.map((character) => {
+                    return (
+                        <View key={character.id}>
+                            <Text>{character.name}</Text>
+                        </View>
 
-        <Text style={{transform: [{scaleX: 2}, {scaleY: 2}], marginBottom:50}}>This is a text</Text>
-
-        { isFetching ? 
-          (<ActivityIndicator size="large" color="black" />)  
-        :
-          (<Text>Listo.</Text>) 
-        }
-        
+                    )
+                    })
+            }
         </View>
     )
 }
@@ -64,50 +79,7 @@ export default HomeScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
       },
-    centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 22,
-    },
-    modalView: {
-      margin: 20,
-      backgroundColor: 'white',
-      borderRadius: 20,
-      padding: 35,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-    },
-    button: {
-      borderRadius: 20,
-      padding: 10,
-      elevation: 2,
-    },
-    buttonOpen: {
-      backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-      backgroundColor: '#2196F3',
-    },
-    textStyle: {
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: 'center',
-    },
   });
 
   

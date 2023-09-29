@@ -22,7 +22,7 @@ const Router = () => {
                         headerTitleStyle: {
                             color: 'black',
                             fontWeight: 'bold',
-                            fontSize: 20,
+                            fontSize: 15,
                         }, 
                         // headerLeft: () => <Text>Foto</Text>,
                     }}
@@ -32,8 +32,9 @@ const Router = () => {
                         component={HomeScreen} 
                         options = {{
                             headerShown: true,
+                            headerMode: 'screen',
                             title: 'Home',
-                            
+                            headerTintColor: 'white',
                             headerRight: () => <Text>Right</Text>,
                             headerTitleAlign: "center",
                         }}
