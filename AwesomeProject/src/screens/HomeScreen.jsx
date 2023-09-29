@@ -5,31 +5,36 @@ import { useNavigation } from "@react-navigation/native";
 
 
 const HomeScreen = ({navigation}) => {
-    const [modalVisible, setModalVisible] = useState(false);
+    //const [modalVisible, setModalVisible] = useState(false);
     const navigation1 = useNavigation()
     const [isEnabled, setIsEnabled] = useState(false)
+    const [isFetching, setIsFetching] = useState(false)
     
-    const toggleSwitch = ()  => setIsEnabled(
-        previousState => !previousState
-    )
+    const toggleSwitch = () => {
+      setIsEnabled((previousState) => !previousState);
+      fetchData(); // Llama a fetchData cuando el interruptor cambie.
+    };
+
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    const fetchData = async () => {
+      try{
+          setIsFetching(true)
+          const resp = await fetch ('https://rickandmortyapi.com/api')
+          const data = await resp.json()
+          await delay(5000);
+      }catch (error) {
+      console.log(error)
+      }finally{
+          setIsFetching(false)
+      }
+  }
 
     useEffect(() => {
-        const fetchData = async () => {
-            try{
-                const resp = await fetch ('https://rickandmortyapi.com/api')
-                const data = await resp.json()
-                await delay(5000)
+        fetchData();
+    },[])
+
     
-            }catch (error) {
-            console.log(error)
-            }finally{
-                setIsFetching(false)
-            }
-        }
-    })
-  
-
-
 
     return (
         <View style={styles.container}>
@@ -44,7 +49,12 @@ const HomeScreen = ({navigation}) => {
 
         <Text style={{transform: [{scaleX: 2}, {scaleY: 2}], marginBottom:50}}>This is a text</Text>
 
-        <ActivityIndicator size="large" color="black" />
+        { isFetching ? 
+          (<ActivityIndicator size="large" color="black" />)  
+        :
+          (<Text>Listo.</Text>) 
+        }
+        
         </View>
     )
 }
