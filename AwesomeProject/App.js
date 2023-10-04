@@ -7,14 +7,18 @@ import Constants from "expo-constants";
 import React from 'react'
 import Router from "./src/Routes/Router";
 
-//Unidad 2 practica 8
+
+//Unidad 2 practica 9 utilizando muchos componentes para mostrar informacion 
+//Uso del hook: useContext 
+//Tarea useColorSkin de Appareance 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Router />
-      <StatusBar style="auto" />
-    </View>
+    <AppContext.Provider>
+      <View>
+
+      </View>
+    </AppContext.Provider>
     
   );
 }
