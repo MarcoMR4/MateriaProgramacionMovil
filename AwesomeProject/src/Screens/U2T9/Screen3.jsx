@@ -5,10 +5,10 @@ const Screen3 = () => {
     return (
         <View style={styles.container}>
             <Image 
-                style={{borderRadius: 50, width: 80, height: 80, borderWidth: 1, borderColor: 'white', marginBottom: 20,}}
+                style={{borderRadius: 50, width: 60, height: 60, borderWidth: 1, borderColor: 'white', marginBottom: 10,}}
                 source={{uri: 'https://i.pinimg.com/originals/d5/b0/4c/d5b04cc3dcd8c17702549ebc5f1acf1a.png'}}
             />
-            <Text style={{fontSize: 20, color: 'white', marginBottom: 10}}>Benjamin Parker</Text>
+            <Text style={{fontSize: 20, color: 'white', marginBottom: 5}}>Benjamin Parker</Text>
             <Text style={{fontSize: 18, color: '#575757', marginBottom: 10}}>**** 3294</Text>
 
             <TextInput 
@@ -70,12 +70,12 @@ const styles = StyleSheet.create({
         padding: 20,
     }, 
     teclado: {
-        marginTop: 40,
+        marginTop: 15,
         marginBottom: 20,
     },
     tecladoFila: {
         flexDirection: "row", 
-        marginBottom: 10,
+        marginBottom: 5,
     },
     tecla :{
         color: 'white', 
