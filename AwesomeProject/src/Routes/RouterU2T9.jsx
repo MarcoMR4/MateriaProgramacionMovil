@@ -8,11 +8,16 @@ import Screen1 from "../Screens/U2T9/Screen1";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { UseThemeContext } from "../Hooks/UseThemeContext";
+import { NavigationContainer } from '@react-navigation/native';
+import ThemeContextProvider from "../Context/ThemeContext";
 
 const Stack = createStackNavigator();
 const BottomTabNavigator = createStackNavigator();
 
 const RouterU2T9 = () => {
+    const { darkMode} = UseThemeContext();
+    console.log('Es dark: ',darkMode)
 
     const navigation = useNavigation();
 
@@ -21,7 +26,8 @@ const RouterU2T9 = () => {
   };
     
     return (   
-                <Stack.Navigator 
+        <ThemeContextProvider>
+            <Stack.Navigator 
                     initialRouteName="Screen1"
                     screenOptions={{
                         headerStyle: {
@@ -109,7 +115,8 @@ const RouterU2T9 = () => {
                         }}
                      />
                 </Stack.Navigator>
-            
+
+        </ThemeContextProvider>      
     )
 }
 export default RouterU2T9

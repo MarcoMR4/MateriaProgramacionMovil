@@ -5,14 +5,20 @@ import Card from "../../Components/U2T9/Card";
 import CardContact from "../../Components/U2T9/CardContact";
 import { CONTACTS } from "../../Constants/contacts";
 import { useNavigation } from "@react-navigation/native";
+import { UseThemeContext } from "../../Hooks/UseThemeContext";
+import ThemeContextProvider from "../../Context/ThemeContext";
+
 
 const Screen1 = () => {
+    
+    const { darkMode, themes} = UseThemeContext();
+    console.log('En screen1: ',darkMode)
+    console.log('themes', themes)
     const navigation = useNavigation();
     return (
-        <View style={styles.container}>
-            
+        <ThemeContextProvider>
+            <View style={styles.container}>
             <Text style={{fontSize: 40, color: 'white', marginBottom: 20}}>My cards</Text>
-
             <ScrollView horizontal>
                 <View style={{flexDirection: "row"}}>
                     <TouchableOpacity>
@@ -153,8 +159,7 @@ const Screen1 = () => {
                 </TouchableOpacity>
             </View>
             
-
-            <View style={styles.bottomContainer}>
+            <View style={{...styles.bottomContainer, backgroundColor: darkMode ? '#1f1f1f' : 'white'}}>
                 <Text style={{color: 'white', marginBottom: 10,}}>My contacts</Text>
                 <FlatList 
                     data={CONTACTS}
@@ -171,6 +176,7 @@ const Screen1 = () => {
 
             </View>
         </View>       
+        </ThemeContextProvider>
     )
 }
 export default Screen1
@@ -178,12 +184,12 @@ export default Screen1
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0d0d0d',
         padding: 20,
+        backgroundColor: '#0d0d0d',
 
     }, 
     bottomContainer: {
-        backgroundColor: '#1f1f1f', 
+        
         borderRadius: 20,
         marginTop: 20,
         width: '100%', 
