@@ -1,7 +1,9 @@
 
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList } from "react-native"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Card from "../../Components/U2T9/Card";
+import CardContact from "../../Components/U2T9/CardContact";
+import { CONTACTS } from "../../Constants/contacts";
 
 const Screen1 = () => {
     return (
@@ -151,15 +153,21 @@ const Screen1 = () => {
             
 
             <View style={styles.bottomContainer}>
-                <Text style={{color: 'white'}}>My contacts</Text>
+                <Text style={{color: 'white', marginBottom: 10,}}>My contacts</Text>
+                <FlatList 
+                    data={CONTACTS}
+                    renderItem={({item: {name, img, code}}) => (
+                        <TouchableOpacity>
+                             <CardContact 
+                                name={name}
+                                img={img}
+                                code={code}
+                             />
+                        </TouchableOpacity>
+                    )}
+                />
 
             </View>
-                
-
-
-
-
-
         </View>       
     )
 }
@@ -167,7 +175,7 @@ export default Screen1
 
 const styles = StyleSheet.create({
     container: {
-        flex: 0,
+        flex: 1,
         backgroundColor: '#0d0d0d',
         padding: 20,
 
@@ -177,6 +185,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginTop: 20,
         width: '100%', 
+        height: 200,
         padding: 10,
     },
 })
