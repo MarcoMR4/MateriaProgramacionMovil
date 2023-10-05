@@ -22,7 +22,7 @@ const RouterU2T9 = () => {
     
     return (   
                 <Stack.Navigator 
-                    initialRouteName="Screen3"
+                    initialRouteName="Screen1"
                     screenOptions={{
                         headerStyle: {
                             backgroundColor: '#0d0d0d',
@@ -35,7 +35,7 @@ const RouterU2T9 = () => {
                             fontSize: 15,
                         }, 
                         headerLeft: () => 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={navigateToScreen1}>
                             <View style={styles.botonUp}>
                                 <MaterialCommunityIcons name="backspace-outline" size={24} color="white" />
                             </View>
