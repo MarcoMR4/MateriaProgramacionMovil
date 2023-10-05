@@ -2,8 +2,9 @@ import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import Screen3 from "../Screens/U2T9/Screen3";
+import Screen1 from "../Screens/U2T9/Screen1";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
 
@@ -14,7 +15,7 @@ const RouterU2T9 = () => {
     return (
         <NavigationContainer>    
                 <Stack.Navigator 
-                    initialRouteName="Screen3"
+                    initialRouteName="Screen1"
                     screenOptions={{
                         headerStyle: {
                             backgroundColor: '#0d0d0d',
@@ -40,6 +41,22 @@ const RouterU2T9 = () => {
                         </TouchableOpacity>,
                     }}
                 >
+                      <Stack.Screen
+                        name="Screen1" 
+                        component={Screen1} 
+                        options = {{
+                            headerShown: true,
+                            headerMode: 'screen',
+                            title: '',
+                            headerTintColor: 'white',
+                            headerTitleAlign: "center",
+                            headerLeft: () =>
+                            <Image 
+                                style={styles.botonUp}
+                                source={{uri: 'https://i.pinimg.com/originals/d5/b0/4c/d5b04cc3dcd8c17702549ebc5f1acf1a.png'}}
+                            />
+                        }}
+                     />
                     <Stack.Screen
                         name="Screen3" 
                         component={Screen3} 
