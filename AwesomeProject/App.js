@@ -1,38 +1,21 @@
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  View, Text
-} from "react-native";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
 import Constants from "expo-constants";
-import React from 'react'
-import Card2 from "./src/components/Card2";
-import AppContextProvider from "./src/context/AppContext";
-
-
-//Unidad 2 practica 9 utilizando muchos componentes para mostrar informacion 
-//Uso del hook: useContext 
-//Tarea useColorSkin de Appareance 
+import Screen3 from './src/Screens/U2T9/Screen3';
 
 export default function App() {
   return (
-    <AppContextProvider>
-      <View style={styles.container}>
-        <Card2 />
-      </View>
-        
-    </AppContextProvider>
-      
-      
+    <View style={styles.container}>
+      <Screen3 />
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
     paddingTop: Constants.statusBarHeight + 10,
-    alignContent: "center",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 6,
   },
 });

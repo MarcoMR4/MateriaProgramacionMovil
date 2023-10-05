@@ -3,13 +3,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { View, StyleSheet, Text } from "react-native";
-import HomeScreen from "../screens/HomeScreen";
-import LoginScreen from "../screens/LoginScreen";
+
 
 const Stack = createStackNavigator();
 const BottomTabNavigator = createStackNavigator();
 
-const Router = () => {
+const RouterU2T9 = () => {
     return (
         <NavigationContainer>    
                 <Stack.Navigator 
@@ -51,6 +50,6 @@ const Router = () => {
     </NavigationContainer>
     )
 }
-export default Router
+export default RouterU2T9
 
 const styles = StyleSheet.create({});
