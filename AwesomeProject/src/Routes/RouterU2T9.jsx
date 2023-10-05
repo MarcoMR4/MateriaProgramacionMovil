@@ -1,6 +1,5 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { View, StyleSheet, Text, Image } from "react-native";
 import Screen3 from "../Screens/U2T9/Screen3";
@@ -8,13 +7,20 @@ import Screen2 from "../Screens/U2T9/Screen2";
 import Screen1 from "../Screens/U2T9/Screen1";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
 const BottomTabNavigator = createStackNavigator();
 
 const RouterU2T9 = () => {
-    return (
-        <NavigationContainer>    
+
+    const navigation = useNavigation();
+
+    const navigateToScreen1 = () => {
+    navigation.navigate("Screen1");
+  };
+    
+    return (   
                 <Stack.Navigator 
                     initialRouteName="Screen3"
                     screenOptions={{
@@ -67,6 +73,17 @@ const RouterU2T9 = () => {
                             title: '',
                             headerTintColor: 'white',
                             headerTitleAlign: "center",
+                            headerLeft: () => (
+                                <TouchableOpacity onPress={navigateToScreen1}>
+                                  <View style={styles.botonUp}>
+                                    <MaterialCommunityIcons
+                                      name="backspace-outline"
+                                      size={24}
+                                      color="white"
+                                    />
+                                  </View>
+                                </TouchableOpacity>
+                            ),
                         }}
                      />
                     <Stack.Screen
@@ -78,11 +95,21 @@ const RouterU2T9 = () => {
                             title: 'Send',
                             headerTintColor: 'white',
                             headerTitleAlign: "center",
+                            headerLeft: () => (
+                                <TouchableOpacity onPress={navigateToScreen1}>
+                                  <View style={styles.botonUp}>
+                                    <MaterialCommunityIcons
+                                      name="backspace-outline"
+                                      size={24}
+                                      color="white"
+                                    />
+                                  </View>
+                                </TouchableOpacity>
+                            ),
                         }}
                      />
                 </Stack.Navigator>
-                
-    </NavigationContainer>
+            
     )
 }
 export default RouterU2T9

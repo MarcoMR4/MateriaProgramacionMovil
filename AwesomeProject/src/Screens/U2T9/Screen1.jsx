@@ -4,8 +4,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Card from "../../Components/U2T9/Card";
 import CardContact from "../../Components/U2T9/CardContact";
 import { CONTACTS } from "../../Constants/contacts";
+import { useNavigation } from "@react-navigation/native";
 
 const Screen1 = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             
@@ -81,7 +83,7 @@ const Screen1 = () => {
             </ScrollView>
 
             <View style={{flexDirection: "row"}}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("Screen2")}>
                     <Text style ={{
                         padding: 12,
                         alignItems: "center",
@@ -115,7 +117,7 @@ const Screen1 = () => {
                         Contacts
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("Screen3")}>
                     <Text style ={{
                         padding: 12,
                         alignItems: "center",
