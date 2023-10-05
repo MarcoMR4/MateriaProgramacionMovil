@@ -5,7 +5,8 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import React from 'react'
-import Router from "./src/Routes/Router";
+import Card2 from "./src/components/Card2";
+import AppContextProvider from "./src/context/AppContext";
 
 
 //Unidad 2 practica 9 utilizando muchos componentes para mostrar informacion 
@@ -14,12 +15,14 @@ import Router from "./src/Routes/Router";
 
 export default function App() {
   return (
-    <AppContext.Provider>
-      <View>
-
+    <AppContextProvider>
+      <View style={styles.container}>
+        <Card2 />
       </View>
-    </AppContext.Provider>
-    
+        
+    </AppContextProvider>
+      
+      
   );
 }
 
@@ -27,5 +30,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Constants.statusBarHeight + 10,
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 6,
   },
 });
