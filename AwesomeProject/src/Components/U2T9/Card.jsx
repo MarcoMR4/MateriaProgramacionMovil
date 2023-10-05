@@ -5,7 +5,7 @@ const Card = ({iconName,  text}) => {
     return (
         <View style = {styles.container}>
             <MaterialCommunityIcons name={iconName} size={24} color="white" />
-            <Text style={{color:'#969e64', fontSize: 15,}}>{text}</Text>
+            <Text style={{color:'#969e64', fontSize: 13,}}>{text}</Text>
         </View>
 
     )
@@ -14,14 +14,14 @@ export default Card
 
 const styles = StyleSheet.create({
     container: {
-        width: 110,
-        height: 110, 
+        width: 100,
+        height: 100, 
         backgroundColor: '#1f1f1f',
         alignItems: "center",
         borderRadius: 30,
         textAlign: "center", 
         justifyContent: "center",
         padding: 20,
-        marginRight:10,
+        marginRight:20,
     },
 })

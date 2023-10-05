@@ -14,7 +14,7 @@ const Screen1 = () => {
                     <TouchableOpacity>
                         <View style={{
                             backgroundColor: '#edf893',
-                            height: 180,
+                            height: 160,
                             width: 80,
                             borderRadius: 30,
                             alignItems: "center",
@@ -28,7 +28,7 @@ const Screen1 = () => {
                     <TouchableOpacity>
                         <View style={{
                             backgroundColor: '#ffffff',
-                            height: 180,
+                            height: 160,
                             width: 220,
                             borderRadius: 30,
                             alignContent: "space-between",
@@ -49,7 +49,7 @@ const Screen1 = () => {
                     <TouchableOpacity>
                         <View style={{
                             backgroundColor: '#516bea',
-                            height: 180,
+                            height: 160,
                             width: 240,
                             borderRadius: 30,
                             alignContent: "space-between",
@@ -71,7 +71,7 @@ const Screen1 = () => {
             </ScrollView>
 
             <ScrollView>
-                <View style={{flexDirection: "row", marginBottom: 20,}}>
+                <View style={{flexDirection: "row", marginBottom: 30, marginTop: 20}}>
                     <TouchableOpacity><Card text='Send' iconName="email-send" /></TouchableOpacity>
                     <TouchableOpacity><Card text='Receive' iconName="email-receive" /></TouchableOpacity>
                     <TouchableOpacity><Card text='Swap' iconName="refresh" /></TouchableOpacity>
@@ -79,74 +79,88 @@ const Screen1 = () => {
             </ScrollView>
 
             <View style={{flexDirection: "row"}}>
-                <Text style ={{
-                    padding: 12,
-                    alignItems: "center",
-                    textAlign: "center",
-                    borderWidth: 1,
-                    borderColor: '#edf893',
-                    color: 'white',
-                    borderRadius: 30,
-                    width: 88,
-                    height: 50,
-                    marginRight: 6,
-                    fontSize: 11,
-                }}>
-                    Activity
-                </Text>
-                <Text style ={{
-                    padding: 12,
-                    alignItems: "center",
-                    textAlign: "center",
-                    borderWidth: 1,
-                    borderColor: '#edf893',
-                    color: 'white',
-                    borderRadius: 30,
-                    width: 88,
-                    height: 50,
-                    marginRight: 7,
-                    fontSize: 11,
-                }}>
-                    Contacts
-                </Text>
-                <Text style ={{
-                    padding: 12,
-                    alignItems: "center",
-                    textAlign: "center",
-                    borderWidth: 1,
-                    borderColor: '#edf893',
-                    color: 'white',
-                    borderRadius: 30,
-                    width: 88,
-                    height: 50,
-                    marginRight: 6,
-                    fontSize: 11,
-                }}>
-                    Payments
-                </Text>
-                <Text style ={{
-                    padding: 12,
-                    alignItems: "center",
-                    textAlign: "center",
-                    borderWidth: 1,
-                    borderColor: '#edf893',
-                    color: 'white',
-                    borderRadius: 30,
-                    width: 88,
-                    height: 50,
-                    marginRight: 6,
-                    fontSize: 11,
-                }}>
-                    Sale
-                </Text>
+                <TouchableOpacity>
+                    <Text style ={{
+                        padding: 12,
+                        alignItems: "center",
+                        textAlign: "center",
+                        borderWidth: 1,
+                        borderColor: '#edf893',
+                        color: 'white',
+                        borderRadius: 30,
+                        width: 88,
+                        height: 50,
+                        marginRight: 6,
+                        fontSize: 11,
+                    }}>
+                        Activity
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style ={{
+                        padding: 12,
+                        alignItems: "center",
+                        textAlign: "center",
+                        borderWidth: 1,
+                        borderColor: '#edf893',
+                        color: 'white',
+                        borderRadius: 30,
+                        width: 88,
+                        height: 50,
+                        marginRight: 7,
+                        fontSize: 11,
+                    }}>
+                        Contacts
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style ={{
+                        padding: 12,
+                        alignItems: "center",
+                        textAlign: "center",
+                        borderWidth: 1,
+                        borderColor: '#edf893',
+                        color: 'white',
+                        borderRadius: 30,
+                        width: 88,
+                        height: 50,
+                        marginRight: 6,
+                        fontSize: 11,
+                    }}>
+                        Payments
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style ={{
+                        padding: 12,
+                        alignItems: "center",
+                        textAlign: "center",
+                        borderWidth: 1,
+                        borderColor: '#edf893',
+                        color: 'white',
+                        borderRadius: 30,
+                        width: 88,
+                        height: 50,
+                        marginRight: 6,
+                        fontSize: 11,
+                    }}>
+                        Sale
+                    </Text>
+                </TouchableOpacity>
             </View>
             
-            
-  
+
+            <View style={styles.bottomContainer}>
+                <Text style={{color: 'white'}}>My contacts</Text>
+
+            </View>
+                
 
 
 
-        </View>
+
+
+        </View>       
     )
 }
 export default Screen1
@@ -158,5 +172,11 @@ const styles = StyleSheet.create({
         padding: 20,
 
     }, 
-
+    bottomContainer: {
+        backgroundColor: '#1f1f1f', 
+        borderRadius: 20,
+        marginTop: 20,
+        width: '100%', 
+        padding: 10,
+    },
 })
