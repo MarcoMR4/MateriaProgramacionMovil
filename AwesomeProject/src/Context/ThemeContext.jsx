@@ -1,40 +1,28 @@
-import {createContext, useState } from "react";
-// import {useColorScheme} from 'react-native';
+import React, { createContext, useContext, useState } from 'react';
 
-const themeOrigin = {
-    light: {
-        flatListContainer: 'white'
-    },
-    dark: {
-        flatListContainer: '#1f1f1f'
-    },
-}
+const GlobalContext = createContext();
 
-const isDarkMode = true
+export const GlobalProvider = ({ children }) => {
 
+  // Global state
+  let [globalState, setGlobalState] = useState({
+    // Personalization state
+    darkMode: false,
+    bgColor:'#0d0d0d',
+    cardOptionsColor: '#1f1f1f',
+    cardOptionsFontColor: '#edf893',
+    buttonContainerBackgroundColor: '#1f1f1f',
+    transactionCardBackgroundColor: '#edf893',
+    fontColor : '#FFFFFF', 
+  });
 
-export const ThemeContext = createContext()
+  return (
+    <GlobalContext.Provider value={{ globalState, setGlobalState }}>
+      {children}
+    </GlobalContext.Provider>
+  );
+};
 
-const ThemeContextProvider = ({children}) => {
-    //const colorScheme = useColorScheme();
-    //const isDarkMode = colorScheme === 'dark';
-    const [darkMode, setDarkMode] = useState(isDarkMode);
-    const [themes, setThemes] = useState(themeOrigin)
-
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-    };
-    
-    const values = {
-        darkMode,
-        themes,
-        toggleDarkMode, // Un ejemplo de función para cambiar el tema.
-    };
-
-    return(
-        <ThemeContext.Provider value={values} >
-            {children}
-        </ThemeContext.Provider>
-    )
-}
-export default ThemeContextProvider
+export const useGlobalContext = () => {
+  return useContext(GlobalContext);
+};

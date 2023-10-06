@@ -1,24 +1,32 @@
-
+import { useGlobalContext } from "../../Context/ThemeContext";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList } from "react-native"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Card from "../../Components/U2T9/Card";
 import CardContact from "../../Components/U2T9/CardContact";
 import { CONTACTS } from "../../Constants/contacts";
 import { useNavigation } from "@react-navigation/native";
-import { UseThemeContext } from "../../Hooks/UseThemeContext";
-import ThemeContextProvider from "../../Context/ThemeContext";
 
 
 const Screen1 = () => {
-    
-    const { darkMode, themes} = UseThemeContext();
-    console.log('En screen1: ',darkMode)
-    console.log('themes', themes)
+    let {globalState} = useGlobalContext();
+
+    let mainBackgroundColor = {
+        backgroundColor : globalState.bgColor,
+    }
+
+    let cardBackgroundColor ={
+        backgroundColor : globalState.cardOptionsColor
+    }
+
+    let fontColorStyle = {
+        borderColor: globalState.cardOptionsFontColor,
+        color: globalState.fontColor,
+    }
+
     const navigation = useNavigation();
     return (
-        <ThemeContextProvider>
-            <View style={styles.container}>
-            <Text style={{fontSize: 40, color: 'white', marginBottom: 20}}>My cards</Text>
+            <View style={[styles.container, mainBackgroundColor]}>
+            <Text style={[{fontSize: 40, marginBottom: 20}, fontColorStyle]}>My cards</Text>
             <ScrollView horizontal>
                 <View style={{flexDirection: "row"}}>
                     <TouchableOpacity>
@@ -36,8 +44,7 @@ const Screen1 = () => {
                     </TouchableOpacity>
 
                     <TouchableOpacity>
-                        <View style={{
-                            backgroundColor: '#ffffff',
+                        <View style={[{
                             height: 160,
                             width: 220,
                             borderRadius: 30,
@@ -47,12 +54,12 @@ const Screen1 = () => {
                             marginRight: 10,
                             padding: 20,
                             marginBottom: 20,
-                        }}>
+                        }, cardBackgroundColor]}>
                             <View style={{flexDirection:"row", justifyContent: "space-between"}}>
-                                <MaterialCommunityIcons name="google-circles" size={24} color="black" />
+                                <MaterialCommunityIcons name="google-circles" size={24} color={globalState.fontColor} />
                                 <Text style={{fontSize:20, color: '#9a9a9b'}}>**** 4934</Text>
                             </View>
-                            <Text style={{fontSize: 30,}}>$13,327.<Text style={{fontSize: 20}}>23</Text></Text>
+                            <Text style={[{fontSize: 30,}, fontColorStyle]}>$13,327.<Text style={{fontSize: 20}}>23</Text></Text>
                         </View>
                     </TouchableOpacity>
 
@@ -88,79 +95,71 @@ const Screen1 = () => {
                 </View>
             </ScrollView>
 
-            <View style={{flexDirection: "row"}}>
+            <View style={{flexDirection: "row", paddingBottom:20}}>
                 <TouchableOpacity onPress={() => navigation.navigate("Screen2")}>
-                    <Text style ={{
+                    <Text style ={[{
                         padding: 12,
                         alignItems: "center",
                         textAlign: "center",
                         borderWidth: 1,
-                        borderColor: '#edf893',
-                        color: 'white',
                         borderRadius: 30,
                         width: 88,
                         height: 50,
                         marginRight: 6,
                         fontSize: 11,
-                    }}>
+                    }, fontColorStyle]}>
                         Activity
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Text style ={{
+                    <Text style ={[{
                         padding: 12,
                         alignItems: "center",
                         textAlign: "center",
                         borderWidth: 1,
-                        borderColor: '#edf893',
-                        color: 'white',
                         borderRadius: 30,
                         width: 88,
                         height: 50,
                         marginRight: 7,
                         fontSize: 11,
-                    }}>
+                    }, fontColorStyle]}>
                         Contacts
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate("Screen3")}>
-                    <Text style ={{
+                    <Text style ={[{
                         padding: 12,
                         alignItems: "center",
                         textAlign: "center",
                         borderWidth: 1,
-                        borderColor: '#edf893',
-                        color: 'white',
                         borderRadius: 30,
                         width: 88,
                         height: 50,
                         marginRight: 6,
                         fontSize: 11,
-                    }}>
+                    }, fontColorStyle]}>
                         Payments
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Text style ={{
+                    <Text style ={[{
                         padding: 12,
                         alignItems: "center",
                         textAlign: "center",
                         borderWidth: 1,
-                        borderColor: '#edf893',
-                        color: 'white',
                         borderRadius: 30,
                         width: 88,
                         height: 50,
                         marginRight: 6,
                         fontSize: 11,
-                    }}>
+                    }, fontColorStyle]}>
                         Sale
                     </Text>
                 </TouchableOpacity>
             </View>
             
-            <View style={{...styles.bottomContainer, backgroundColor: darkMode ? '#1f1f1f' : 'white'}}>
-                <Text style={{color: 'white', marginBottom: 10,}}>My contacts</Text>
+            <View style={[{...styles.bottomContainer}, cardBackgroundColor]}>
+                <Text style={[{margin: 10,}, fontColorStyle]}>My contacts</Text>
                 <FlatList 
                     data={CONTACTS}
                     renderItem={({item: {name, img, code}}) => (
@@ -176,7 +175,6 @@ const Screen1 = () => {
 
             </View>
         </View>       
-        </ThemeContextProvider>
     )
 }
 export default Screen1
@@ -184,16 +182,13 @@ export default Screen1
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: '#0d0d0d',
-
+        paddingHorizontal: 10,
     }, 
     bottomContainer: {
-        
         borderRadius: 20,
-        marginTop: 20,
+        marginTop: 5,
         width: '100%', 
-        height: 200,
-        padding: 10,
+        height: 230,
+        paddingHorizontal: 0,
     },
 })

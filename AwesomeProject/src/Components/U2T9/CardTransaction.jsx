@@ -1,9 +1,13 @@
 import { View, Text, StyleSheet } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
+import { useGlobalContext } from "../../Context/ThemeContext";
 
 
 const CardTransaction = ({name, date, amount}) => {
-    console.log(name)
+
+    let {globalState} = useGlobalContext();
+
+
     return (
         <View style = {styles.container}>
             <View style={{flexDirection:"row"}}>
@@ -11,7 +15,7 @@ const CardTransaction = ({name, date, amount}) => {
                 style={{borderWidth: 1, 
                     borderColor: 'black', 
                     borderRadius: 30, 
-                    backgroundColor: 'black', 
+                    backgroundColor: 'transparent', 
                     width: 40,
                     height: 40,
                     padding: 5,
@@ -19,13 +23,13 @@ const CardTransaction = ({name, date, amount}) => {
                     marginRight: 10,
                 }}
                 >
-                    <Ionicons name="ios-download" size={24} color="#edf893" />
+                    <Ionicons name="ios-download" size={24} color="#000000" />
                 </View>
                 
                 <View style={{width: 200}}>
                     <Text style={{color:'black', fontSize: 12,}}>{name}</Text>
                 
-                    <Text style={{color:'#969e64', fontSize: 12}}>{date}</Text>
+                    <Text style={{color:'#666', fontSize: 12}}>{date}</Text>
                     
                 </View>
 
@@ -41,8 +45,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         width: '80%',
-        height: 40, 
-        backgroundColor: '#edf893',
+        height: 40,
         alignItems: "center",
         textAlign: "center", 
         justifyContent: "center",

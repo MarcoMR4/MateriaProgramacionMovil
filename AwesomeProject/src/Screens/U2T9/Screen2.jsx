@@ -2,13 +2,29 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, FlatList} from "react-
 import { graph1 } from "../../../assets"
 import { TRANSACTIONS } from "../../Constants/contacts"
 import CardTransaction from "../../Components/U2T9/CardTransaction"
+import { useGlobalContext } from "../../Context/ThemeContext"
 
 const Screen2 = () => {
+
+    let {globalState} = useGlobalContext();
+
+    let backgroundColorStyle = {
+        backgroundColor: globalState.bgColor
+    }
+
+    let cardBackgroundColor = {
+        backgroundColor: globalState.transactionCardBackgroundColor
+    }
+
+    let fontColorStyle = {
+        color: globalState.fontColor
+    }
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, backgroundColorStyle]}>
           
             <Text style={{fontSize: 15, color: '#757575', marginBottom: 5}}>Total Balance</Text>
-            <Text style={{fontSize: 30, color: 'white', marginBottom: 10}}>32,751.86</Text>
+            <Text style={[{fontSize: 30, marginBottom: 10}, fontColorStyle]}>32,751.86</Text>
 
             <View style={{flexDirection: "row", justifyContent: "space-around"}}>
                 <TouchableOpacity>
@@ -29,7 +45,7 @@ const Screen2 = () => {
                 source={graph1}
             />
 
-        <View style={styles.bottomContainer}>
+        <View style={[styles.bottomContainer, cardBackgroundColor]}>
             <Text style={{color: '#828a52', marginBottom: 5, fontWeight:"bold", fontSize: 20, textAlign:"center"}}>
                 _____
             </Text>
@@ -58,12 +74,10 @@ export default Screen2
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0d0d0d',
         alignItems: "center",
         padding: 0,
     }, 
     bottomContainer: {
-        backgroundColor: '#edf893', 
         borderRadius: 20,
         marginTop: 5,
         width: '100%', 

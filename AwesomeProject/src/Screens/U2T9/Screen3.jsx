@@ -1,14 +1,31 @@
-
+import { useGlobalContext } from "../../Context/ThemeContext"
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from "react-native"
+import KeyButton from "../../Components/KeyButton";
 
 const Screen3 = () => {
+
+    let {globalState} = useGlobalContext();
+
+
+    let backgroundColorStyle = {
+        backgroundColor: globalState.bgColor
+    }
+
+    let fontColorStyle = {
+        color: globalState.fontColor
+    }
+
+    let cardBackgroundColor = {
+        backgroundColor: globalState.transactionCardBackgroundColor
+    }
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, backgroundColorStyle]}>
             <Image 
                 style={{borderRadius: 50, width: 60, height: 60, borderWidth: 1, borderColor: 'white', marginBottom: 10,}}
                 source={{uri: 'https://i.pinimg.com/originals/d5/b0/4c/d5b04cc3dcd8c17702549ebc5f1acf1a.png'}}
             />
-            <Text style={{fontSize: 20, color: 'white', marginBottom: 5}}>Benjamin Parker</Text>
+            <Text style={[{fontSize: 20, marginBottom: 5}, fontColorStyle]}>Benjamin Parker</Text>
             <Text style={{fontSize: 18, color: '#575757', marginBottom: 10}}>**** 3294</Text>
 
             <TextInput 
@@ -20,31 +37,30 @@ const Screen3 = () => {
             />
             <View style={styles.teclado} >
                 <View style={styles.tecladoFila}>
-                    <TouchableOpacity><Text style={styles.tecla}>1</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.tecla}>2</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.tecla}>3</Text></TouchableOpacity>
+                    <KeyButton text="1" />
+                    <KeyButton text="2" />
+                    <KeyButton text="3" />
                 </View>
                 <View style={styles.tecladoFila}>
-                    <TouchableOpacity><Text style={styles.tecla}>4</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.tecla}>5</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.tecla}>6</Text></TouchableOpacity>
+                    <KeyButton text="4" />
+                    <KeyButton text="5" />
+                    <KeyButton text="6" />
                 </View>
                 <View style={styles.tecladoFila}>
-                    <TouchableOpacity><Text style={styles.tecla}>7</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.tecla}>8</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.tecla}>9</Text></TouchableOpacity>
+                    <KeyButton text="7" />
+                    <KeyButton text="8" />
+                    <KeyButton text="9" />
                 </View>
                 <View style={styles.tecladoFila}>
-                    <TouchableOpacity><Text style={styles.tecla}>&lt;</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.tecla}>0</Text></TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.tecla}>.</Text></TouchableOpacity>
+                    <KeyButton text="&lt;" />
+                    <KeyButton text="0" />
+                    <KeyButton text="." />
                 </View>
             </View>   
 
             <TouchableOpacity>
-                <Text style={{
-                    color: 'black', 
-                    backgroundColor: '#edf893',
+                <Text style={[{
+                    color: 'black',
                     width: 350,
                     height: 50,
                     textAlign: "center",
@@ -52,7 +68,7 @@ const Screen3 = () => {
                     fontSize: 18,
                     fontWeight: "bold",
                     borderRadius: 30,
-                }}>
+                }, cardBackgroundColor]}>
                     Send
                 </Text>
             </TouchableOpacity>
@@ -65,7 +81,6 @@ export default Screen3
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0d0d0d',
         alignItems: "center",
         padding: 20,
     }, 
@@ -77,17 +92,4 @@ const styles = StyleSheet.create({
         flexDirection: "row", 
         marginBottom: 5,
     },
-    tecla :{
-        color: 'white', 
-        borderWidth: 1,
-        backgroundColor: '#1f1f1f',
-        padding: 20, 
-        borderRadius: 20,
-        marginLeft: 5,
-        marginRight: 5,
-        width: 100,
-        height: 80,
-        textAlign: "center",
-        fontSize: 20,
-    }
 })

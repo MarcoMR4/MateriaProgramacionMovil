@@ -1,23 +1,25 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Image, Switch, Text } from "react-native";
 import Screen3 from "../Screens/U2T9/Screen3";
 import Screen2 from "../Screens/U2T9/Screen2";
 import Screen1 from "../Screens/U2T9/Screen1";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { UseThemeContext } from "../Hooks/UseThemeContext";
-import { NavigationContainer } from '@react-navigation/native';
-import ThemeContextProvider from "../Context/ThemeContext";
+import { useGlobalContext } from "../Context/ThemeContext";
+import OptionFunctions from "../logic/functions";
 
 const Stack = createStackNavigator();
-const BottomTabNavigator = createStackNavigator();
 
 const RouterU2T9 = () => {
-    const { darkMode} = UseThemeContext();
-    console.log('Es dark: ',darkMode)
+    let {handleDarkMode} = OptionFunctions();
+    let {globalState} = useGlobalContext();
+
+    let backgroundColorStyle = {
+        backgroundColor : globalState.bgColor
+    }
 
     const navigation = useNavigation();
 
@@ -26,12 +28,11 @@ const RouterU2T9 = () => {
   };
     
     return (   
-        <ThemeContextProvider>
             <Stack.Navigator 
                     initialRouteName="Screen1"
                     screenOptions={{
                         headerStyle: {
-                            backgroundColor: '#0d0d0d',
+                            backgroundColor: globalState.bgColor,
                             height: 70,
                         },
                         headerTintColor:'#0d0d0d',
@@ -43,15 +44,19 @@ const RouterU2T9 = () => {
                         headerLeft: () => 
                         <TouchableOpacity onPress={navigateToScreen1}>
                             <View style={styles.botonUp}>
-                                <MaterialCommunityIcons name="backspace-outline" size={24} color="white" />
+                                <MaterialCommunityIcons name="backspace-outline" size={24} color={globalState.fontColor} />
                             </View>
                         </TouchableOpacity>,
                         headerRight: () => 
-                        <TouchableOpacity>
-                            <View style={styles.botonUp}>
-                                 <MaterialCommunityIcons name="wechat" size={25} color="white" />
-                            </View>
-                        </TouchableOpacity>,
+                            <View style={{flex:1, flexDirection:"row", justifyContent:'center', alignItems:'center', padding:10,}}>
+                                <Text style={{color:globalState.fontColor}}>Mode</Text>
+                                <Switch
+                                    trackColor={{ false: globalState.fontColor, true: globalState.fontColor }}
+                                    thumbColor={'#969e64'}
+                                    onValueChange={handleDarkMode}
+                                    value={globalState.darkMode}
+                                />
+                            </View>,
                     }}
                 >
                       <Stack.Screen
@@ -85,7 +90,7 @@ const RouterU2T9 = () => {
                                     <MaterialCommunityIcons
                                       name="backspace-outline"
                                       size={24}
-                                      color="white"
+                                      color={globalState.fontColor}
                                     />
                                   </View>
                                 </TouchableOpacity>
@@ -107,16 +112,14 @@ const RouterU2T9 = () => {
                                     <MaterialCommunityIcons
                                       name="backspace-outline"
                                       size={24}
-                                      color="white"
+                                      color={globalState.fontColor}
                                     />
                                   </View>
                                 </TouchableOpacity>
                             ),
                         }}
                      />
-                </Stack.Navigator>
-
-        </ThemeContextProvider>      
+                </Stack.Navigator>    
     )
 }
 export default RouterU2T9
