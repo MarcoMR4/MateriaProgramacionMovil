@@ -1,27 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
 import Constants from "expo-constants";
-import RouterU2T9 from './src/Routes/RouterU2T9';
-import { NavigationContainer } from '@react-navigation/native';
-import { GlobalProvider } from './src/Context/ThemeContext';
+import "react-native-gesture-handler";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import Home from "./src/Screens/Home";
+import Login from "./src/Screens/Login";
+import Account from "./src/Screens/Account";
+import AuthContextProvider from "./src/context/authContext";
+import { useAuthContext } from "./src/hooks/useAuthContext";
+
+const Stack = createStackNavigator();
 
 export default function App() {
-
   return (
-    <GlobalProvider>
+    <AuthContextProvider>
       <NavigationContainer>
-        <View style={[styles.container]}>
-          <RouterU2T9 />
+        <View style={styles.container}>
+          <Stack.Navigator initialRouteName="Login">
+            {/* {Layout()} */}
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Account" component={Account} />
+            <Stack.Screen name="Login" component={Login} />
+          </Stack.Navigator>
           <StatusBar style="auto" />
         </View>
       </NavigationContainer>
-    </GlobalProvider>
+    </AuthContextProvider>
   );
 }
+
+const Layout = () => {
+  const { user } = useAuthContext();
+
+  if (!user) {
+    return <Stack.Screen name="Login" component={Login} />;
+  }
+
+  return (
+    <>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Account" component={Account} />
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight + 10,
+    backgroundColor: "#fff",
+    paddingTop: Constants.statusBarHeight,
   },
 });
