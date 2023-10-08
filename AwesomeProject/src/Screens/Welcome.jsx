@@ -24,7 +24,7 @@ const Welcome = () => {
                 </Text>
                 
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Home')}
+                    onPress={() => navigation.navigate('Menu')}
                 >
                 <View style={{alignItems: "center"}}>
                 <Text 

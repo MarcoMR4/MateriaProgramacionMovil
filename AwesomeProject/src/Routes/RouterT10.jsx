@@ -39,14 +39,14 @@ function RouterT10() {
         )}
 
       </Drawer.Screen>
-      {/* <Drawer.Screen 
-        name="Home"
-        
+      <Drawer.Screen 
+        name="Menu"
+        component={Menu}
+        options={{ 
+          drawerLabel: () => null
+        }}
       >
-        {() => (
-          <TabNavigatorT10 />
-        )}
-      </Drawer.Screen> */}
+      </Drawer.Screen>
     </Drawer.Navigator>
   );
 }

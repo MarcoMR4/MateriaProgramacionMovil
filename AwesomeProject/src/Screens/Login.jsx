@@ -1,8 +1,10 @@
 import { View, StyleSheet, TextInput, Image, Text, TouchableOpacity } from "react-native"
 import { soup } from "../../assets"
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
-
+    const navigation = useNavigation()
+    
     return (
         <View style={{flex: 1}}>
 
@@ -55,7 +57,9 @@ const Login = () => {
 
                     <Text>Dont have an account?  </Text>
                     
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => (navigation.navigate("SignUp"))}
+                    >
                         <Text style={{color: '#21b2b2', textDecorationLine: "underline" }}>Sign Up</Text>
                     </TouchableOpacity>
                     

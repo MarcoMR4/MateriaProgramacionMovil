@@ -13,10 +13,10 @@ function TabNavigatorT10() {
         <View style={styles.container}>
 
               <Tab.Navigator
-                initialRouteName='Menu1'
+                initialRouteName='Home'
               >
                     <Tab.Screen 
-                        name="Welcome" 
+                        name="Home" 
                         component={Welcome} 
                         options={
                             {
@@ -30,7 +30,7 @@ function TabNavigatorT10() {
                         }
                     />
                     <Tab.Screen 
-                        name="Home" 
+                        name="Menu" 
                         component={Menu} 
                         options={
                             {
