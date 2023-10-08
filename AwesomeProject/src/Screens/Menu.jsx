@@ -2,8 +2,7 @@ import { View, StyleSheet, Text, TouchableOpacity, TextInput, ScrollView } from 
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import FoodOption from "../Components/FoodOption";
 import Food from "../Components/Food";
-
-
+import TabNavigatorT10 from "../Routes/TabNavigatorT10";
 
 const Menu = () => {
 
@@ -12,7 +11,7 @@ const Menu = () => {
             
             <View style={styles.container}>
 
-                <Text style={{fontWeight: "bold", fontSize: 22, textAlign: "center", marginTop: 50}}>
+                <Text style={{fontWeight: "bold", fontSize: 22, textAlign: "center", marginTop: 20}}>
                     Store for fast food & etc.
                 </Text>
 
@@ -54,6 +53,7 @@ const Menu = () => {
 
             </View>
 
+        
         </View>
     )
 }
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 30,
         paddingTop: 30,
+        backgroundColor: 'white',
     },
     image:{
         width: '100%', 

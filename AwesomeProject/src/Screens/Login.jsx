@@ -4,13 +4,14 @@ import { soup } from "../../assets"
 const Login = () => {
 
     return (
-        <View>
+        <View style={{flex: 1}}>
+
             <Image 
                 source={soup}
                 style={styles.image}
             />
             <View style={styles.container}>
-                <Text style={{fontWeight: "bold", fontSize: 30,}}>Welcome!</Text>
+                <Text style={{fontWeight: "bold", fontSize: 30, color: '#7e7e7e'}}>Welcome!</Text>
                 <Text style={styles.labelInput}>Email</Text>
                 <TextInput 
                     style={styles.input}
@@ -50,7 +51,7 @@ const Login = () => {
                 </View>
                 </TouchableOpacity>
 
-                <View style={{flexDirection: "row", marginTop: 20, justifyContent:"center",}}>
+                <View style={{flexDirection: "row", marginTop: 20, justifyContent:"center", marginBottom: 60,}}>
 
                     <Text>Dont have an account?  </Text>
                     
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 30,
         paddingTop: 30,
-
+        backgroundColor: 'white'
     },
     image:{
         width: '100%', 

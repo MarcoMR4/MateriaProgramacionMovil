@@ -1,13 +1,16 @@
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUp = () => {
+    const navigation = useNavigation()
 
     return (
         <View>
             <View style={styles.container}>
 
-                <TouchableOpacity>
+
+                <TouchableOpacity onPress={() => (navigation.navigate("Login")) }>
                     <Ionicons name="arrow-back-outline" size={30} color="#7e7e7e" />
                 </TouchableOpacity>
 

@@ -1,7 +1,12 @@
 import { View, StyleSheet, TextInput, Image, Text, TouchableOpacity } from "react-native"
 import { welcomeImage } from "../../assets"
+import { useNavigation } from '@react-navigation/native';
+
+
+
 
 const Welcome = () => {
+    const navigation = useNavigation();
 
     return (
         <View>
@@ -18,7 +23,9 @@ const Welcome = () => {
                     Find best shopping experience with us by your favorite daily needs!
                 </Text>
                 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Home')}
+                >
                 <View style={{alignItems: "center"}}>
                 <Text 
                         style={{
@@ -31,17 +38,14 @@ const Welcome = () => {
                             textAlign: 'center',
                             verticalAlign: "middle",
                             fontWeight: 'bold',
-                            marginTop: 60,
+                            marginTop: 40,
                         }}>
                         Get started!
                     </Text>
                 </View>
                 </TouchableOpacity>
 
-               
-
             </View>
-
         </View>
     )
 }
@@ -52,11 +56,12 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 30,
         paddingTop: 30,
+        backgroundColor: 'white',
     },
     image:{
         width: '100%', 
         height: 400,
-        marginTop: 100,
+        marginTop: 20,
     }, 
 
  
