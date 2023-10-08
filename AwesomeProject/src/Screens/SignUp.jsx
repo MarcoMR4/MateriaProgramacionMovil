@@ -1,16 +1,31 @@
-import { View, StyleSheet, TextInput, Image, Text, TouchableOpacity } from "react-native"
-import { soup } from "../../assets"
+import { View, StyleSheet, TextInput, Text, TouchableOpacity } from "react-native"
+import { Ionicons } from '@expo/vector-icons';
 
-const Login = () => {
+const SignUp = () => {
 
     return (
         <View>
-            <Image 
-                source={soup}
-                style={styles.image}
-            />
             <View style={styles.container}>
-                <Text style={{fontWeight: "bold", fontSize: 30,}}>Welcome!</Text>
+
+                <TouchableOpacity>
+                    <Ionicons name="arrow-back-outline" size={30} color="#7e7e7e" />
+                </TouchableOpacity>
+
+                
+                <Text style={{fontWeight: "bold", fontSize: 30, marginTop: 50, color: '#7e7e7e'}}>Sign Up</Text>
+
+                <View style={{flexDirection: "row", marginTop: 20, justifyContent:"center",}}>
+                    <Text>Already have an account?  </Text>
+                    <TouchableOpacity>
+                        <Text style={{color: '#21b2b2', textDecorationLine: "underline" }}>Login</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <Text style={styles.labelInput}>Name</Text>
+                <TextInput 
+                    style={styles.input}
+                    placeholder="Enter your name"
+                />
                 <Text style={styles.labelInput}>Email</Text>
                 <TextInput 
                     style={styles.input}
@@ -45,22 +60,12 @@ const Login = () => {
                             fontWeight: 'bold',
                             marginTop: 30,
                         }}>
-                        Login
+                        Sign Up
                     </Text>
                 </View>
                 </TouchableOpacity>
 
-                <View style={{flexDirection: "row", marginTop: 20, justifyContent:"center",}}>
-
-                    <Text>Dont have an account?  </Text>
-                    
-                    <TouchableOpacity>
-                        <Text style={{color: '#21b2b2', textDecorationLine: "underline" }}>Sign Up</Text>
-                    </TouchableOpacity>
-                    
-
-
-                </View>
+               
 
 
 
@@ -69,13 +74,13 @@ const Login = () => {
         </View>
     )
 }
-export default Login 
+export default SignUp
 
 
 const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 30,
-        paddingTop: 30,
+        paddingTop: 40,
 
     },
     image:{

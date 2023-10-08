@@ -6,7 +6,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Home from "./src/Screens/Home";
 import Login from "./src/Screens/Login";
+import SignUp from "./src/Screens/SignUp";
+import Welcome from "./src/Screens/Welcome";
 import Account from "./src/Screens/Account";
+import Menu from "./src/Screens/Menu";
 import AuthContextProvider from "./src/context/authContext";
 import { useAuthContext } from "./src/hooks/useAuthContext";
 
@@ -14,19 +17,20 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <AuthContextProvider>
-      <NavigationContainer>
-        <View style={styles.container}>
-          <Stack.Navigator initialRouteName="Login">
-            {/* {Layout()} */}
-            <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Account" component={Account} />
-            <Stack.Screen name="Login" component={Login} />
-          </Stack.Navigator>
-          <StatusBar style="auto" />
-        </View>
-      </NavigationContainer>
-    </AuthContextProvider>
+    // <AuthContextProvider>
+    <Menu />
+    //   <NavigationContainer>
+    //     <View style={styles.container}>
+    //       <Stack.Navigator initialRouteName="Login">
+    //         {/* {Layout()} */}
+    //         <Stack.Screen name="Home" component={Home} />
+    //         <Stack.Screen name="Account" component={Account} />
+    //         <Stack.Screen name="Login" component={Login} />
+    //       </Stack.Navigator>
+    //       <StatusBar style="auto" />
+    //     </View>
+    //   </NavigationContainer>
+    // </AuthContextProvider>
   );
 }
 
