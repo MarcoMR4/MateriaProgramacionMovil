@@ -14,27 +14,20 @@ import AuthContextProvider from "./src/context/authContext";
 import { useAuthContext } from "./src/hooks/useAuthContext";
 import RouterT10 from "./src/Routes/RouterT10";
 
-const Stack = createStackNavigator();
+
 
 export default function App() {
   return (
-    // <AuthContextProvider>
+    <AuthContextProvider>
        <NavigationContainer>
          <View style={styles.container}>
           <RouterT10 />
          </View>
       </NavigationContainer>
-    // </AuthContextProvider>
+    </AuthContextProvider>
   );
 }
 
-/* <Stack.Navigator initialRouteName="Login">
-  /* {Layout()} */
-   // <Stack.Screen name="Home" component={Home} />
-   // <Stack.Screen name="Account" component={Account} />
-   //  <Stack.Screen name="Login" component={Login} />
-  // </Stack.Navigator>
-   //<StatusBar style="auto" />  */
 
 const Layout = () => {
   const { user } = useAuthContext();

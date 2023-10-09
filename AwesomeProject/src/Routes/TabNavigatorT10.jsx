@@ -35,7 +35,7 @@ function TabNavigatorT10() {
                         options={
                             {
                                 headerShown: false,
-                                tabBarLabel: 'Menú', // Etiqueta de la pestaña
+                                tabBarLabel: 'Menú', 
                                 tabBarIcon: () => (
                                     <Ionicons name="ios-restaurant" size={24} color={BLUET10} />
                                 ),

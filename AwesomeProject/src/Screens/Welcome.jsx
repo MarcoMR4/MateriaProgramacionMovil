@@ -3,8 +3,6 @@ import { welcomeImage } from "../../assets"
 import { useNavigation } from '@react-navigation/native';
 
 
-
-
 const Welcome = () => {
     const navigation = useNavigation();
 
