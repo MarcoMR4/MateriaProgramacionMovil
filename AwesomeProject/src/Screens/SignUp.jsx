@@ -19,7 +19,7 @@ const SignUp = () => {
 
                 <View style={{flexDirection: "row", marginTop: 20, justifyContent:"center",}}>
                     <Text>Already have an account?  </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("Login")}>
                         <Text style={{color: '#21b2b2', textDecorationLine: "underline" }}>Login</Text>
                     </TouchableOpacity>
                 </View>
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal: 30,
         paddingTop: 40,
+        backgroundColor: 'white',
 
     },
     image:{
