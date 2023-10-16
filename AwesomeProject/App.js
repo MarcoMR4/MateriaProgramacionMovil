@@ -9,16 +9,24 @@ import Login from "./src/Screens/Login";
 import Account from "./src/Screens/Account";
 import AuthContextProvider from "./src/context/authContext";
 import { useAuthContext } from "./src/hooks/useAuthContext";
+import Layout from "./src/Layout/Layout";
 
 const Stack = createStackNavigator();
+
+// U3 practica 1, envolver solo layout en authprovider 
+//El app. js debe quedar lo mas vacio posible, el layout contiene toda la app con las rutas 
+//tarea1, cambiar asynstorage por otro paquete, evitar que se abra el login si ya hay usuario 
+//usar un louder o spiner al cargar login, si hay un usuario, que carge spinner y entre  
+//Usar securestore en el asyncstorage, 
+//Que la pantalla de inicio sea get started y no login como en tarea 10 
 
 export default function App() {
   return (
     <AuthContextProvider>
+      <Layout />
       <NavigationContainer>
         <View style={styles.container}>
           <Stack.Navigator initialRouteName="Login">
-            {/* {Layout()} */}
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Account" component={Account} />
             <Stack.Screen name="Login" component={Login} />
@@ -30,20 +38,6 @@ export default function App() {
   );
 }
 
-const Layout = () => {
-  const { user } = useAuthContext();
-
-  if (!user) {
-    return <Stack.Screen name="Login" component={Login} />;
-  }
-
-  return (
-    <>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Account" component={Account} />
-    </>
-  );
-};
 
 const styles = StyleSheet.create({
   container: {

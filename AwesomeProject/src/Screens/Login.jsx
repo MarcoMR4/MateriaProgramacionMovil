@@ -15,7 +15,7 @@ import {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
   
-    const { handleLogin: onLogin } = useAuthContext();
+    const { handleLogin: onLogin, user } = useAuthContext();
   
     const handleLogin = () => {
       try {
