@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, useEffect, useState } from "react";
+import * as SecureStore from 'expo-secure-store';
 
 
 export const AuthContext = createContext({
@@ -13,8 +14,9 @@ const AuthContextProvider = ({ children }) => {
 
   const handleLogin = async (username, password) => {
     if (username === "Marco" && password === "123") {
+      await AsyncStorage.setItem('user', username);
+      await SecureStore.setItemAsync("user", username);
       setUser(username);
-      await AsyncStorage.setItem('user', user);
       return true;
     }
     return false;
@@ -23,16 +25,19 @@ const AuthContextProvider = ({ children }) => {
   const handleLogOut = async () => {
     setUser("");
     await AsyncStorage.removeItem('user')
+    await SecureStore.deleteItemAsync("user")
   };
 
   useEffect(() => {
     const getUser = async () => {
       try {
         const currentUser = await AsyncStorage.getItem("user");
+        const currentSecureUser = await SecureStore.getItemAsync("user");       
         if (currentUser) {
           setUser(currentUser);
         }
-        console.log(currentUser);
+        console.log("Current secure user: "+ currentSecureUser);
+        console.log("Current user: "+currentUser)
       } catch (error) {
         console.log(error);
       }

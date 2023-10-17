@@ -18,7 +18,6 @@ const Login = () => {
       try {
         const loginValue = onLogin(username, password);
         if (loginValue) {
-            // navigation.navigate("Home");
             setPassword("");
             setUsername("");
         } else {

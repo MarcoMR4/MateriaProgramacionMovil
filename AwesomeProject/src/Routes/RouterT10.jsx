@@ -6,7 +6,7 @@ import TabNavigatorT10 from './TabNavigatorT10';
 import { useAuthContext } from '../Hooks/useAuthContext';
 import "react-native-gesture-handler";
 import Logout from '../Screens/Logout';
-
+import Welcome from '../Screens/Welcome';
 
 const Drawer = createDrawerNavigator();
 
@@ -14,7 +14,7 @@ export function RouterT10() {
   const { user } = useAuthContext();
   return (
     <Drawer.Navigator 
-      initialRouteName={user ? 'Home' : 'Login'}
+      initialRouteName={'Welcome'}
       options={{ 
         headerTitle: null
       }}
@@ -27,19 +27,19 @@ export function RouterT10() {
                 headerShown: true,
                 headerTitle: null
             }}
+            //component={Menu}
           >
             {() => (
               <TabNavigatorT10 />
             )}
           </Drawer.Screen>
-          {/* <Drawer.Screen
-            name="Menu"
-            component={Menu}
-            options={{ 
-              headerShown: false,
-              drawerLabel: () => null 
-            }}
-          />  */}
+
+          <Drawer.Screen
+            name="Welcome"
+            component={Welcome}
+            options={{ headerShown: false }}
+          /> 
+
           <Drawer.Screen
             name="Logout"
             options={{ headerShown: false }}
@@ -58,6 +58,11 @@ export function RouterT10() {
             component={SignUp}
             options={{ headerShown: false }}
           />
+          <Drawer.Screen
+            name="Welcome"
+            component={Welcome}
+            options={{ headerShown: false }}
+          /> 
           
         </>
       )}

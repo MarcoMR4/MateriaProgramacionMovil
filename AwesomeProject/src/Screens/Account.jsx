@@ -2,25 +2,27 @@
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "../Hooks/useAuthContext";
 
 const Account = () => {
   const navigation = useNavigation();
-  const { handleLogOut: onLogOut } = useAuthContext();
+  const { handleLogOut: onLogOut, user } = useAuthContext();
 
   const handleLogOut = () => {
     try {
       onLogOut();
-      navigation.navigate("Login");
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <View>
-      <Text>Account</Text>
-      <Button title="Cerrar sesion" onPress={() => handleLogOut()} />
+      <Text style={{textAlign: "center", fontSize: 30, fontWeight: "bold", marginBottom: 20}}>Account</Text>
+      <Text style={{textAlign: "center", fontSize: 20,  marginBottom: 20}}>User: {user}</Text>
+      <Button title="Logout" onPress={() => handleLogOut()} />
     </View>
+      
+      
   );
 };
 

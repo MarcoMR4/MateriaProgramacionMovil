@@ -4,6 +4,7 @@ import Menu from '../Screens/Menu';
 import { View, StyleSheet } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { BLUET10 } from '../Constants/COLORS';
+import Account from '../Screens/Account';
 
 
 const Tab = createBottomTabNavigator();
@@ -14,15 +15,15 @@ function TabNavigatorT10() {
         <View style={styles.container}>
 
               <Tab.Navigator
-                initialRouteName='Welcome'
+                initialRouteName='Menu'
               >
                     <Tab.Screen 
-                        name="Welcome" 
-                        component={Welcome} 
+                        name="Account" 
+                        component={Account} 
                         options={
                             {
                                 headerShown: false, 
-                                tabBarLabel: 'Welcome Home', 
+                                tabBarLabel: 'Account', 
                                 tabBarIcon: () => (
                                     <FontAwesome name="home" size={30} color={BLUET10} />
                                 ),
