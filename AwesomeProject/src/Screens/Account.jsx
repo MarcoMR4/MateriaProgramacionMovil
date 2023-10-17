@@ -1,4 +1,3 @@
-
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -6,9 +5,9 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 const Account = () => {
   const navigation = useNavigation();
-  const { handleLogOut: onLogOut } = useAuthContext();
+  const { handleLogOut: onLogOut, user } = useAuthContext();
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
     try {
       onLogOut();
       navigation.navigate("Login");
@@ -18,7 +17,8 @@ const Account = () => {
   };
   return (
     <View>
-      <Text>Account</Text>
+      <Text style={{fontSize: 30, textAlign: "center", fontWeight: "bold", marginBottom: 20}}>Account</Text>
+      <Text style={{fontSize: 20, textAlign: "justify"}}>Welcome: {user}</Text>
       <Button title="Cerrar sesion" onPress={() => handleLogOut()} />
     </View>
   );

@@ -1,6 +1,5 @@
 import { Button, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Account from "./Account";
 import { useNavigation } from "@react-navigation/native";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -8,7 +7,7 @@ const Home = () => {
   const navigation = useNavigation();
   const { handleLogOut: onLogOut } = useAuthContext();
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
     try {
       onLogOut();
       navigation.navigate("Login");

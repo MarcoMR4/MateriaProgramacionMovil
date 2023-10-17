@@ -14,28 +14,31 @@ const AuthContextProvider = ({ children }) => {
   const handleLogin = async (username, password) => {
     if (username === "Marco" && password === "123") {
       setUser(username);
-      AsyncStorage.setItem('user', username)
+      await AsyncStorage.setItem('user', user);
       return true;
     }
     return false;
   };
 
   const handleLogOut = async () => {
-    await AsyncStorage.removeItem('user')
     setUser("");
+    await AsyncStorage.removeItem('user')
   };
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const currentUser = await AsyncStorage.getItem('user')
-        console.log(currentUser)
-      
+        const currentUser = await AsyncStorage.getItem("user");
+        if (currentUser) {
+          setUser(currentUser);
+        }
+        console.log(currentUser);
       } catch (error) {
-        console.log("Error de getUser: "+error)
+        console.log(error);
       }
-    }
-  }, [])
+    };
+    getUser();
+  }, []);
 
   const values = {
     user,
