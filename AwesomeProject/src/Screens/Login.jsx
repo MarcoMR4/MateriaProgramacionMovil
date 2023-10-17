@@ -2,7 +2,7 @@ import { useState } from "react";
 import { View, StyleSheet, TextInput, Image, Text, TouchableOpacity, Alert } from "react-native"
 import { soup } from "../../assets"
 import { useNavigation } from '@react-navigation/native';
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "../Hooks/useAuthContext";
 
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
   
     const { handleLogin: onLogin } = useAuthContext();
   
-    const handleLogin = () => {
+    const handleLogin = async () => {
         console.log(username, " y pass: ",password)
       try {
         const loginValue = onLogin(username, password);

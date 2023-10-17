@@ -5,6 +5,7 @@ import { View, StyleSheet } from 'react-native';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { BLUET10 } from '../Constants/COLORS';
 
+
 const Tab = createBottomTabNavigator();
 
 function TabNavigatorT10() {
