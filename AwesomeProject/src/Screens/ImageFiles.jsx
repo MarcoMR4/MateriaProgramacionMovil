@@ -14,6 +14,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { View, Button, Text } from 'react-native';
 import { useEffect } from 'react';
 import { Image } from 'react-native';
+import { useCameraContext } from '../Context/CamaraContext';
 
 export const ImageFiles = () => {
   const [permissionResponse, requestPermission] = MediaLibrary.usePermissions();
@@ -21,6 +22,7 @@ export const ImageFiles = () => {
   const [imageData, setImageData] = useState()
   const [loadImage, setLoadImage] = useState()
   const [warning, setWarning] = useState('')
+  const {imageUri, setImageUri} = useCameraContext()
 
     useEffect(() => {
         (async () => {
@@ -44,15 +46,19 @@ export const ImageFiles = () => {
       }, []);
 
     const downloadImg = async (sharing) => {
-        const fileName = 'imagenEjemplo.jpg'
-        const img = 'https://i.imgflip.com/2/80vhtz.jpg'
-        const result = await FileSystem.downloadAsync(img, FileSystem.documentDirectory+fileName)
-        if(sharing){
-          share(result.uri)
-        }else{
-          save(result.uri)
-        }
-      }
+        // const fileName = 'imagenEjemplo.jpg'
+        // // const img = 'https://i.imgflip.com/2/80vhtz.jpg'
+        // const img = imageUri
+        // const result = await FileSystem.downloadAsync(img, FileSystem.documentDirectory+fileName)
+        // if(sharing){
+        //   share(result.uri)
+        // }else{
+        //   save(result.uri)
+        const result = {uri: imageUri}
+        share(result.uri)
+        
+        
+    }
       
     const share = (uri) => {
         Sharing.shareAsync(uri)

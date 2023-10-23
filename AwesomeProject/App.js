@@ -5,6 +5,8 @@ import Camara from './src/Components/Camara';
 import Home from './src/Screens/Home';
 import { useState } from 'react';
 import VideoCamara from './src/Components/Video';
+import { ImageFiles } from './src/Screens/ImageFiles';
+import { CameraContextProvider } from './src/Context/CamaraContext';
 
 export default function App() {
   const [camera, setCamera] = useState(false);
@@ -21,13 +23,20 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar style='auto' />
-      {/* <Camara /> */}
-      <Home setCamera={handleCamera} setVideo={handleVideo} />
-      {camera && <Camara />}
-      {video && <VideoCamara />}
-    </View>
+    
+    <CameraContextProvider>
+      <View style={styles.container}>
+        <StatusBar style='auto' />
+        {/* <Camara /> */}
+        <Home setCamera={handleCamera} setVideo={handleVideo} />
+        {camera && <Camara />}
+        {video && <VideoCamara />}
+
+        <ImageFiles />
+      </View>
+
+    </CameraContextProvider>
+   
   );
 }
 

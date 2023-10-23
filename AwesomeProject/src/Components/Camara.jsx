@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Feather, AntDesign } from '@expo/vector-icons';
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useCameraContext } from '../Context/CamaraContext';
 
 export default function Camara() {
   const [type, setType] = useState(CameraType.back);
@@ -10,6 +11,8 @@ export default function Camara() {
   const [flash, setFlash] = useState(false);
   const [photo, setPhoto] = useState(null);
   let camera = useRef();
+  
+  const {imageUri, setImageUri} = useCameraContext()
 
   const takePicture = async () => {
     let options = {
@@ -19,6 +22,8 @@ export default function Camara() {
     };
     let newPhoto = await camera.takePictureAsync(options);
     setPhoto(newPhoto.uri);
+    console.log("A ver...."+newPhoto.uri)
+    setImageUri(newPhoto.uri)
   };
 
   if (!permission) {
