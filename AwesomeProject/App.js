@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
+import Constants from "expo-constants";
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Number } from './src/Components/Number';
+import Button from './src/Components/Button';
 import { useReducer } from 'react';
 
 const CALCULATOR_TYPES = {
@@ -21,7 +22,8 @@ function reducer(state, action){
     case CALCULATOR_TYPES.SELECT_NUMBER:
       return {
         ...state,
-        currentNumber: action.payload
+        currentNumber: action.payload,
+        displayNumber: action.payload,
       }
     
     case CALCULATOR_TYPES.SELECT_OPERATOR:
@@ -35,7 +37,28 @@ function reducer(state, action){
       let result = 0
       switch(state.operator){
         case '+': 
-        result = state.previousNumber + state.currentNumber
+        result = parseFloat(state.previousNumber) + parseFloat(state.currentNumber)
+        return {
+          ...state, 
+          displayNumber: result,
+          currentNumber: result,
+        }
+        case '-': 
+        result = state.previousNumber - state.currentNumber
+        return {
+          ...state, 
+          displayNumber: result,
+          currentNumber: result,
+        }
+        case 'x': 
+        result = state.previousNumber * state.currentNumber
+        return {
+          ...state, 
+          displayNumber: result,
+          currentNumber: result,
+        }
+        case '/': 
+        result = state.previousNumber / state.currentNumber
         return {
           ...state, 
           displayNumber: result,
@@ -49,7 +72,7 @@ function reducer(state, action){
       }
 
     default: 
-      return state
+      break;
   }
 }
 
@@ -62,23 +85,41 @@ export default function App() {
   }
   //pasarlo de propiedad a los botones para el onpress 
 
-  const handleSelectOperator = () => {
+  const handleSelectOperator = (operator) => {
     dispatch({type: CALCULATOR_TYPES.SELECT_OPERATOR, payload: operator})
   }
 
   const handleCalculate = () => {
-    dispatch({type: CALCULATOR_TYPES.CALCULATE, payload: operator})
+    dispatch({type: CALCULATOR_TYPES.CALCULATE})
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text} >{state.displayNumber}</Text>
-
-      <TouchableOpacity>
-        <Number number='1' role={"number"} />
-      </TouchableOpacity>
-      <Text>Open up App.js to start working on your app!</Text>
-
+      <Text style={styles.text}>{state.displayNumber}</Text>
+      <View style={styles.row}>
+        <Button text={"7"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"8"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"9"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"+"} rol={"operator"} onPress={handleSelectOperator} />
+      </View>
+      <View style={styles.row}>
+        <Button text={"4"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"5"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"6"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"-"} rol={"operator"} onPress={handleSelectOperator} />
+      </View>
+      <View style={styles.row}> 
+        <Button text={"1"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"2"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"3"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"x"} rol={"operator"} onPress={handleSelectOperator} />
+      </View>
+      <View style={styles.row}>
+        
+        <Button text={"0"} rol={"number"} onPress={handleSelectedNumber} />
+        <Button text={"/"} rol={"operator"} onPress={handleSelectOperator} />
+        <Button text={"="} rol={"operator"} onPress={handleCalculate} />
+      </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -87,14 +128,19 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: Constants.statusBarHeight,
   },
-  text:{
-
+  row: {
+    flexDirection: "row",
+    gap: 10,
+    marginTop: 10,
   },
-  row:{
-
+  text: {
+    fontSize: 25,
+    fontWeight: "bold",
+    marginBottom: 40,
   },
 });
