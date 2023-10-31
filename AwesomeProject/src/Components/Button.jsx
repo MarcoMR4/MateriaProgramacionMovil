@@ -7,7 +7,7 @@ const Button = ({ text, rol, onPress }) => {
       style={[
         styles.container,
         rol === "number" ? styles.numberContainer : styles.operatorContainer,
-        text === "0" ? styles.zeroContainer : styles.noZeroContainer,
+        text === "0" || text === "C" || text === "=" ? styles.zeroContainer : styles.noZeroContainer,
       ]}
       onPress={() => onPress(text)}
     >

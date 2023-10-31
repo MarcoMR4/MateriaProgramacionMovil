@@ -21,20 +21,6 @@ const initialState = {
 function reducer(state, action){
     switch(action.type){
       case CALCULATOR_TYPES.SELECT_NUMBER:
-        // let newNumber = action.payload;
-
-        // if (state.currentNumber.includes(".") && action.payload === ".") {
-        //     return state; // No hagas nada si ya hay un punto
-        // }
-  
-        // if (state.currentNumber === "0") {
-        //     newNumber = action.payload;
-        // }
-        // return {
-        //     ...state,
-        //     currentNumber: state.currentNumber + newNumber,
-        //     displayNumber: state.displayNumber + newNumber,
-        // }
         return {
           ...state,
           currentNumber: action.payload,
@@ -44,7 +30,7 @@ function reducer(state, action){
       case CALCULATOR_TYPES.SELECT_OPERATOR:
         if(state.operator === 'C'){
             return {
-                state: initialState,
+              ...initialState,
             }
         }else{
             return {
@@ -92,10 +78,6 @@ function reducer(state, action){
             displayNumber: result,
             currentNumber: result,
           }
-          case 'C': 
-          return {
-            initialState
-          }
           default: 
             break;
         }
@@ -128,8 +110,11 @@ export const LayoutCalculator = () => {
       dispatch({type: CALCULATOR_TYPES.CALCULATE})
     }
 
+
     return (
         <View style={styles.container}>
+
+            <Text style={{fontWeight: 'bold', color: '#7ac3c8', fontSize: 22, marginBottom: 40}}>Calculator App!</Text>
 
             <View style={styles.containerDisplay} >
                 <Text style={styles.text}>{state.displayNumber}</Text>
@@ -139,7 +124,7 @@ export const LayoutCalculator = () => {
             <View style={styles.row}>
                 <Button text={"C"} rol={"operator"} onPress={handleSelectOperator} />
                 <Button text={"%"} rol={"operator"} onPress={handleSelectOperator} />
-                <Button text={'<'} rol={"operator"} onPress={handleSelectOperator} />
+                {/* <Button text={'<'} rol={"operator"} onPress={handleSelectOperator} /> */}
                 <Button text={"÷"} rol={"operator"} onPress={handleSelectOperator} />
             </View>
             <View style={styles.row}>
@@ -163,7 +148,7 @@ export const LayoutCalculator = () => {
             <View style={styles.row}>
         
                 <Button text={"0"} rol={"number"} onPress={handleSelectedNumber} />
-                <Button text={"."} rol={"operator"} onPress={handleSelectOperator} />
+                {/* <Button text={"."} rol={"operator"} onPress={handleSelectOperator} /> */}
                 <Button text={"="} rol={"operator"} onPress={handleCalculate} />
             </View>
         <StatusBar style="auto" />
