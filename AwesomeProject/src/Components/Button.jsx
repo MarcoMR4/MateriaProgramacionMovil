@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 10,
+    borderRadius: 35,
   },
   zeroContainer: {
     width: 150,
@@ -36,10 +36,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#454DF0",
   },
   operatorContainer: {
-    backgroundColor: "silver",
+    backgroundColor: "gray",
   },
   text: {
     fontSize: 25,
-    color: 'white',
+    color: '#D8DAF5',
   },
 });
