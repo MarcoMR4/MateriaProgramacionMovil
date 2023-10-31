@@ -42,12 +42,18 @@ function reducer(state, action){
         }
       
       case CALCULATOR_TYPES.SELECT_OPERATOR:
-        return {
-          ...state,
-          operator: action.payload, 
-          previousNumber: state.currentNumber
+        if(state.operator === 'C'){
+            return {
+                state: initialState,
+            }
+        }else{
+            return {
+                ...state,
+                operator: action.payload, 
+                previousNumber: state.currentNumber
+            }
         }
-  
+        
       case CALCULATOR_TYPES.CALCULATE:
         let result = 0
         switch(state.operator){
@@ -72,7 +78,7 @@ function reducer(state, action){
             displayNumber: result,
             currentNumber: result,
           }
-          case '/': 
+          case '÷': 
           result = state.previousNumber / state.currentNumber
           return {
             ...state, 
@@ -88,9 +94,7 @@ function reducer(state, action){
           }
           case 'C': 
           return {
-            ...state, 
-            displayNumber: 0,
-            currentNumber: 0,
+            initialState
           }
           default: 
             break;
@@ -136,7 +140,7 @@ export const LayoutCalculator = () => {
                 <Button text={"C"} rol={"operator"} onPress={handleSelectOperator} />
                 <Button text={"%"} rol={"operator"} onPress={handleSelectOperator} />
                 <Button text={'<'} rol={"operator"} onPress={handleSelectOperator} />
-                <Button text={"/"} rol={"operator"} onPress={handleSelectOperator} />
+                <Button text={"÷"} rol={"operator"} onPress={handleSelectOperator} />
             </View>
             <View style={styles.row}>
                 <Button text={"7"} rol={"number"} onPress={handleSelectedNumber} />
