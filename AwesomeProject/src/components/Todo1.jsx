@@ -9,7 +9,7 @@ const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdi
             isCompleted && styles.todoCompleted,
         ]}>
             <View style={{flexDirection: "column"}}>
-                <Text style={{fontSize:15, fontWeight: "bold", color:'white'}}>
+                <Text style={{fontSize:15, fontWeight: "bold", color:'white', marginBottom: 10}}>
                     {name}
                 </Text>
                 <Text 
@@ -17,6 +17,7 @@ const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdi
                     fontSize:10, 
                     color: isCompleted ? 'silver' : 'silver', 
                     margin: 5,
+                    marginBottom: 10,
                 }}>
                     {date}
                 </Text>
@@ -53,9 +54,9 @@ const styles = StyleSheet.create({
         flexDirection: "column", 
         marginTop: 30,
         justifyContent: "space-evenly", 
-        padding: 10, 
-        borderRadius: 5, 
-         backgroundColor: '#2d705f',
+        padding: 15, 
+        borderRadius: 30, 
+        backgroundColor: '#2d705f',
         borderColor: 'white',
     }, 
     todoCompleted: {

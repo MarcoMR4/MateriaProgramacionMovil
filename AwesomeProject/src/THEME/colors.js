@@ -4,6 +4,9 @@ export const THEME = {
         DARKBLUE1: '#2362df', 
         LIGHTBLUE1: '#CFECF4',
         SALMON1: '#F28862',
+        TODOCONTAINER: '#271338',
+        DONETASK: '#396977',
+        TASK: '',
     }
 
 

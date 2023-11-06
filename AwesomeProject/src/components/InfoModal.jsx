@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#8FA7A5',
   },
   infoContainer: {
-    backgroundColor: '#077974',
+    backgroundColor: '#4c2b64',
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,

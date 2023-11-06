@@ -1,109 +1,154 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { handleShowError } from "../Helpers-or-Utils/showError";
 
 export const useTodos = () => {
-    const [inputValue, setInputValue] = useState('');
-    const [todos, setTodos] = useState([]);
-    const [editMode, setEditMode] = useState(false);
-    const [editTodoId, setEditTodoId] = useState(null);
-    const [info, setInfo] = useState([]);
-    const [seeModal, setSeeModal] = useState(false);
+    //  Anterior forma de usar las propiedades 
+    // const [inputValue, setInputValue] = useState('');
+    // const [todos, setTodos] = useState([]);
+    // const [editMode, setEditMode] = useState(false);
+    // const [editTodoId, setEditTodoId] = useState(null);
+    // const [info, setInfo] = useState([]);
+    // const [seeModal, setSeeModal] = useState(false);
+
+    
+    const initialState = {
+        inputValue: '',
+        todos: [],
+        editMode: false,
+        editTodoId: null, 
+        info: [],
+        seeModal: false,
+    }
+
+    
+    function reducer(state, action){
+        switch(action.type){
+            case "SET_INPUT_VALUE":
+                return { ...state, inputValue: action.payload };
+            case "ADD_TODO":{
+                if (state.inputValue === "") {
+                    handleShowError('Debes ingrear un nombre a la tarea')
+                    return state
+                };
+                let valor = state.inputValue
+                if(valor.length > 10){
+                    handleShowError('Debes ingresar menos de 10 caracteres')
+                    return state
+                }    
+                const existingTodo = state.todos.some(
+                    (todo) => todo.name.toLowerCase() === state.inputValue.toLowerCase()
+                )
+                if(existingTodo){
+                    handleShowError(
+                        'Ya existe una tarea con ese nombre'
+                    )
+                    return state
+                }
+                if (state.editMode) {
+                    const updatedTodos = state.todos.map((todo) => {
+                        if (todo.id === state.editTodoId) {
+                            return {
+                                ...todo,
+                                name: state.inputValue,
+                                date: 'Updated at: ' + new Date().toISOString(),
+                            };
+                        }
+                        return todo;
+                    });
+                    return {
+                        ...state,
+                        todos: updatedTodos,
+                        editMode: false,
+                        editTodoId: null,
+                        inputValue: '',
+                    };
+                } else {
+                        const newTodo = {
+                            id: new Date().toISOString(),
+                            name: state.inputValue,
+                            isCompleted: false,
+                            date: '',
+                            createdAt: new Date().toISOString(),
+                        };
+                    return { 
+                        ...state, 
+                        todos: [...state.todos, newTodo],
+                        inputValue: '',
+                    };
+                }
+            }
+            
+            case "DELETE_TODO":
+                const todoIdToDelete = action.payload;
+                const filteredArray = state.todos.filter(
+                    (todo) => todo.id !== todoIdToDelete
+                );
+                return { ...state, todos: filteredArray };
+
+            case "COMPLETED_TODO":
+                const mappedArray = state.todos.map((todo) => {
+                    if (todo.id === action.payload) {
+                        return {
+                            ...todo,
+                            isCompleted: !todo.isCompleted,
+                        };
+                    }
+                    return todo;
+                });
+                return { ...state, todos: mappedArray };
+                
+                
+            case "EDIT_TODO":
+                const todoToEdit = state.todos.find(
+                    (todo) => todo.id === action.payload
+                );
+                if (todoToEdit) {
+                    return {
+                        ...state,
+                        editMode: true,
+                        editTodoId: action.payload,
+                        inputValue: todoToEdit.name,
+                    };
+                }
+                return state;
+
+            case "SET_INFO":
+                const info = state.todos.find((todo) => todo.id === action.payload)
+                return { ...state, info, seeModal: true };
+
+            case "TOGGLE_MODAL":
+                return { ...state, seeModal: !state.seeModal };
+
+            default:
+                return state;
+        }  
+    }
+
+    const [state, dispatch] = useReducer(reducer, initialState);
+
 
     const handleAddTodo = () => {
-    if (inputValue === '') return handleShowError(
-        'Debes ingresar un nombre a la tarea'
-    )
-    let valor = inputValue
-     
-    if(valor.length > 10) return handleShowError(
-        'Debes ingresar menos de 10 caracteres'
-    )
-    
-    const existingTodo = todos.some(
-        todo => todo.name.toLowerCase() === inputValue.toLowerCase()
-    )
-    
-    if(existingTodo) return handleShowError(
-        'Ya existe una tarea con ese nombre'
-    )
-        
-    if (editMode) {
-        const updatedTodos = todos.map((todo) => {
-        if (todo.id === editTodoId) {
-            return {
-            ...todo,
-            name: inputValue,
-            date: 'Updated at: ' + new Date().toISOString(),
-            };
-        }
-        return todo;
-        });
-        setTodos(updatedTodos);
-        setEditMode(false);
-        setEditTodoId(null);
-        } else {
-        setTodos([
-        ...todos,
-            {
-            id: new Date().toISOString(),
-            name: inputValue,
-            isCompleted: false,
-            date: '',
-            createdAt: new Date().toISOString(),
-            },
-        ]);
-        }
-    setInputValue('');
+        dispatch({ type: "ADD_TODO" });
     };
 
-    const handleDeleteTodo = (todoId) => {
-        const filteredArray = todos.filter(
-        (todo) => todo.id !== todoId
-        )
-        setTodos(filteredArray)  
+    const handleDeleteTodo = (id) => {
+        dispatch({ type: "DELETE_TODO", payload: id });
     }
 
-    const handleCompletedTodo = (todoId) => {
-        const mappedArray = todos.map(todo => {
-        if(todo.id === todoId){
-            return {
-            ...todo, 
-            isCompleted: todo.isCompleted ? false : true
-            }
-        }
-        return todo;
-        })
-        setTodos(mappedArray)
+    const handleCompletedTodo = (id) => {
+        dispatch({ type: "COMPLETED_TODO", payload: id });
     }
 
-    const handleEditTodo = (todoId) => {
-        setEditMode(true);
-        setEditTodoId(todoId);
-        const todoToEdit = todos.find((todo) => todo.id === todoId);
-        if (todoToEdit) {
-        setInputValue(todoToEdit.name);
-        }
+    const handleEditTodo = (id) => {
+        dispatch({ type: "EDIT_TODO", payload: id });
     };
 
     const handleInfo = (id) => {
-        setInfo(todos.find((todo) => todo.id === id));
-        setSeeModal(!seeModal);
+        dispatch({ type: "SET_INFO", payload: id });
       };
 
     return {
-        inputValue: inputValue,
-        todos: todos,
-        handleAddTodo,
-        handleCompletedTodo, 
-        handleEditTodo, 
-        editTodoId: editTodoId,
-        editMode: editMode,
-        handleDeleteTodo,
-        setInputValue,
-        info,
-        seeModal,
-        setSeeModal,
-        handleInfo,
+        state, dispatch
     }
 
 }
