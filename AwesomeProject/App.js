@@ -1,10 +1,15 @@
-import TodoReducerLayout from "./src/screens/TodoReducerLayout";
+import React from 'react';
+import { Provider } from 'react-redux';
+import TodoReduxLayout from './src/screens/TodoReduxLayout';
+import store from './src/Reducers/store';
 
-//unidad3/tarea3 uso de userReducer par el manejo de states 
-
-export default function App() {
+function App() {
   return (
-    <TodoReducerLayout />
+    <Provider store={store}>
+      <TodoReduxLayout />
+    </Provider>
   );  
 }
+
+export default App
 
