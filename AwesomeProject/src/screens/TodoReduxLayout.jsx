@@ -1,101 +1,123 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  setInputValue,
-  addTodo,
-  deleteTodo,
-  completedTodo,
-  editTodo,
-  setInfo,
-  toggleModal,
-} from '../Reducers/TasksSlice';
-
-import { View, Text, FlatList } from 'react-native';
-import Todo1 from '../components/Todo1';
-import TodoInput from '../components/TodoInput';
-import InfoModal from '../components/InfoModal';
-import CustomButtonText from '../components/CustomButtonText';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { TodoContainer } from '../constants/colors';
-import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
+import { Alert, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Provider } from 'react-redux';
+import { store } from '../features/store';
+import Counter from '../features/Counter';
+import { TodoContainer } from '../constants/colors';
 
-export const TodoReduxLayout = () => {
-  const dispatch = useDispatch();
-  const {
-    inputValue,
-    todos,
-    editMode,
-    editTodoId,
-    info,
-    seeModal,
-  } = useSelector((state) => state.tasks);
+export default function TodoReduxLayout() {
+  const [input, setInput] = useState('');
+  const [todos, setTodos] = useState([]);
+  const [edit, setEdit] = useState([{ id: '', isEdit: false }]);
+
+  const handleShowError = (error) =>
+    Alert.alert('Error', error, [
+      {
+        text: 'Aceptar',
+      },
+    ]);
+  const handleAddTodo = () => {
+    if (input === '')
+      return handleShowError('Debes ingresar un nombre a la tarea');
+
+    const existingTodo = todos.some(
+      (todo) => todo.name.toLowerCase() === input.toLowerCase()
+    );
+
+    if (existingTodo) {
+      return handleShowError('Ya existe una tarea con ese nombre');
+    }
+
+    setTodos([
+      ...todos,
+      {
+        id: new Date().toISOString(),
+        name: input,
+        completed: false,
+        createAt: `${new Date().getDate()}/${
+          new Date().getMonth() + 1
+        }/${new Date().getFullYear()}`,
+        updatedAt: '',
+      },
+    ]);
+    setInput('');
+  };
+
+  const handleDeleteTodo = (id) => {
+    
+    setTodos(() => todos.filter((todo) => todo.id !== id));
+  };
+
+  const handleCompleteTodo = (id) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+      return todo;
+    });
+
+    setTodos(updatedTodos);
+  };
+
+  const handleEdit = (id) => {
+    setEdit({ isEdit: !edit.isEdit, id: id });
+    if (!edit.isEdit) {
+      setInput(todos.find((todo) => todo.id === id).name);
+    } else {
+      setInput('');
+    }
+  };
+
+  const handleEditTodo = () => {
+    if (input === '')
+      return handleShowError('Debes ingresar un nombre a la tarea');
+
+    const existingTodo = todos.some(
+      (todo) => todo.name.toLowerCase() === input.toLowerCase()
+    );
+
+    if (existingTodo) {
+      return handleShowError('Ya existe una tarea con ese nombre');
+    }
+
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === edit.id) {
+        return {
+          ...todo,
+          name: input,
+          updatedAt: `${new Date().getDate()}/${
+            new Date().getMonth() + 1
+          }/${new Date().getFullYear()}`,
+        };
+      }
+      return todo;
+    });
+
+    setTodos(updatedTodos);
+    setInput('');
+    setEdit({ isEdit: !edit.isEdit, id: '' });
+  };
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-
-      <View style={{ justifyContent: 'center', paddingHorizontal: 20, paddingTop: 10 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-          <Text
-            style={{
-              fontSize: 40,
-              fontWeight: 'bold',
-              textAlign: 'center',
-              color: 'white',
-              marginBottom: 15,
-            }}
-          >
-            To do List
-          </Text>
-          <FontAwesome5 name="tasks" size={35} color="silver" />
-        </View>
-
-        <View style={{ flexDirection: 'row', marginTop: 20, gap: 20 }}>
-          <TodoInput
-            value={inputValue}
-            onChangeText={(value) => dispatch(setInputValue(value))}
-          />
-          <CustomButtonText
-            text={editMode ? 'Edit task' : 'Add task'}
-            onPress={() => {
-              dispatch(addTodo());
-              // Limpia el input después de agregar/editar una tarea
-              dispatch(setInputValue(''));
-            }}
-          />
-        </View>
-
-        <View>
-          <InfoModal info={info} seeModal={seeModal} setSeeModal={() => dispatch(toggleModal())} />
-        </View>
-
-        <FlatList
-          data={todos}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item: { name, id, isCompleted, date } }) => (
-            <Todo1
-              name={name}
-              id={id}
-              handleDelete={() => dispatch(deleteTodo(id))}
-              isCompleted={isCompleted}
-              handleCompleted={() => dispatch(completedTodo(id))}
-              handleEdit={() => dispatch(editTodo(id))}
-              date={date}
-              handleInfo={() => dispatch(setInfo(id))}
-            />
-          )}
-        />
+    <Provider store={store}>
+      <View style={styles.container}>
+        <Counter />
+        <StatusBar style='auto' />
       </View>
-    </View>
+    </Provider>
   );
-};
+}
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: TodoContainer,
-    paddingTop: Constants.statusBarHeight + 10,
-    padding: 15,
+    paddingTop: 40,
+    paddingHorizontal: 20,
   },
-};
+});

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import CustomButton from "./CustomButton";
 
-const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdit, date, handleInfo, }) => {
+const Todo1 = ({ id, name, handleDelete, isCompleted, handleComplete, handleEdit, date, handleInfo, }) => {
     return (
         <View style={[
             styles.container, 
@@ -36,7 +36,7 @@ const Todo1 = ({ id, name, handleDelete, isCompleted, handleCompleted, handleEdi
                 <CustomButton 
                 iconName = {isCompleted ? 'done' : 'complete'}
                 light
-                onPress={() => handleCompleted(id)}
+                onPress={() => handleComplete(id)}
                 />
                 <CustomButton
                     iconName='info'

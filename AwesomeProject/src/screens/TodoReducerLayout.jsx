@@ -14,6 +14,7 @@ import InfoModal from "../components/InfoModal";
 import CustomButtonText from "../components/CustomButtonText";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { TodoContainer } from "../constants/colors";
+import Counter from "../features/Counter";
 
 //unidad3/tarea3 uso de userReducer par el manejo de states 
 

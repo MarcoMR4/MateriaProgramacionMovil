@@ -41,10 +41,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderColor: 'white', 
         borderRadius: 10,
-        width: 60,
-        height: 33,
+        width: 66,
+        height: 46,
         alignItems: "center",
         paddingVertical: 1,
+        backgroundColor: 'silver',
     }
 })
 
