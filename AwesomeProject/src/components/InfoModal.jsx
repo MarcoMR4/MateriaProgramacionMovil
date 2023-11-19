@@ -36,11 +36,11 @@ const InfoModal = ({ info, seeModal, setSeeModal }) => {
             <Text style={styles.infoText}>Created at: {info.createdAt}</Text>
           </View>
           <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>{info.date !== '' ? info.date : 'Unedited'}</Text>
+            <Text style={styles.infoText}>{info.updatedAt !== '' ? 'Updated at: '+info.updatedAt : 'Unedited'}</Text>
           </View>
           <View style={styles.infoContainer}>
             <Text style={styles.infoTitle}>Status:</Text>
-            <Text style={styles.infoText}>{info.isCompleted ? 'Done' : 'Uncompleted'}</Text>
+            <Text style={styles.infoText}>{info.completed ? 'Done' : 'Uncompleted'}</Text>
           </View>
           <Pressable
             style={[styles.button, styles.buttonClose]}

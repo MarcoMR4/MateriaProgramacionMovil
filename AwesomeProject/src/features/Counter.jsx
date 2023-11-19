@@ -15,29 +15,78 @@ import {
     edit,
     editTodo,
     cambiar,
+    see,
+    toggleModal
   } from './counter/counterSlice';
- import CustomButton from '../components/CustomButton';
+  import TodoInput from '../components/TodoInput';
+  import CustomButton from '../components/CustomButton';
   import Todo1 from '../components/Todo1';
   import { FontAwesome5 } from '@expo/vector-icons';
+  import InfoModal from '../components/InfoModal';
+  import {handleShowError} from '../helpers-or-Utils/showError';
+
   
   const Counter = () => {
+    const [inputValue, setInputValue] = useState('')
     const todo = useSelector((state) => state.counter.todos);
-    const editar = useSelector((state) => state.counter.edit);
+    const isEdit = useSelector((state) => state.counter.edit.isEdit);
     const name = useSelector((state) => state.counter.name);
+    const info = useSelector((state) => state.counter.info)
+    const seeModal = useSelector((state) => state.counter.seeModal)
     const dispatch = useDispatch();
   
     const handleAddTodo = (e) => {
+      if (inputValue === "") {
+        handleShowError('Debes ingrear un nombre a la tarea')
+        return 
+      };
+      if(inputValue.length > 10){
+        handleShowError('Debes ingresar menos de 10 caracteres')
+        return
+      }  
+      const existingTodo = todo.some(
+          (todo) => todo.name.toLowerCase() === inputValue.toLowerCase()
+      )
+      if(existingTodo){
+        handleShowError(
+            'Ya existe una tarea con ese nombre'
+        )
+        return 
+      }
       dispatch(add(name));
       handleChangeName('');
     };
     const handleDeleteTodo = (e) => dispatch(borrar(e));
     const handleCompleteTodo = (e) => dispatch(complete(e));
     const handleEdit = (e) => dispatch(edit(e));
-    const handleEditTodo = (e) => {
+    const handleEditTodo = () => {
+      if (inputValue === "") {
+        handleShowError('Debes ingrear un nombre a la tarea')
+        return 
+      };
+      if(inputValue.length > 10){
+        handleShowError('Debes ingresar menos de 10 caracteres')
+        return
+      }  
+      const existingTodo = todo.some(
+          (todo) => todo.name.toLowerCase() === inputValue.toLowerCase()
+      )
+      if(existingTodo){
+        handleShowError(
+            'Ya existe una tarea con ese nombre'
+        )
+        return 
+      }
       dispatch(editTodo(name));
       handleChangeName('');
     };
     const handleChangeName = (e) => dispatch(cambiar(e));
+    const handleInfoTodo = (e) => {
+      console.log(info)
+      dispatch(see(e));
+      dispatch(toggleModal()); 
+    };
+    
     return (
       <>
         <View>
@@ -55,28 +104,25 @@ import {
             <FontAwesome5 name="tasks" size={35} color="silver" style={{marginTop: 18}} />
           </View>
           <View style={{ flexDirection: 'row', marginTop: 20, gap: 20 }}>
-            <TextInput
-              style={{
-                borderWidth: 1,
-                paddingHorizontal: 10,
-                fontSize: 20,
-                flex: 1,
-                borderRadius: 5,
-                height: 40,
-                borderColor: 'silver',
-                backgroundColor: 'lightblue'
-              }}
-              placeholder='Add your task...'
+            <TodoInput
               value={name}
-              onChangeText={(value) => handleChangeName(value)}
+              onChangeText={(value) => {
+                handleChangeName(value)
+                setInputValue(value)
+              }}
             />
-            {editar.isEdit ? (
+            {isEdit ? (
               <CustomButton text='Edit task' onPress={handleEditTodo} />
             ) : (
               <CustomButton text='Add task' onPress={handleAddTodo} />
             )}
           </View>
         </View>
+
+        <View>
+          <InfoModal info={info} seeModal={seeModal} setSeeModal={() => dispatch(toggleModal())} />
+        </View>
+
         <FlatList
           data={todo}
           renderItem={({
@@ -86,14 +132,16 @@ import {
               name={name}
               id={id}
               createAt={createAt}
-              updatedAt={updatedAt}
+              date={updatedAt}
               isCompleted={completed}
-              isEdit={handleEdit}
+              handleEdit={handleEdit}
               handleDelete={handleDeleteTodo}
               handleComplete={handleCompleteTodo}
+              handleInfo = {handleInfoTodo}
             />
           )}
         />
+  
       </>
     );
   };

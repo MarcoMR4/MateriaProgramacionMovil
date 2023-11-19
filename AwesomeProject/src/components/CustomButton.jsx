@@ -2,7 +2,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { FontAwesome, MaterialCommunityIcons, Fontisto } from '@expo/vector-icons';
 
 
-const CustomButton = ({onPress, iconName }) => {
+const CustomButton = ({onPress, iconName, text }) => {
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={styles.container} >
@@ -23,7 +23,7 @@ const CustomButton = ({onPress, iconName }) => {
                     <FontAwesome name="eye" size={25} color="white" />
                 ) :
                 iconName === 'Edit Task' || 'Add task' ? (
-                    <Text>Edit task</Text>
+                    <Text>{text}</Text>
                 ) : 
                 null
                 
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderColor: 'white', 
         borderRadius: 10,
-        width: 66,
-        height: 46,
+        width: 70,
+        height: 50,
         alignItems: "center",
         paddingVertical: 1,
         backgroundColor: 'silver',

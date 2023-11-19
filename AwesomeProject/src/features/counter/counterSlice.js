@@ -7,6 +7,8 @@ const initialState = {
     isEdit: false,
   },
   name: '',
+  info: {},
+  seeModal: false,
 };
 
 export const counterSlice = createSlice({
@@ -16,7 +18,16 @@ export const counterSlice = createSlice({
     cambiar: (state, action) => {
       state.name = action.payload;
     },
-    add: (state, action) => {
+    see: (state, action) => {
+      const selectedTodo = state.todos.find((todo) => todo.id === action.payload);
+      state.info = {
+        name : selectedTodo.name,
+        updatedAt: selectedTodo.updatedAt,
+        createdAt: selectedTodo.createAt,
+        completed: selectedTodo.completed,
+      }
+    },
+    add: (state, action) => {    
       state.todos = [
         ...state.todos,
         {
@@ -63,6 +74,7 @@ export const counterSlice = createSlice({
             }/${new Date().getFullYear()}`,
           };
         }
+        return todo;
       });
       state.edit = {
         id: '',
@@ -70,11 +82,14 @@ export const counterSlice = createSlice({
       };
       state.name = '';
     },
+    toggleModal: (state) => {
+      state.seeModal = !state.seeModal;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { add, complete, edit, editTodo, borrar, cambiar } =
+export const { add, complete, edit, editTodo, borrar, cambiar, see, toggleModal } =
   counterSlice.actions;
 
 export default counterSlice.reducer;
